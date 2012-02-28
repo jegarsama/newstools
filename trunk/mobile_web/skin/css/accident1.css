@@ -1,0 +1,35 @@
+/*#region License Statement								*/
+/*Copyright (c) www.newstools.kr All rights reserved.	*/
+/*코드	: UTF-8											*/
+-/*설명	: 사고접수(1단계)								*/
+/*작성자	: LastDragon								*/
+/*소속명	: www.newstools.kr							*/
+/*수정일	: 20120220									*/
+/*#endregion											*/
+
+@charset "utf-8";
+
+/* STR : 전체 레이아웃 영역 */
+	#content_display	{ text-align:center; border:none; margin:0; padding:10px 0; }
+		#content_display h1	{ width:100%; height:9%; margin:0; display:block; }
+		#content_display h1 img	{ width:100%; height:59px; margin:0; }
+
+		#content_display h2	{ width:100%; height:4%; margin:0; display:block; }
+		#content_display h2 img	{ width:100%; height:32px; margin:0; }
+
+		#content_display #input_name	{ width:39%; height:45px; margin:0 3% 0 4%; padding:0; position:relative; float:left; }
+		#content_display #input_name img{ width:100%; height:100%; margin:0; padding:0; position:absolute; top:0px; left:0px; z-index:0; }
+		#content_display #input_name #driver_name{ width:80%; height:50%; margin:0; padding:0; position:absolute; top:25%; left:10%; color:#b0b0b0; font-size:12pt; font-weight:bold; text-align:center; border-width:0; }
+
+		#content_display #select_rel	{ width:39%; height:45px; margin:0 3% 0 4%; padding:0; position:relative; float:right; }
+		#content_display #select_rel img{ width:100%; height:100%; margin:0; padding:0; position:absolute; top:0px; left:0px; z-index:0; }
+		#content_display #select_rel #driver_rel{ width:80%; height:70%; margin:0; padding:0; position:absolute; top:15%; left:10%; color:#b0b0b0; font-size:12pt; font-weight:bold; text-align:center; border-width:0; }
+
+		#content_display #input_tel	{ width:100%; height:39px; margin:0 3% 0 4%; padding:0; position:relative; float:left; }
+		#content_display #input_tel img{ width:93%; height:100%; margin:0; padding:0; position:absolute; top:0px; left:0px; z-index:0; }
+		#content_display #input_tel #driver_tel{ width:80%; height:50%; margin:0; padding:0; position:absolute; top:25%; left:6%; color:#b0b0b0; font-size:12pt; font-weight:bold; text-align:center; border-width:0; }
+
+		#content_display #input_context	{ width:100%; height:118px; margin:0 3% 0 4%; padding:0; position:relative; float:left; }
+		#content_display #input_context img{ width:93%; height:100%; margin:0; padding:0; position:absolute; top:0px; left:0px; z-index:0; }
+		#content_display #input_context #accident_context{ width:87%; height:80%; margin:0; padding:0; position:absolute; top:10%; left:3%; overflow:auto; color:#b0b0b0; font-size:12pt; font-weight:bold; border-width:0; }
+/* END : 전체 레이아웃 영역 */

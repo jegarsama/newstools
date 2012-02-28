@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="Format" content="text/html" />
+<meta name="Robots" content="index,follow" />
+<meta name="Charset" content="utf-8" />
+<meta name="Author" content="master@newstools.kr" />
+<meta name="Generator" content="EditPlus Text Editor v3.31" />
+<title>사건접수1</title>
+<link rel="stylesheet" href="skin/css/common.css" type="text/css" />
+<link rel="stylesheet" href="skin/css/accident1.css" type="text/css" />
+<script language="javascript" type="text/javascript" src="skin/js/jquery-1.7.1.min.js" ></script>
+<script language="javascript" type="text/javascript" src="skin/js/common_interface.js" ></script>
+</head>
+<body>
+	<script type="text/javascript">
+	//<![CDATA[
+		function readWebData() {
+			//이름#관계#연락처#사고내용
+			var form = document.getElementById('contForm');
+			var rtn = form.driver_name.value;
+			rtn += "#"+form.driver_rel.value;
+			rtn += "#"+form.driver_tel.value;
+			rtn += "#"+form.accident_context.value;
+
+			return rtn;
+		}
+
+		function WmWriteMsg(arg) {
+			//이름#관계#연락처#사고내용
+			var arryData = new Array();
+			arryData = arg.split("#");
+
+			var form = document.getElementById('contForm');
+			form.driver_name.value	= arryData[0];
+			form.driver_rel.value	= arryData[1];
+			form.driver_tel.value	= arryData[2];
+			form.accident_context.value	= arryData[3];
+		}
+	//]]>
+	</script>
+	<div id="wrapper">
+		<form id="contForm">
+		<!-- STR : content -->
+		<div id="content">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td id="content_top_left"></td>
+					<td id="content_top_center"></td>
+					<td id="content_top_right"></td>
+				</tr>
+				<tr>
+					<td id="content_middle_left"></td>
+					<td id="content_display">
+						<h1><img src="./skin/images/title_accident_1.jpg" title="사고접수(1단계)" /></h1>
+
+						<h2><img src="./skin/images/title_accident_driver.jpg" title="운전자 이름 및 관계 *필수입력" /></h2>
+
+						<div id="input_name" class="inputbox">
+							<img src="./skin/images/bg_input_name.jpg" />
+							<input type="text" id="driver_name" name="driver_name" />
+						</div>
+
+						<div id="select_rel" class="inputbox">
+							<img src="./skin/images/bg_select_rel.jpg" />
+							<select id="driver_rel" name="driver_rel">
+								<option value="본인">본인</option>
+								<option value="배우자">배우자</option>
+								<option value="자녀">자녀</option>
+								<option value="사위">사위</option>
+								<option value="며느리">며느리</option>
+								<option value="부모">부모</option>
+								<option value="배우자부모">배우자부모</option>
+								<option value="형제자매">형제자매</option>
+								<option value="기타">기타</option>
+							</select>
+						</div>
+
+						<h2><img src="./skin/images/title_accident_tel.jpg" title="운전자 연락처 *필수입력" /></h2>
+
+						<div id="input_tel" class="inputbox">
+							<img src="./skin/images/bg_input_tel.jpg" />
+							<input type="text" id="driver_tel" name="driver_tel" />
+						</div>
+
+						<h2><img src="./skin/images/title_accident_context.jpg" title="사고내용" /></h2>
+
+						<div id="input_context" class="inputbox">
+							<img src="./skin/images/bg_input_context.jpg" />
+							<textarea id="accident_context" name="accident_context">내가 막 붕붕 달리고 있는데 어떤...</textarea>
+						</div>
+					</td>
+					<td id="content_middle_right"></td>
+				</tr>
+				<tr>
+					<td id="content_bottom_left"></td>
+					<td id="content_bottom_center"></td>
+					<td id="content_bottom_right"></td>
+				</tr>
+			</table>
+		</div>
+		<!-- END : content -->
+		</form>
+	</div>
+</body>
+</html>
