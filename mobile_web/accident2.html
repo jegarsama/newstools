@@ -31,11 +31,11 @@
 			}
 
 			for (var i=0; i < 4; i++) {
-				if( $('effect'+i).attr('checked')=='checked' )
+				if( $('#effect'+i).attr('checked')=='checked' )
 				{
-					rtn+='#'+$('effect'+i+'_name').attr('value');
-					rtn+='#'+$('effect'+i+'_number').attr('value');
-					if( i == 3 ) rtn+='#'+$('effect'+i+'_number2').attr('value');
+					rtn+='#'+$('#effect'+i+'_name').attr('value');
+					rtn+='#'+$('#effect'+i+'_number').attr('value');
+					if( i == 3 ) rtn+='#'+$('#effect'+i+'_number2').attr('value');
 				}
 				else
 				{
@@ -54,10 +54,86 @@
 			arryData = arg.split("#");
 
 			var form = document.getElementById('contForm');
-			//form.driver_name.value	= arryData[0];
-			//form.driver_rel.value	= arryData[1];
-			//form.driver_tel.value	= arryData[2];
-			//form.accident_context.value	= arryData[3];
+
+			//라디오버튼형
+			var inputs = document.getElementsByName('accident_case');
+			for (var i=0; i < inputs.length; i++)
+			{
+				if( inputs[i].value==arryData[0] )
+				{
+					$(inputs[i]).parent().children('img.rad').attr('src', $(inputs[i]).parent().children('img.rad').attr('src').replace('_off.','_on.'));
+					inputs[i].checked = 'checked';
+				}
+				else
+				{
+					$(inputs[i]).parent().children('img.rad').attr('src', $(inputs[i]).parent().children('img.rad').attr('src').replace('_on.','_off.'));
+					inputs[i].checked = null;
+				}
+			}
+
+			//체크박스형
+			if ( (arryData[1]!='') || (arryData[2]!='') )
+			{
+				$('#effect0').attr('checked','checked');
+				$('#effect0').parent().children('img.chk').attr('src', $('#effect0').parent().children('img.chk').attr('src').replace('_off.','_on.'));
+				$('#effect0').parent().next().removeClass('blind');
+			}
+			else
+			{
+				$('#effect0').attr('checked',null);
+				$('#effect0').parent().children('img.chk').attr('src', $('#effect0').parent().children('img.chk').attr('src').replace('_on.','_off.'));
+				$('#effect0').parent().next().addClass('blind');
+			}
+			$('#effect0_name').attr('value',arryData[1]);
+			$('#effect0_number').attr('value',arryData[2]);
+
+			if ( (arryData[3]!='') || (arryData[4]!='') )
+			{
+				$('#effect1').attr('checked','checked');
+				$('#effect1').parent().children('img.chk').attr('src', $('#effect1').parent().children('img.chk').attr('src').replace('_off.','_on.'));
+				$('#effect1').parent().next().removeClass('blind');
+			}
+			else
+			{
+				$('#effect1').attr('checked',null);
+				$('#effect1').parent().children('img.chk').attr('src', $('#effect1').parent().children('img.chk').attr('src').replace('_on.','_off.'));
+				$('#effect1').parent().next().addClass('blind');
+			}
+			$('#effect1_name').attr('value',arryData[3]);
+			$('#effect1_number').attr('value',arryData[4]);
+
+			if ( (arryData[5]!='') || (arryData[6]!='') )
+			{
+				$('#effect2').attr('checked','checked');
+				$('#effect2').parent().children('img.chk').attr('src', $('#effect2').parent().children('img.chk').attr('src').replace('_off.','_on.'));
+				$('#effect2').parent().next().removeClass('blind');
+			}
+			else
+			{
+				$('#effect2').attr('checked',null);
+				$('#effect2').parent().children('img.chk').attr('src', $('#effect2').parent().children('img.chk').attr('src').replace('_on.','_off.'));
+				$('#effect2').parent().next().addClass('blind');
+			}
+			$('#effect2_name').attr('value',arryData[5]);
+			$('#effect2_number').attr('value',arryData[6]);
+
+			if ( (arryData[7]!='') || (arryData[8]!='') || (arryData[9]!='') )
+			{
+				$('#effect3').attr('checked','checked');
+				$('#effect3').parent().children('img.chk').attr('src', $('#effect3').parent().children('img.chk').attr('src').replace('_off.','_on.'));
+				$('#effect3').parent().next().removeClass('blind');
+				$('#effect3').parent().css('margin-bottom','0');
+			}
+			else
+			{
+				$('#effect3').attr('checked',null);
+				$('#effect3').parent().children('img.chk').attr('src', $('#effect3').parent().children('img.chk').attr('src').replace('_on.','_off.'));
+				$('#effect3').parent().next().addClass('blind');
+				$('#effect3').parent().css('margin-bottom','2%');
+			}
+			$('#effect3_name').attr('value',arryData[7]);
+			$('#effect3_number').attr('value',arryData[8]);
+			$('#effect3_number2').attr('value',arryData[9]);
 		}
 
 		//라디오버튼 교체효과 처리
@@ -140,7 +216,7 @@
 						<div class="inputbox2">
 							<img src="./skin/images/title_accident_effect_01.jpg" title="고객님 및 가족 중 다치신 분이 있습니까?" />
 							<img class="chk" src="./skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
-							<input type="checkbox" class="blind" name="accident_effect" id="effect0" />
+							<input type="checkbox" class="blind" name="effect0" id="effect0" />
 						</div>
 						<div class="writebox blind">
 							<div class="writeleft">
@@ -156,7 +232,7 @@
 						<div class="inputbox2">
 							<img src="./skin/images/title_accident_effect_02.jpg" title="고객님 및 가족 외 다치신 분이 있습니까?" />
 							<img class="chk" src="./skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
-							<input type="checkbox" class="blind" name="accident_effect" id="effect1" />
+							<input type="checkbox" class="blind" name="effect1" id="effect1" />
 						</div>
 						<div class="writebox blind">
 							<div class="writeleft">
@@ -172,7 +248,7 @@
 						<div class="inputbox2">
 							<img src="./skin/images/title_accident_effect_03.jpg" title="고객님 차량에 파손이 있습니까?" />
 							<img class="chk" src="./skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
-							<input type="checkbox" class="blind" name="accident_effect" id="effect2" />
+							<input type="checkbox" class="blind" name="effect2" id="effect2" />
 						</div>
 						<div class="writebox blind">
 							<div class="writeleft">
@@ -188,7 +264,7 @@
 						<div id="que4" class="inputbox2">
 							<img src="./skin/images/title_accident_effect_04.jpg" title="고객님 차량외에 파손된 차량(물건)이 있습니까?" />
 							<img class="chk" src="./skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
-							<input type="checkbox" class="blind" name="accident_effect" id="effect3" />
+							<input type="checkbox" class="blind" name="effect3" id="effect3" />
 						</div>
 						<div id="wrt4" class="writebox blind">
 							<div class="writeleft">
@@ -214,6 +290,9 @@
 				</tr>
 			</table>
 		</div>
+
+		<input type="button" value="테스트" onclick="alert(readWebData());" />
+		<input type="button" value="테스트2" onclick="WmWriteMsg('차대차#피해자명1#피해자연락처1#피해자명2#피해자연락처2#차량번호1#차량연락처1#차량번호2#차종#차량연락처2');" />
 		<!-- END : content -->
 		</form>
 	</div>
