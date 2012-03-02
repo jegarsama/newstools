@@ -10,39 +10,48 @@
 @charset "utf-8";
 
 /* STR : 전체 레이아웃 영역 */
-	#content_display	{ text-align:center; border:none; margin:0; padding:10px 0; }
-		#content_display h1	{ width:92%; height:9%; margin:0 auto; display:block; }
-		#content_display h1 img	{ width:100%; height:59px; margin:0; }
+	/*콘텐트 노출 박스 중앙 출력부*/
+	#content_display	{ margin:0; padding:10px 0; text-align:center; border:none; }
 
-		#content_display h2	{ width:92%; height:4%; margin:0 auto 0 4%; display:block; }
-		#content_display h2 img	{ width:100%; height:32px; margin:0; }
+		/*타이틀 출력부 : 사고접수(2단계)*/
+		#content_display h1	{ width:92%; margin:0 auto; display:block; }
+		#content_display h1 img	{ width:100%; margin:0; }
 
-		#content_display .inputbox	{ width:80%; height:42px; margin:0 3% 0 10%; padding:0; position:relative; }
-		#content_display .inputbox img.rad	{ width:10%; height:100%; margin:0; padding:0; position:absolute; top:0; left:0; z-index:0; cursor:pointer; }
-		#content_display .inputbox input	{ margin:0; padding:0; position:absolute; top:0; left:0; border-width:0; }
-		#content_display .inputbox img	{ height:100%; margin:0; padding:0; position:absolute; top:0; left:10%; float:left; }
+		/*제목이미지 : 사고유형, 피해종류*/
+		#content_display h2.tit_case	{ width:92%; margin:8% auto 0 auto; display:block; }
+		#content_display h2.tit_effect	{ width:92%; margin:11% auto 7% auto; display:block; }
+		#content_display h2 img	{ width:100%; margin:0; }
 
-		#content_display .inputbox2	{ width:92%; height:42px; margin:2% 0 0 4%; padding:0; position:relative; }
-		#content_display .inputbox2 img	{ width:96%; height:96%; margin:0; padding:0; float:left; }
-		#content_display .inputbox2 img.chk	{ width:10%; height:75%; margin:-8% 5% 0 0; padding:0; float:right; z-index:0; cursor:pointer; }
-		#content_display .inputbox2 input	{ margin:0; padding:0; border-width:0; }
+		/*사고유형 : */
+		#content_display .inputbox	{ width:92%; margin:5% auto 0 16%; padding:0; text-align:left; position:relative; }
+			#content_display .inputbox img.rad	{ width:11%; margin:0; padding:0; z-index:0; cursor:pointer; }
+			#content_display .inputbox input	{ display:none; }
+			#content_display .inputbox img	{ width:40%; margin:1% 0 0 0; padding:0; }
 
-		#content_display #que4	{ margin:2% 0 2% 4%; }
-		#content_display #que4 img	{ height:136%; margin:0; }
-		#content_display #que4 img.chk	{ height:80%; margin:-12% 5% 0 0; }
+		/*피해종류 : */
+		#content_display .inputbox2	{ width:92%; margin:3% auto 0 auto; padding:0; text-align:left; position:relative; }
+			/*피해종류 - 질문*/
+			#content_display .inputbox2 img	{ width:100%; margin:0; padding:0; position:relative; }
+			/*피해종류 선택버튼*/
+			#content_display .inputbox2 img.chk	{ width:11%; margin:0 auto; padding:0; position:absolute; top:8%; right:5%; cursor:pointer; }
 
-		#content_display .writebox	{ width:88%; height:42px; margin:0 0 0 6%; padding:2% 0; background-color:#e5edf5; position:relative; float:left; }
-		#content_display #wrt4		{ height:88px; margin:3% 0 3% 6%; }
+			/*피해종류 입력영역*/
+			#content_display .inputbox2 .writebox	{ width:100%; margin:0; padding:2% 0; text-align:left; background-color:#e5edf5; position:relative; clear:both; }
 
-		#content_display .writebox .writeleft	{ width:35%; height:40px; margin:0 0 0 4%; padding:0; position:relative; float:left; }
-		#content_display .writebox .writeleft img	{ width:100%; height:100%; margin:0; padding:0; position:absolute; top:0px; left:0px; z-index:0; }
-		#content_display .writebox .writeleft .obname	{ width:80%; height:50%; margin:0; padding:0; position:absolute; top:25%; left:10%; color:#b0b0b0; font-size:12pt; font-weight:bold; text-align:center; border-width:0; }
+				/*피해종류 - 좌측 입력상자*/
+				#content_display .inputbox2 .writebox .writeleft	{ width:35%; margin:0; padding:0; position:relative; float:left; left:5%; }
+				#content_display .inputbox2 .writebox .writeleft .obname	{ width:100%; margin:0; padding:12px 0; color:#b0b0b0; font-size:12px; font-weight:bold; text-align:center; border-width:0; background:url('../images/bg_input_obname.jpg') no-repeat; background-size:100% 100%; }
 
-		#content_display .writebox .writeright	{ width:55%; height:40px; margin:0 0 0 2%; padding:0; position:relative; float:left; }
-		#content_display .writebox .writeright img	{ width:100%; height:100%; margin:0; padding:0; position:absolute; top:0px; left:0px; z-index:0; }
-		#content_display .writebox .writeright .obnumber	{ width:80%; height:50%; margin:0; padding:0; position:absolute; top:25%; left:10%; color:#b0b0b0; font-size:12pt; font-weight:bold; text-align:center; border-width:0; }
+				/*피해종류 - 우측 입력상자*/
+				#content_display .inputbox2 .writebox .writeright	{ width:55%; margin:0; padding:0; position:relative; float:right; right:5%; }
+				#content_display .inputbox2 .writebox .writeright .obnumber	{ width:100%; margin:0; padding:12px 0; color:#b0b0b0; font-size:12px; font-weight:bold; text-align:center; border-width:0; background:url('../images/bg_input_obnumber.jpg') no-repeat; background-size:100% 100%; }
 
-		#content_display .writebox .writebottom	{ width:92%; height:40px; margin:2% 0 0 4%; padding:0; position:relative; float:left; }
-		#content_display .writebox .writebottom img	{ width:100%; height:100%; margin:0; padding:0; position:absolute; top:0px; left:0px; z-index:0; }
-		#content_display .writebox .writebottom .obnumber2	{ width:80%; height:50%; margin:0; padding:0; position:absolute; top:25%; left:10%; color:#b0b0b0; font-size:12pt; font-weight:bold; text-align:center; border-width:0; }
+				/*피해종류 - 하단 입력상자*/
+				#content_display .inputbox2 .writebox .writebottom	{ width:91%; margin:10% 0 0 0; padding:0; position:relative; clear:both; left:5%; }
+				#content_display .inputbox2 .writebox .writebottom .obnumber2	{ width:100%; margin:0; padding:12px 0; color:#b0b0b0; font-size:12px; font-weight:bold; text-align:center; border-width:0; background:url('../images/bg_input_obnumber2.jpg') no-repeat; background-size:100% 100%; }
+
+		/*피해종류 - 4번째 영역*/
+		#content_display #que4	{ margin:4% auto 2% auto; }
+		/*피해종류 - 4번째 입력영역*/
+		#content_display #wrt4 .writebottom	{ margin:12% 0 0 0; }
 /* END : 전체 레이아웃 영역 */
