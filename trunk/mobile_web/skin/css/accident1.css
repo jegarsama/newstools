@@ -10,26 +10,37 @@
 @charset "utf-8";
 
 /* STR : 전체 레이아웃 영역 */
-	#content_display	{ text-align:center; border:none; margin:0; padding:10px 0; }
-		#content_display h1	{ width:92%; height:9%; margin:0 auto; display:block; }
-		#content_display h1 img	{ width:100%; height:59px; margin:0; }
+	/*콘텐트 노출 박스 중앙 출력부*/
+	#content_display	{ margin:0; padding:10px 0; text-align:center; border:none; }
 
-		#content_display h2	{ width:92%; height:4%; margin:0 auto 0 4%; display:block; }
-		#content_display h2 img	{ width:100%; height:32px; margin:0; }
+		/*타이틀 출력부 : 사고접수(1단계)*/
+		#content_display h1	{ width:92%; margin:0 auto; display:block; }
+		#content_display h1 img	{ width:100%; margin:0; }
 
-		#content_display #input_name	{ width:39%; height:45px; margin:0 3% 0 4%; padding:0; position:relative; float:left; }
-		#content_display #input_name img{ width:100%; height:100%; margin:0; padding:0; position:absolute; top:0px; left:0px; z-index:0; }
-		#content_display #input_name #driver_name{ width:80%; height:50%; margin:0; padding:0; position:absolute; top:25%; left:10%; color:#b0b0b0; font-size:12pt; font-weight:bold; text-align:center; border-width:0; }
+		/*제목이미지 : 운전자 이름 및 관계, 운전자 연락처, 사고내용*/
+		#content_display h2.tit_driver	{ width:92%; margin:8% auto 0 auto; display:block; clear:both; }
+		#content_display h2.tit_tel		{ width:92%; margin:18% auto 2% auto; display:block; clear:both; }
+		#content_display h2.tit_context	{ width:92%; margin:20% auto 2% auto; display:block; clear:both; }
+		#content_display h2 img	{ width:100%; margin:0; }
 
-		#content_display #select_rel	{ width:39%; height:45px; margin:0 3% 0 4%; padding:0; position:relative; float:right; }
-		#content_display #select_rel img{ width:100%; height:100%; margin:0; padding:0; position:absolute; top:0px; left:0px; z-index:0; }
-		#content_display #select_rel #driver_rel{ width:80%; height:70%; margin:0; padding:0; position:absolute; top:15%; left:10%; color:#b0b0b0; font-size:12pt; font-weight:bold; text-align:center; border-width:0; }
+		/*입력상자 : */
+		#content_display .inputbox	{ margin:0 auto; padding:0; text-align:left; position:relative; }
+			/*운전자 이름 입력상자*/
+			#content_display #input_name	{ width:43%; float:left; left:8%; }
+			#content_display .inputbox #driver_name	{ width:100%; margin:0; padding:12px 0; color:#b0b0b0; font-size:12px; font-weight:bold; text-align:center; border-width:0; background:url('../images/bg_input_name.jpg') no-repeat; background-size:100% 100%; }
 
-		#content_display #input_tel	{ width:92%; height:39px; margin:0 3% 0 4%; padding:0; position:relative; float:left; }
-		#content_display #input_tel img{ width:100%; height:100%; margin:0; padding:0; position:absolute; top:0px; left:0px; z-index:0; }
-		#content_display #input_tel #driver_tel{ width:88%; height:50%; margin:0; padding:0; position:absolute; top:25%; left:6%; color:#b0b0b0; font-size:12pt; font-weight:bold; text-align:center; border-width:0; }
+			/*운전자 관계 선택상자*/
+			#content_display #select_rel	{ width:34%; float:right; right:8%; }
+				#content_display #select_rel span.customStyleSelectBox{ width:100%; margin:0; padding:12px 0; cursor:pointer; color:#b0b0b0; font-size:12px; font-weight:bold; border-width:0; background:url('../images/bg_select_rel.jpg') no-repeat center right; background-size:100% 100%; }
+				#content_display #select_rel span.customStyleSelectBox.changed{ background-color: #ffffff; }
+				#content_display #select_rel span.customStyleSelectBox .customStyleSelectBoxInner{ width:100%; margin:0 0 0 10%; letter-spacing:-1px; white-space:nowrap; }
+			#content_display .inputbox #driver_rel	{ width:100%; margin:0; padding:12px; cursor:pointer; color:#b0b0b0; font-size:12px; font-weight:bold; border-width:0; }
 
-		#content_display #input_context	{ width:92%; height:118px; margin:0 3% 0 4%; padding:0; position:relative; float:left; }
-		#content_display #input_context img{ width:100%; height:100%; margin:0; padding:0; position:absolute; top:0px; left:0px; z-index:0; }
-		#content_display #input_context #accident_context{ width:94%; height:80%; margin:0; padding:0; position:absolute; top:10%; left:3%; overflow:auto; color:#b0b0b0; font-size:12pt; font-weight:bold; border-width:0; }
+			/*운전자 연락처 입력상자*/
+			#content_display #input_tel		{ width:83%; float:left; left:8%; }
+			#content_display .inputbox #driver_tel	{ width:100%; margin:0; padding:12px 0; color:#b0b0b0; font-size:12px; font-weight:bold; text-align:center; border-width:0; background:url('../images/bg_input_tel.jpg') no-repeat; background-size:100% 100%; }
+
+			/*사고내용 입력상자*/
+			#content_display #input_context	{ width:83%; float:left; left:8%; }
+			#content_display .inputbox #accident_context	{ width:94%; height:93px; margin:0 0 5% 0; padding:12px; overflow:auto; color:#b0b0b0; font-size:12px; font-weight:bold; text-align:left; border-width:0; background:url('../images/bg_input_context.jpg') no-repeat; background-size:100% 100%; }
 /* END : 전체 레이아웃 영역 */

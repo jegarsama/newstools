@@ -7,6 +7,7 @@
 <meta http-equiv="Expires" content="0" />
 <meta http-equiv="imagetoolbar" content="no" />
 <meta name="Format" content="text/html" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
 <meta name="Robots" content="index,follow" />
 <meta name="Charset" content="utf-8" />
 <meta name="Author" content="master@newstools.kr" />
@@ -23,10 +24,35 @@
 		function readWebData() {
 			//이름#관계#연락처#사고내용
 			var form = document.getElementById('contForm');
-			var rtn = form.driver_name.value;
-			rtn += "#"+form.driver_rel.value;
-			rtn += "#"+form.driver_tel.value;
-			rtn += "#"+form.accident_context.value;
+			var rtn = '';
+
+			if ( form.driver_name.value== '' )
+			{
+				alert("운전자 이름을 입력해 주세요");
+				return '';
+			}
+			rtn = form.driver_name.value;
+
+			if ( form.driver_rel.value== '' )
+			{
+				alert("운전자와의 관계를 선택해 주세요");
+				return '';
+			}
+			rtn = MergeData(rtn, form.driver_rel.value);
+
+			if ( form.driver_tel.value== '' )
+			{
+				alert("연락처를 입력해 주세요");
+				return '';
+			}
+			rtn = MergeData(rtn, form.driver_tel.value);
+
+			if ( form.accident_context.value== '' )
+			{
+				alert("사고내용을 입력해 주세요");
+				return '';
+			}
+			rtn = MergeData(rtn, form.accident_context.value);
 
 			return rtn;
 		}
@@ -36,14 +62,45 @@
 			var arryData = new Array();
 			arryData = arg.split("#");
 
-			var form = document.getElementById('contForm');
-			form.driver_name.value	= arryData[0];
-			form.driver_rel.value	= arryData[1];
-			form.driver_tel.value	= arryData[2];
-			form.accident_context.value	= arryData[3];
+			$('#driver_name').attr('value',arryData[0]);
+			$('#driver_rel').attr('value',arryData[1]);
+			$('#driver_tel').attr('value',arryData[2]);
+			$('#accident_context').attr('value',arryData[3]);
+			$('#driver_rel').change();
 		}
+
+		/*STR : 운전자 관계 선택상자 background 적용 스크립트*/
+		(function($){
+			$.fn.extend({
+				customStyle : function(options) {
+					if(!$.browser.msie || ($.browser.msie&&$.browser.version>6)){
+						return this.each(function() {
+							var currentSelected = $(this).find(':selected');
+							$(this).after('<span class="customStyleSelectBox"><span class="customStyleSelectBoxInner">'+currentSelected.text()+'</span></span>').css({position:'absolute', opacity:0,fontSize:$(this).next().css('font-size')});
+							var selectBoxSpan = $(this).next();
+							var selectBoxWidth = parseInt($(this).width()) - parseInt(selectBoxSpan.css('padding-left')) -parseInt(selectBoxSpan.css('padding-right'));   
+							var selectBoxSpanInner = selectBoxSpan.find(':first-child');
+							selectBoxSpan.css({display:'inline-block'});
+							selectBoxSpanInner.css({width:selectBoxWidth, display:'inline-block'});
+							var selectBoxHeight = parseInt(selectBoxSpan.height()) + parseInt(selectBoxSpan.css('padding-top')) + parseInt(selectBoxSpan.css('padding-bottom'));
+							$(this).height(selectBoxHeight).change(function(){
+								selectBoxSpanInner.text($(this).find(':selected').text()).parent().addClass('changed');
+							});
+						});
+					}
+				}
+			});
+		})(jQuery);
+
+
+		$(function(){
+			$('#driver_rel').customStyle();
+		});
+		/*END : 운전자 관계 선택상자 background 적용 스크립트*/
 	//]]>
 	</script>
+	<style>
+	</style>
 	<div id="wrapper">
 		<form id="contForm">
 		<!-- STR : content -->
@@ -56,18 +113,21 @@
 				</tr>
 				<tr>
 					<td id="content_middle_left"></td>
+					<!-- STR : 콘텐트 노출 박스 중앙 출력부 -->
 					<td id="content_display">
-						<h1><img src="./skin/images/title_accident_1.jpg" title="사고접수(1단계)" /></h1>
+						<!-- 타이틀 출력부 -->
+						<h1><img src="skin/images/title_accident_1.jpg" title="사고접수(1단계)" /></h1>
 
-						<h2><img src="./skin/images/title_accident_driver.jpg" title="운전자 이름 및 관계 *필수입력" /></h2>
+						<!-- 제목이미지 : 운전자 이름 및 관계 -->
+						<h2 class="tit_driver"><img src="skin/images/title_accident_driver.jpg" title="운전자 이름 및 관계 *필수입력" /></h2>
 
+						<!-- 운전자 이름 입력상자 -->
 						<div id="input_name" class="inputbox">
-							<img src="./skin/images/bg_input_name.jpg" />
 							<input type="text" id="driver_name" name="driver_name" />
 						</div>
 
+						<!-- 운전자 관계 선택상자 -->
 						<div id="select_rel" class="inputbox">
-							<img src="./skin/images/bg_select_rel.jpg" />
 							<select id="driver_rel" name="driver_rel">
 								<option value="본인">본인</option>
 								<option value="배우자">배우자</option>
@@ -81,20 +141,23 @@
 							</select>
 						</div>
 
-						<h2><img src="./skin/images/title_accident_tel.jpg" title="운전자 연락처 *필수입력" /></h2>
+						<!-- 제목이미지 : 운전자 연락처 -->
+						<h2 class="tit_tel"><img src="skin/images/title_accident_tel.jpg" title="운전자 연락처 *필수입력" /></h2>
 
+						<!-- 운전자 연락처 입력상자 -->
 						<div id="input_tel" class="inputbox">
-							<img src="./skin/images/bg_input_tel.jpg" />
 							<input type="text" id="driver_tel" name="driver_tel" />
 						</div>
 
-						<h2><img src="./skin/images/title_accident_context.jpg" title="사고내용" /></h2>
+						<!-- 제목이미지 : 사고내용 -->
+						<h2 class="tit_context"><img src="skin/images/title_accident_context.jpg" title="사고내용" /></h2>
 
+						<!-- 사고내용 입력상자 -->
 						<div id="input_context" class="inputbox">
-							<img src="./skin/images/bg_input_context.jpg" />
-							<textarea id="accident_context" name="accident_context">내가 막 붕붕 달리고 있는데 어떤...</textarea>
+							<textarea id="accident_context" name="accident_context"></textarea>
 						</div>
 					</td>
+					<!-- END : 콘텐트 노출 박스 중앙 출력부 -->
 					<td id="content_middle_right"></td>
 				</tr>
 				<tr>
