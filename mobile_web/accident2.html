@@ -164,11 +164,15 @@
 				</tr>
 				<tr>
 					<td id="content_middle_left"></td>
+					<!-- STR : 콘텐트 노출 박스 중앙 출력부 -->
 					<td id="content_display">
+						<!-- 타이틀 출력부 -->
 						<h1><img src="skin/images/title_accident_2.jpg" title="사고접수(2단계)" /></h1>
 
+						<!-- 제목이미지 : 피해종류 -->
 						<h2 class="tit_case"><img src="skin/images/title_accident_case.jpg" title="사고유형" /></h2>
 
+						<!-- STR : 사고유형 -->
 						<div class="inputbox">
 							<img class="rad" src="skin/images/bg_accident_case_off.jpg" onclick="choiceCase(this);" />
 							<input type="radio" name="accident_case" value="차대차" />
@@ -192,15 +196,18 @@
 							<input type="radio" name="accident_case" value="그외유형" />
 							<img src="skin/images/img_accident_case_04.jpg" title="그외유형" />
 						</div>
+						<!-- END : 사고유형 -->
 
-
+						<!-- 제목이미지 : 피해종류 -->
 						<h2 class="tit_effect"><img src="skin/images/title_accident_effect.jpg" title="피해종류 * 적어도 1개 의 담보는 필수 선택" /></h2>
 
+						<!-- STR : 피해종류 -->
 						<div class="inputbox2">
 							<img src="skin/images/title_accident_effect_01.jpg" title="고객님 및 가족 중 다치신 분이 있습니까?" />
 							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
 							<input type="checkbox" class="blind" name="effect0" id="effect0" />
 
+							<!-- 피해종류 입력영역 -->
 							<div class="writebox blind">
 								<div class="writeleft">
 									<input type="text" class="obname" id="effect0_name" name="effect0_name" />
@@ -217,6 +224,7 @@
 							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
 							<input type="checkbox" class="blind" name="effect1" id="effect1" />
 
+							<!-- 피해종류 입력영역 -->
 							<div class="writebox blind">
 								<div class="writeleft">
 									<input type="text" class="obname" id="effect1_name" name="effect1_name" />
@@ -233,6 +241,7 @@
 							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
 							<input type="checkbox" class="blind" name="effect2" id="effect2" />
 
+							<!-- 피해종류 입력영역 -->
 							<div class="writebox blind">
 								<div class="writeleft">
 									<input type="text" class="obname" id="effect2_name" name="effect2_name" />
@@ -249,6 +258,7 @@
 							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
 							<input type="checkbox" class="blind" name="effect3" id="effect3" />
 
+							<!-- 피해종류 입력영역 -->
 							<div id="wrt4" class="writebox blind">
 								<div class="writeleft">
 									<input type="text" class="obname" id="effect3_name" name="effect3_name" />
@@ -261,7 +271,9 @@
 								</div>
 							</div>
 						</div>
+						<!-- END : 피해종류 -->
 					</td>
+					<!-- END : 콘텐트 노출 박스 중앙 출력부 -->
 					<td id="content_middle_right"></td>
 				</tr>
 				<tr>
