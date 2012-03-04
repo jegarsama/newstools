@@ -33,10 +33,10 @@
 			return;
 		}
 		else if (arg=="android") {
-			window.HybridApp.javascriptToAppMessage(  );	// android 메소드 호출
+			window.HybridApp.javascriptToAppMessage( data );	// android 메소드 호출
 		}
 		else {
-			windows.location="jsall://"+readWebData();
+			windows.location="jsall://"+data;
 		}
 	}
 /* END : 기본 인터페이스용 함수*/
