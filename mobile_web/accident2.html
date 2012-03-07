@@ -41,11 +41,34 @@
 			}
 
 			//피해종류 입력값 체크
+			validation = false;	//플래그 재설정
 			for (var i=0; i < 4; i++) {
 				if( $('#effect'+i).attr('checked')=='checked' ) {
-					rtn = MergeData(rtn, $('#effect'+i+'_name').attr('value'));
-					rtn = MergeData(rtn, $('#effect'+i+'_number').attr('value'));
-					if( i == 3 ) rtn = MergeData(rtn, $('#effect'+i+'_number2').attr('value'));
+					if( $('#effect'+i+'_name').IsEmptyData() ) {
+						alert("피해종류의 입력값을 빠짐없이 입력하여 주세요");
+						return '';
+					}
+					else {
+						rtn = MergeData(rtn, $('#effect'+i+'_name').attr('value'));
+					}
+
+					if( $('#effect'+i+'_number').IsEmptyData() ) {
+						alert("피해종류의 입력값을 빠짐없이 입력하여 주세요");
+						return '';
+					}
+					else {
+						rtn = MergeData(rtn, $('#effect'+i+'_number').attr('value'));
+					}
+
+					if( i == 3 ){
+						if( $('#effect'+i+'_number2').IsEmptyData() ) {
+							alert("피해종류의 입력값을 빠짐없이 입력하여 주세요");
+							return '';
+						}
+						else {
+							rtn = MergeData(rtn, $('#effect'+i+'_number2').attr('value'));
+						}
+					}
 					validation = true;
 				}
 				else {
@@ -87,12 +110,12 @@
 				if ( (arryData[i*2 + 1]!='') || (arryData[i*2 + 2]!='') ) {
 					$('#effect'+i).attr('checked','checked');
 					$('#effect'+i).parent().children('img.chk').ImageStateChanger(true,'_on.','_off.');
-					$('#effect'+i).parent().next().removeClass('blind');
+					$('#effect'+i).siblings('.writebox').removeClass('blind');
 				}
 				else {
 					$('#effect'+i).attr('checked',null);
 					$('#effect'+i).parent().children('img.chk').ImageStateChanger(false,'_on.','_off.');
-					$('#effect'+i).parent().next().addClass('blind');
+					$('#effect'+i).siblings('.writebox').addClass('blind');
 				}
 				$('#effect'+i+'_name').attr('value',arryData[i*2 + 1]);
 				$('#effect'+i+'_number').attr('value',arryData[i*2 + 2]);
@@ -102,13 +125,13 @@
 			if ( (arryData[7]!='') || (arryData[8]!='') || (arryData[9]!='') ) {
 				$('#effect3').attr('checked','checked');
 				$('#effect3').parent().children('img.chk').ImageStateChanger(true,'_on.','_off.');
-				$('#effect3').parent().next().removeClass('blind');
+				$('#effect3').siblings('.writebox').removeClass('blind');
 				$('#effect3').parent().css('margin-bottom','0');
 			}
 			else {
 				$('#effect3').attr('checked',null);
 				$('#effect3').parent().children('img.chk').ImageStateChanger(false,'_on.','_off.');
-				$('#effect3').parent().next().addClass('blind');
+				$('#effect3').siblings('.writebox').addClass('blind');
 				$('#effect3').parent().css('margin-bottom','2%');
 			}
 			$('#effect3_name').attr('value',arryData[7]);
@@ -150,6 +173,29 @@
 			}
 			$(obj).siblings('.writebox').toggleClass('blind');
 		}
+
+		/* STR : onfocus 효과 선언 */
+		(function ($) {
+			$(document).ready(function () {
+				$('#effect0_name, #effect0_number, #effect1_name, #effect1_number, #effect2_name, #effect2_number, #effect3_name, #effect3_number, #effect3_number2').bind({
+					focusin: function () {
+						if( $(this).data('org-background-image')===undefined )
+							$(this).data('org-background-image', $(this).css('background-image'));
+
+						if( $(this).hasClass('obname') ) {
+							$(this).css('background-image', 'url("../images/bg_input_obname.jpg")');
+						}
+						else if( $(this).hasClass('obnumber') ) {
+							$(this).css('background-image', 'url("../images/bg_input_obnumber.jpg")');
+						}
+						else if( $(this).hasClass('obnumber2') ) {
+							$(this).css('background-image', 'url("../images/bg_input_obnumber2.jpg")');
+						}
+					}
+				});
+			});
+		})(jQuery);
+		/* END : onfocus 효과 선언 */
 	//]]>
 	</script>
 	<div id="wrapper">
@@ -203,71 +249,71 @@
 
 						<!-- STR : 피해종류 -->
 						<div class="inputbox2">
-							<img src="skin/images/title_accident_effect_01.jpg" title="고객님 및 가족 중 다치신 분이 있습니까?" />
-							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
+							<img src="title_accident_effect_01.jpg" title="고객님 및 가족 중 다치신 분이 있습니까?" />
+							<img class="chk" src="btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
 							<input type="checkbox" class="blind" name="effect0" id="effect0" />
 
 							<!-- 피해종류 입력영역 -->
 							<div class="writebox blind">
 								<div class="writeleft">
-									<input type="text" class="obname" id="effect0_name" name="effect0_name" />
+									<input type="text" class="obname" id="effect0_name" name="effect0_name" style="background-image:url('../images/bg_input_obname_name.jpg');" />
 								</div>
 								<div class="writeright">
-									<input type="text" class="obnumber" id="effect0_number" name="effect0_number" />
+									<input type="tel" class="obnumber" id="effect0_number" name="effect0_number" style="background-image:url('../images/bg_input_obnumber_phone.jpg');" />
 								</div>
 								<div class="writebottom"></div>
 							</div>
 						</div>
 
 						<div class="inputbox2">
-							<img src="skin/images/title_accident_effect_02.jpg" title="고객님 및 가족 외 다치신 분이 있습니까?" />
-							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
+							<img src="title_accident_effect_02.jpg" title="고객님 및 가족 외 다치신 분이 있습니까?" />
+							<img class="chk" src="btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
 							<input type="checkbox" class="blind" name="effect1" id="effect1" />
 
 							<!-- 피해종류 입력영역 -->
 							<div class="writebox blind">
 								<div class="writeleft">
-									<input type="text" class="obname" id="effect1_name" name="effect1_name" />
+									<input type="text" class="obname" id="effect1_name" name="effect1_name" style="background-image:url('../images/bg_input_obname_name.jpg');" />
 								</div>
 								<div class="writeright">
-									<input type="text" class="obnumber" id="effect1_number" name="effect1_number" />
+									<input type="tel" class="obnumber" id="effect1_number" name="effect1_number" style="background-image:url('../images/bg_input_obnumber_phone.jpg');" />
 								</div>
 								<div class="writebottom"></div>
 							</div>
 						</div>
 
 						<div class="inputbox2">
-							<img src="skin/images/title_accident_effect_03.jpg" title="고객님 차량에 파손이 있습니까?" />
-							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
+							<img src="title_accident_effect_03.jpg" title="고객님 차량에 파손이 있습니까?" />
+							<img class="chk" src="btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
 							<input type="checkbox" class="blind" name="effect2" id="effect2" />
 
 							<!-- 피해종류 입력영역 -->
 							<div class="writebox blind">
 								<div class="writeleft">
-									<input type="text" class="obname" id="effect2_name" name="effect2_name" />
+									<input type="text" class="obname" id="effect2_name" name="effect2_name" style="background-image:url('../images/bg_input_obname_carnum.jpg');" />
 								</div>
 								<div class="writeright">
-									<input type="text" class="obnumber" id="effect2_number" name="effect2_number" />
+									<input type="tel" class="obnumber" id="effect2_number" name="effect2_number" style="background-image:url('../images/bg_input_obnumber_phone.jpg');" />
 								</div>
 								<div class="writebottom"></div>
 							</div>
 						</div>
 
 						<div id="que4" class="inputbox2">
-							<img src="skin/images/title_accident_effect_04.jpg" title="고객님 차량외에 파손된 차량(물건)이 있습니까?" />
-							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
+							<img src="title_accident_effect_04.jpg" title="고객님 차량외에 파손된 차량(물건)이 있습니까?" />
+							<img class="chk" src="btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
 							<input type="checkbox" class="blind" name="effect3" id="effect3" />
 
 							<!-- 피해종류 입력영역 -->
 							<div id="wrt4" class="writebox blind">
 								<div class="writeleft">
-									<input type="text" class="obname" id="effect3_name" name="effect3_name" />
+									<input type="text" class="obname" id="effect3_name" name="effect3_name" style="background-image:url('../images/bg_input_obname_carnum.jpg');" />
 								</div>
 								<div class="writeright">
-									<input type="text" class="obnumber" id="effect3_number" name="effect3_number" />
+									<input type="text" class="obnumber" id="effect3_number" name="effect3_number" style="background-image:url('../images/bg_input_obnumber_carname_s.jpg');" />
 								</div>
 								<div class="writebottom">
-									<input type="text" class="obnumber2" id="effect3_number2" name="effect3_number2" />
+									<input type="tel" class="obnumber2" id="effect3_number2" name="effect3_number2" style="background-image:url('../images/bg_input_obnumber2_phone.jpg');" />
 								</div>
 							</div>
 						</div>

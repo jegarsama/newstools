@@ -47,11 +47,11 @@
 			}
 			rtn = MergeData(rtn, form.driver_tel.value);
 
-			if ( form.accident_context.value== '' )
+			/*if ( form.accident_context.value== '' )
 			{
 				alert("사고내용을 입력해 주세요");
 				return '';
-			}
+			}*/
 			rtn = MergeData(rtn, form.accident_context.value);
 
 			return rtn;
@@ -146,7 +146,7 @@
 
 						<!-- 운전자 연락처 입력상자 -->
 						<div id="input_tel" class="inputbox">
-							<input type="text" id="driver_tel" name="driver_tel" />
+							<input type="tel" id="driver_tel" name="driver_tel" />
 						</div>
 
 						<!-- 제목이미지 : 사고내용 -->
