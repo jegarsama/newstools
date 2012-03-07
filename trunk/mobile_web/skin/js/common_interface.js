@@ -55,5 +55,10 @@
 			$(this).attr('src', $(this).attr('src').replace(onstate, offstate));
 		}
 	};
+
+	//입력데이터 존재여부 확인
+	$.fn.IsEmptyData = function () {
+		return ($(this).attr('value')=='');
+	};
 })(jQuery);
 /* END : jQuery 메소드 선언 */
