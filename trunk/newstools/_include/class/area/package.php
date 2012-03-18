@@ -1,0 +1,1 @@
+<?php#region License Statement	// Copyright (c) SeniorPartners. All rights reserved.	//	// 파일명	: package.php	// 경로		: [www]/_include/class/area/	// 코드		: ANSI	// 설명		: WWW 페이지 영역별 출력 클래스 Package	// 작성자	: 김성호 (sh.kim@yourstage.com)	// 소속명	: Development Team	// 수정일	: 20090318#endregion?>

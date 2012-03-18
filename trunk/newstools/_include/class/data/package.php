@@ -1,0 +1,1 @@
+<?php#region License Statement	// Copyright (c) SeniorPartners. All rights reserved.	//	// 파일명	: package.php	// 경로		: [www]/_include/class/data/	// 코드		: ANSI	// 설명		: WWW 데이터 모듈 클래스 Package	// 작성자	: 김성호 (sh.kim@yourstage.com)	// 소속명	: Development Team	// 수정일	: 20090318#endregionrequire_once "class.BaseModule.php";require_once "class.UserLoginModule.php";?>
