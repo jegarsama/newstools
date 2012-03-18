@@ -155,7 +155,7 @@
 			$(obj).ImageStateChanger(true,'_on.','_off.');
 		}
 
-		//피해종류 선택버튼 교체효과 처리
+		//피해종류 선택버튼 교체효과 처리 : 라디오 버튼처럼 그룹화된 기능 추가적용
 		function choiceEffect(obj) {
 			if( $(obj).parent().children('input').attr('checked')=='checked' )
 			{
@@ -166,6 +166,21 @@
 			}
 			else
 			{
+				//피해종류에 대한 체크박스 상태점검
+				$('.inputbox2 input').each(function () {
+					//자신을 제외한 체크박스 상태점검
+					if( $(this).attr('id')!==$(obj).parent().children('input').attr('id') ) {
+						//선택되어 있는 체크박스인 경우 닫음
+						if( $(this).attr('checked')=='checked' ) {
+							$(this).attr('checked',null);
+							if( $(this).parent().attr('id')=='que4' ){	$(this).parent().css('margin-bottom','2%');	}
+							$(this).siblings('.chk').css('top','12%');
+							$(this).siblings('.chk').ImageStateChanger(false,'_on.','_off.');
+							$(this).siblings('.writebox').toggleClass('blind');
+						}
+					}
+				});
+
 				$(obj).parent().children('input').attr('checked','checked');
 				if( $(obj).parent().attr('id')=='que4' ){	$(obj).parent().css('margin-bottom','0');	}
 				$(obj).css('top','6%');
