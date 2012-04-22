@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="Format" content="text/html" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
+<meta name="Robots" content="index,follow" />
+<meta name="Charset" content="utf-8" />
+<meta name="Author" content="master@newstools.kr" />
+<meta name="Generator" content="EditPlus Text Editor v3.31" />
+<title>우수협력업체 검색</title>
+<link rel="stylesheet" href="common.css" type="text/css" />
+<link rel="stylesheet" href="accident5.css" type="text/css" />
+<script language="javascript" type="text/javascript" src="jquery-1.7.1.min.js" ></script>
+<script language="javascript" type="text/javascript" src="common_interface.js" ></script>
+</head>
+<body>
+	<script type="text/javascript">
+	//<![CDATA[
+		function readWebData() {
+			//주소
+			var form = document.getElementById('contForm');
+			var rtn = '';
+			var validation = false;
+
+			if ( (form.addr_state.value!='addr_nothing') )
+			{
+				rtn = form.addr_state.options[form.addr_state.selectedIndex].text + ' ' + form.addr_city.value;
+				validation = true;
+			}
+			if ( !validation ) {
+				alert("시/도를 선택해주세요");
+				return '';
+			}
+
+			return rtn;
+		}
+
+		function WmWriteMsg(arg) {
+			//구현불가
+			var arryData = new Array();
+			arryData = SplitData(arg);
+
+			var form = document.getElementById('contForm');
+		}
+
+		/*STR : 선택상자 background 적용 스크립트*/
+		(function($){
+			$.fn.extend({
+				customStyle : function(options) {
+					if(!$.browser.msie || ($.browser.msie&&$.browser.version>6)){
+						return this.each(function() {
+							var currentSelected = $(this).find(':selected');
+							$(this).after('<span class="customStyleSelectBox"><span class="customStyleSelectBoxInner">'+currentSelected.text()+'</span></span>').css({position:'absolute', opacity:0,fontSize:$(this).next().css('font-size')});
+							var selectBoxSpan = $(this).next();
+							var selectBoxWidth = parseInt($(this).width()) - parseInt(selectBoxSpan.css('padding-left')) -parseInt(selectBoxSpan.css('padding-right'));
+							var selectBoxSpanInner = selectBoxSpan.find(':first-child');
+							selectBoxSpan.css({display:'inline-block'});
+							selectBoxSpanInner.css({width:selectBoxWidth, display:'inline-block'});
+							var selectBoxHeight = parseInt(selectBoxSpan.height()) + parseInt(selectBoxSpan.css('padding-top')) + parseInt(selectBoxSpan.css('padding-bottom'));
+							$(this).height(selectBoxHeight).change(function(){
+								selectBoxSpanInner.text($(this).find(':selected').text()).parent().addClass('changed');
+							});
+						});
+					}
+				}
+			});
+		})(jQuery);
+
+		$(function(){
+			$('.inputbox select').customStyle();
+		});
+		/*END : 선택상자 background 적용 스크립트*/
+
+		/*STR : 선택상자 선택이벤트 적용 스크립트*/
+		$(function(){
+			var selectbox = $('#addr_state');
+			selectbox.change(function() {
+				var seperator = $(this).val()
+				$.ajax({
+					url: "addr_city.xml",
+					success: function(data){
+						citybox = $('#addr_city');
+						citybox.empty();
+						var xmlDoc = $.parseXML( data );
+						var $xml = $( xmlDoc );
+						var $optionlist = $xml.find( "string-array[name="+seperator+"]" );
+						$optionlist.find( "item" ).each(function() {
+							$('<option />').text($(this).text()).attr('value',$(this).text()).appendTo(citybox);
+						});
+						citybox.change();
+					}
+				});
+			});
+
+			$.ajax({
+				url: "addr_state.xml",
+				success: function(data){
+					selectbox.empty();
+					var xmlDoc = $.parseXML( data );
+					var $xml = $( xmlDoc );
+					var $optionlist = $xml.find( "string-array[name=addr_state]" );
+					$optionlist.find( "item" ).each(function() {
+						$('<option />').text($(this).text()).attr('value',$(this).attr('value')).appendTo(selectbox);
+					});
+					selectbox.change();
+				}
+			});
+		});
+		/*END : 선택상자 선택이벤트 적용 스크립트*/
+	//]]>
+	</script>
+	<div id="wrapper">
+		<form id="contForm">
+		<!-- STR : content -->
+		<div id="content">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td id="content_top_left"></td>
+					<td id="content_top_center"></td>
+					<td id="content_top_right"></td>
+				</tr>
+				<tr>
+					<td id="content_middle_left"></td>
+					<!-- STR : 콘텐트 노출 박스 중앙 출력부 -->
+					<td id="content_display">
+						<!-- 타이틀 출력부 -->
+						<h1><img src="title_accident_4.jpg" title="우수협력업체 검색" /></h1>
+
+						<!-- 제목이미지 : 시/도 -->
+						<h2 class="tit_state"><img src="title_accident_date.jpg" title="시/도" /></h2>
+
+						<!-- STR : 선택상자 -->
+						<div class="inputbox">
+							<div class="sel_lay">
+								<select id="addr_state" name="addr_state">
+									<option value="">선택해 주세요</option>
+								</select>
+							</div>
+						</div>
+						<!-- END : 선택상자 -->
+
+						<!-- 제목이미지 : 시/군/구 -->
+						<h2 class="tit_city"><img src="title_accident_carnum.jpg" title="시/군/구" /></h2>
+
+						<!-- STR : 선택상자 -->
+						<div class="inputbox">
+							<div class="sel_lay">
+								<select id="addr_city" name="addr_city">
+									<option value="">선택해 주세요</option>
+								</select>
+							</div>
+						</div>
+						<!-- END : 선택상자 -->
+					</td>
+					<!-- END : 콘텐트 노출 박스 중앙 출력부 -->
+					<td id="content_middle_right"></td>
+				</tr>
+				<tr>
+					<td id="content_bottom_left"></td>
+					<td id="content_bottom_center"></td>
+					<td id="content_bottom_right"></td>
+				</tr>
+			</table>
+		</div>
+		<!-- END : content -->
+		</form>
+	</div>
+</body>
+</html>
