@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="addr_state">
+		 <item value="addr_nothing">시/도</item>
+		 <item value="addr_gangwon">강원</item>
+		 <item value="addr_gyeonggi">경기</item>
+		 <item value="addr_gyeongnam">경남</item>
+		 <item value="addr_gyeongbuk">경북</item>
+		 <item value="addr_gwangju">광주</item>
+		 <item value="addr_daegu">대구</item>
+		 <item value="addr_daejeon">대전</item>
+		 <item value="addr_busan">부산</item>
+		 <item value="addr_seoul">서울</item>
+		 <item value="addr_ulsan">울산</item>
+		 <item value="addr_incheon">인천</item>
+		 <item value="addr_jeonnam">전남</item>
+		 <item value="addr_jeonbuk">전북</item>
+		 <item value="addr_jeju">제주</item>
+		 <item value="addr_chungnam">충남</item>
+		 <item value="addr_chungbuk">충북</item>
+	</string-array>
+</resources>

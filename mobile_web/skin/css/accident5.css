@@ -1,0 +1,33 @@
+/*#region License Statement								*/
+/*Copyright (c) www.newstools.kr All rights reserved.	*/
+/*코드	: UTF-8											*/
+/*설명	: 사고접수_신속접수(1단계)						*/
+/*작성자	: LastDragon								*/
+/*소속명	: www.newstools.kr							*/
+/*수정일	: 20120419									*/
+/*#endregion											*/
+
+@charset "utf-8";
+
+/* STR : 전체 레이아웃 영역 */
+	/*콘텐트 노출 박스 중앙 출력부*/
+	#content_display	{ margin:0; padding:10px 0; text-align:center; border:none; }
+
+		/*타이틀 출력부 : 가입정보확인*/
+		#content_display h1	{ width:92%; margin:0 auto; display:block; }
+		#content_display h1 img	{ width:100%; margin:0; }
+
+		/*제목이미지 : 사고일시, 차량번호, 주민등록번호*/
+		#content_display h2.tit_state	{ width:92%; margin:8% auto 0 auto; display:block; }
+		#content_display h2.tit_city	{ width:92%; margin:11% auto 7% auto; display:block; }
+		#content_display h2 img	{ width:100%; margin:0; }
+
+		/*사고일시 선택상자*/
+		#content_display .inputbox	{ width:92%; margin:3% auto 0 auto; padding:5% 0 5% 0; text-align:left; position:relative; }
+		#content_display .inputbox.center	{ margin-left:7%; }
+		#content_display .inputbox .sel_lay	{ width:24%; float:left; }
+		#content_display .inputbox .sel_lay select	{ cursor:pointer; }
+			#content_display .inputbox span.customStyleSelectBox{ width:100%; margin:0; padding:12px 0; cursor:pointer; color:#b0b0b0; font-size:12px; font-weight:bold; border-width:0; background:url('bg_select_date_long.jpg') no-repeat center right; background-size:100% 100%; }
+			#content_display .inputbox span.customStyleSelectBox.changed{ background-color: #ffffff; }
+			#content_display .inputbox span.customStyleSelectBox .customStyleSelectBoxInner{ width:100%; margin:0 0 0 30%; cursor:pointer; letter-spacing:-1px; white-space:nowrap; }
+/* END : 전체 레이아웃 영역 */
