@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="Format" content="text/html" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
+<meta name="Robots" content="index,follow" />
+<meta name="Charset" content="utf-8" />
+<meta name="Author" content="master@newstools.kr" />
+<meta name="Generator" content="EditPlus Text Editor v3.31" />
+<title>사건접수_신속접수2</title>
+<link rel="stylesheet" href="skin/css/common.css" type="text/css" />
+<link rel="stylesheet" href="skin/css/accident4.css" type="text/css" />
+<script language="javascript" type="text/javascript" src="skin/js/jquery-1.7.1.min.js" ></script>
+<script language="javascript" type="text/javascript" src="skin/js/common_interface.js" ></script>
+</head>
+<body>
+	<script type="text/javascript">
+	//<![CDATA[
+		function readWebData() {
+			//선택1#선택2#선택3#선택4
+			var form = document.getElementById('contForm');
+			var rtn = '';
+			var validation = false;
+
+			//피해종류 입력값 체크
+			validation = false;	//플래그 재설정
+			for (var i=0; i < 4; i++) {
+				if( $('#effect'+i).attr('checked')=='checked' ) {
+					rtn = MergeData(rtn, 1);
+					validation = true;
+				}
+				else {
+					rtn = MergeData(rtn, 0);
+				}
+			}
+			if ( !validation ) {
+				alert("피해종류는 반드시 하나는 입력해 주세요");
+				return '';
+			}
+
+			return rtn;
+		}
+
+		function WmWriteMsg(arg) {
+			//선택1#선택2#선택3#선택4
+			var arryData = new Array();
+			arryData = SplitData(arg);
+
+			var form = document.getElementById('contForm');
+
+			//피해종류 입력값 설정
+			for (var i=0; i < 4; i++) {
+				if ( arryData[i]!='0' ) {
+					$('#effect'+i).attr('checked','checked');
+					$('#effect'+i).parent().children('img.chk').ImageStateChanger(true,'_on.','_off.');
+				}
+				else {
+					$('#effect'+i).attr('checked',null);
+					$('#effect'+i).parent().children('img.chk').ImageStateChanger(false,'_on.','_off.');
+				}
+			}
+		}
+
+		//피해종류 선택버튼 효과 처리 : 체크박스 형태
+		function choiceEffect(obj) {
+			if( $(obj).parent().children('input').attr('checked')=='checked' )
+			{
+				$(obj).parent().children('input').attr('checked',null);
+				$(obj).css('top','12%');
+				$(obj).ImageStateChanger(false,'_on.','_off.');
+			}
+			else
+			{
+				$(obj).parent().children('input').attr('checked','checked');
+				$(obj).css('top','6%');
+				$(obj).ImageStateChanger(true,'_on.','_off.');
+			}
+		}
+	//]]>
+	</script>
+	<div id="wrapper">
+		<form id="contForm">
+		<!-- STR : content -->
+		<div id="content">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td id="content_top_left"></td>
+					<td id="content_top_center"></td>
+					<td id="content_top_right"></td>
+				</tr>
+				<tr>
+					<td id="content_middle_left"></td>
+					<!-- STR : 콘텐트 노출 박스 중앙 출력부 -->
+					<td id="content_display">
+						<!-- 타이틀 출력부 -->
+						<h1><img src="skin/images/title_accident_4.jpg" title="피해종류입력" /></h1>
+
+						<!-- 제목이미지 : 피해종류 -->
+						<h2 class="tit_effect"><img src="skin/images/title_accident_effect.jpg" title="피해종류 * 적어도 1개 의 담보는 필수 선택" /></h2>
+
+						<!-- STR : 피해종류 -->
+						<div class="inputbox2">
+							<img src="skin/images/title_accident_effect_01.jpg" title="고객님 및 가족 중 다치신 분이 있습니까?" />
+							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
+							<input type="checkbox" class="blind" name="effect0" id="effect0" />
+						</div>
+
+						<div class="inputbox2">
+							<img src="skin/images/title_accident_effect_02.jpg" title="고객님 및 가족 외 다치신 분이 있습니까?" />
+							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
+							<input type="checkbox" class="blind" name="effect1" id="effect1" />
+						</div>
+
+						<div class="inputbox2">
+							<img src="skin/images/title_accident_effect_03.jpg" title="고객님 차량에 파손이 있습니까?" />
+							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
+							<input type="checkbox" class="blind" name="effect2" id="effect2" />
+						</div>
+
+						<div id="que4" class="inputbox2">
+							<img src="skin/images/title_accident_effect_04.jpg" title="고객님 차량외에 파손된 차량(물건)이 있습니까?" />
+							<img class="chk" src="skin/images/btn_accident_effect_off.jpg" onclick="choiceEffect(this);" />
+							<input type="checkbox" class="blind" name="effect3" id="effect3" />
+						</div>
+						<!-- END : 피해종류 -->
+					</td>
+					<!-- END : 콘텐트 노출 박스 중앙 출력부 -->
+					<td id="content_middle_right"></td>
+				</tr>
+				<tr>
+					<td id="content_bottom_left"></td>
+					<td id="content_bottom_center"></td>
+					<td id="content_bottom_right"></td>
+				</tr>
+			</table>
+		</div>
+		<!-- END : content -->
+		</form>
+	</div>
+</body>
+</html>
