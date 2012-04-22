@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="Format" content="text/html" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
+<meta name="Robots" content="index,follow" />
+<meta name="Charset" content="utf-8" />
+<meta name="Author" content="master@newstools.kr" />
+<meta name="Generator" content="EditPlus Text Editor v3.31" />
+<title>사건접수_신속접수1</title>
+<link rel="stylesheet" href="skin/css/common.css" type="text/css" />
+<link rel="stylesheet" href="skin/css/accident3.css" type="text/css" />
+<script language="javascript" type="text/javascript" src="skin/js/jquery-1.7.1.min.js" ></script>
+<script language="javascript" type="text/javascript" src="skin/js/common_interface.js" ></script>
+</head>
+<body>
+	<script type="text/javascript">
+	//<![CDATA[
+		function readWebData() {
+			//일시#차량번호#주민번호
+			var form = document.getElementById('contForm');
+			var rtn = '';
+			var validation = false;
+
+			rtn = form.accident_date_year.value+''+form.accident_date_month.value+''+form.accident_date_day.value+''+form.accident_date_hour.value+''+form.accident_date_minute.value;
+
+			if ( (form.accident_carnum.value!='') || (form.accident_humnum.value!='') )
+			{
+				rtn = MergeData(rtn, form.accident_carnum.value);
+				rtn = MergeData(rtn, form.accident_humnum.value);
+				validation = true;
+			}
+			if ( !validation ) {
+				alert("차량번호 혹은 주민등록번호를 입력해주세요");
+				return '';
+			}
+
+			return rtn;
+		}
+
+		function WmWriteMsg(arg) {
+			//일시#차량번호#주민번호
+			var arryData = new Array();
+			arryData = SplitData(arg);
+
+			var form = document.getElementById('contForm');
+
+			initTimeSelector(arryData[0]);
+			form.accident_carnum.value = arryData[1];
+			form.accident_humnum.value = arryData[2];
+		}
+
+		function setTimeChoice(img,diffminute) {
+			$('.inputbox img.rad').each(function() { $(this).attr('src',$(this).attr('src').replace('_on.jpg','_off.jpg')); });
+			img.src = img.src.replace('_off.jpg','_on.jpg');
+			setTime(diffminute);
+		}
+
+		function setTime(diffminute) {
+			var now		= new Date();
+			var date	= new Date(now.getFullYear(),now.getMonth(),now.getDate(),now.getHours(),now.getMinutes()-parseInt(diffminute));
+
+			var year	= date.getFullYear();
+			var month	= '0' + (parseInt(date.getMonth()) + 1);	//주의:월은 0부터 시작함
+				month	= month.substring(month.length-2);
+			var day		= '0' + date.getDate();
+				day		= day.substring(day.length-2);
+			var hour	= '0' + date.getHours();
+				hour	= hour.substring(hour.length-2);
+			var minute	= '0' + date.getMinutes();
+				minute	= minute.substring(minute.length-2);
+
+			initTimeSelector(year+''+month+''+day+''+hour+''+minute);
+		}
+
+		function initTimeSelector(timestring) {
+			var year	= timestring.substring(0,4);
+			var month	= timestring.substring(4,6);
+			var day		= timestring.substring(6,8);
+			var hour	= timestring.substring(8,10);
+			var minute	= timestring.substring(10,12);
+
+			$('#accident_date_year').attr('value',year);
+			$('#accident_date_year').change();
+			$('#accident_date_month').attr('value',month);
+			$('#accident_date_month').change();
+			$('#accident_date_day').attr('value',day);
+			$('#accident_date_day').change();
+			$('#accident_date_hour').attr('value',hour);
+			$('#accident_date_hour').change();
+			$('#accident_date_minute').attr('value',minute);
+			$('#accident_date_minute').change();
+		}
+
+		/*STR : 사고일시 선택상자 background 적용 스크립트*/
+		(function($){
+			$.fn.extend({
+				customStyle : function(options) {
+					if(!$.browser.msie || ($.browser.msie&&$.browser.version>6)){
+						return this.each(function() {
+							var currentSelected = $(this).find(':selected');
+							$(this).after('<span class="customStyleSelectBox"><span class="customStyleSelectBoxInner">'+currentSelected.text()+'</span></span>').css({position:'absolute', opacity:0,fontSize:$(this).next().css('font-size')});
+							var selectBoxSpan = $(this).next();
+							var selectBoxWidth = parseInt($(this).width()) - parseInt(selectBoxSpan.css('padding-left')) -parseInt(selectBoxSpan.css('padding-right'));
+							var selectBoxSpanInner = selectBoxSpan.find(':first-child');
+							selectBoxSpan.css({display:'inline-block'});
+							selectBoxSpanInner.css({width:selectBoxWidth, display:'inline-block'});
+							var selectBoxHeight = parseInt(selectBoxSpan.height()) + parseInt(selectBoxSpan.css('padding-top')) + parseInt(selectBoxSpan.css('padding-bottom'));
+							$(this).height(selectBoxHeight).change(function(){
+								selectBoxSpanInner.text($(this).find(':selected').text()).parent().addClass('changed');
+							});
+						});
+					}
+				}
+			});
+		})(jQuery);
+
+		$(function(){
+			$('.inputbox select').customStyle();
+		});
+		/*END : 사고일시 선택상자 background 적용 스크립트*/
+
+		/* STR : onfocus 효과 선언 */
+		(function ($) {
+			$(document).ready(function () {
+				$('#accident_carnum, #accident_humnum').bind({
+					focusin: function () {
+						if( $(this).data('org-background-image')===undefined )
+							$(this).data('org-background-image', $(this).css('background-image'));
+
+						if( $(this).hasClass('oblong') ) {
+							$(this).css('background-image', 'url("skin/images/bg_input_oblong.jpg")');
+						}
+					}
+				});
+			});
+		})(jQuery);
+		/* END : onfocus 효과 선언 */
+	//]]>
+	</script>
+	<div id="wrapper">
+		<form id="contForm">
+		<!-- STR : content -->
+		<div id="content">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td id="content_top_left"></td>
+					<td id="content_top_center"></td>
+					<td id="content_top_right"></td>
+				</tr>
+				<tr>
+					<td id="content_middle_left"></td>
+					<!-- STR : 콘텐트 노출 박스 중앙 출력부 -->
+					<td id="content_display">
+						<!-- 타이틀 출력부 -->
+						<h1><img src="skin/images/title_accident_3.jpg" title="가입정보확인" /></h1>
+
+						<!-- 제목이미지 : 사고일시 -->
+						<h2 class="tit_date"><img src="skin/images/title_accident_date.jpg" title="사고일시" /></h2>
+
+						<!-- STR : 사고일시 -->
+						<div class="inputbox">
+							<div class="sel_lay1">
+								<select id="accident_date_year" name="accident_date_year">
+									<option value="2007">2007년</option>
+									<option value="2008">2008년</option>
+									<option value="2009">2009년</option>
+									<option value="2010">2010년</option>
+									<option value="2011">2011년</option>
+									<option value="2012">2012년</option>
+									<option value="2013">2013년</option>
+									<option value="2014">2014년</option>
+									<option value="2015">2015년</option>
+									<option value="2016">2016년</option>
+									<option value="2017">2017년</option>
+								</select>
+							</div>
+							<div class="sel_lay2">
+								<select id="accident_date_month" name="accident_date_month">
+									<option value="01">01월</option>
+									<option value="02">02월</option>
+									<option value="03">03월</option>
+									<option value="04">04월</option>
+									<option value="05">05월</option>
+									<option value="06">06월</option>
+									<option value="07">07월</option>
+									<option value="08">08월</option>
+									<option value="09">09월</option>
+									<option value="10">10월</option>
+									<option value="11">11월</option>
+									<option value="12">12월</option>
+								</select>
+							</div>
+							<div class="sel_lay2">
+								<select id="accident_date_day" name="accident_date_day">
+									<option value="01">01일</option>
+									<option value="02">02일</option>
+									<option value="03">03일</option>
+									<option value="04">04일</option>
+									<option value="05">05일</option>
+									<option value="06">06일</option>
+									<option value="07">07일</option>
+									<option value="08">08일</option>
+									<option value="09">09일</option>
+									<option value="10">10일</option>
+									<option value="11">11일</option>
+									<option value="12">12일</option>
+									<option value="13">13일</option>
+									<option value="14">14일</option>
+									<option value="15">15일</option>
+									<option value="16">16일</option>
+									<option value="17">17일</option>
+									<option value="18">18일</option>
+									<option value="19">19일</option>
+									<option value="20">20일</option>
+									<option value="21">21일</option>
+									<option value="22">22일</option>
+									<option value="23">23일</option>
+									<option value="24">24일</option>
+									<option value="25">25일</option>
+									<option value="26">26일</option>
+									<option value="27">27일</option>
+									<option value="28">28일</option>
+									<option value="29">29일</option>
+									<option value="30">30일</option>
+									<option value="31">31일</option>
+								</select>
+							</div>
+							<div class="sel_lay2">
+								<select id="accident_date_hour" name="accident_date_hour">
+									<option value="00">00시</option>
+									<option value="01">01시</option>
+									<option value="02">02시</option>
+									<option value="03">03시</option>
+									<option value="04">04시</option>
+									<option value="05">05시</option>
+									<option value="06">06시</option>
+									<option value="07">07시</option>
+									<option value="08">08시</option>
+									<option value="09">09시</option>
+									<option value="10">10시</option>
+									<option value="11">11시</option>
+									<option value="12">12시</option>
+									<option value="13">13시</option>
+									<option value="14">14시</option>
+									<option value="15">15시</option>
+									<option value="16">16시</option>
+									<option value="17">17시</option>
+									<option value="18">18시</option>
+									<option value="19">19시</option>
+									<option value="20">20시</option>
+									<option value="21">21시</option>
+									<option value="22">22시</option>
+									<option value="23">23시</option>
+								</select>
+							</div>
+							<div class="sel_lay2">
+								<select id="accident_date_minute" name="accident_date_minute">
+									<option value="00">00분</option>
+									<option value="01">01분</option>
+									<option value="02">02분</option>
+									<option value="03">03분</option>
+									<option value="04">04분</option>
+									<option value="05">05분</option>
+									<option value="06">06분</option>
+									<option value="07">07분</option>
+									<option value="08">08분</option>
+									<option value="09">09분</option>
+									<option value="10">10분</option>
+									<option value="11">11분</option>
+									<option value="12">12분</option>
+									<option value="13">13분</option>
+									<option value="14">14분</option>
+									<option value="15">15분</option>
+									<option value="16">16분</option>
+									<option value="17">17분</option>
+									<option value="18">18분</option>
+									<option value="19">19분</option>
+									<option value="20">20분</option>
+									<option value="21">21분</option>
+									<option value="22">22분</option>
+									<option value="23">23분</option>
+									<option value="24">24분</option>
+									<option value="25">25분</option>
+									<option value="26">26분</option>
+									<option value="27">27분</option>
+									<option value="28">28분</option>
+									<option value="29">29분</option>
+									<option value="30">30분</option>
+									<option value="31">31분</option>
+									<option value="32">32분</option>
+									<option value="33">33분</option>
+									<option value="34">34분</option>
+									<option value="35">35분</option>
+									<option value="36">36분</option>
+									<option value="37">37분</option>
+									<option value="38">38분</option>
+									<option value="39">39분</option>
+									<option value="40">40분</option>
+									<option value="41">41분</option>
+									<option value="42">42분</option>
+									<option value="43">43분</option>
+									<option value="44">44분</option>
+									<option value="45">45분</option>
+									<option value="46">46분</option>
+									<option value="47">47분</option>
+									<option value="48">48분</option>
+									<option value="49">49분</option>
+									<option value="50">50분</option>
+									<option value="51">51분</option>
+									<option value="52">52분</option>
+									<option value="53">53분</option>
+									<option value="54">54분</option>
+									<option value="55">55분</option>
+									<option value="56">56분</option>
+									<option value="57">57분</option>
+									<option value="58">58분</option>
+									<option value="59">59분</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="inputbox center">
+							<img class="rad" src="skin/images/btn_accident_date_diff_10_off.jpg" onclick="setTimeChoice(this,10);" />
+							<img class="rad" src="skin/images/btn_accident_date_diff_20_off.jpg" onclick="setTimeChoice(this,20);" />
+							<img class="rad" src="skin/images/btn_accident_date_diff_30_off.jpg" onclick="setTimeChoice(this,30);" />
+							<img class="rad" src="skin/images/btn_accident_date_diff_60_off.jpg" onclick="setTimeChoice(this,60);" />
+						</div>
+						<!-- END : 사고일시 -->
+
+						<!-- 제목이미지 : 차량번호 -->
+						<h2 class="tit_num"><img src="skin/images/title_accident_carnum.jpg" title="차량번호 *" /></h2>
+
+						<!-- STR : 차량번호 -->
+						<div class="inputbox2">
+							<input type="text" class="oblong" id="accident_carnum" name="accident_carnum" value="" style="background-image:url('skin/images/bg_input_oblong_carnum.jpg');" />
+						</div>
+						<!-- END : 차량번호 -->
+
+						<!-- 제목이미지 : 주민등록번호 -->
+						<h2 class="tit_num"><img src="skin/images/title_accident_humnum.jpg" title="주민등록번호" /></h2>
+
+						<!-- STR : 주민등록번호 -->
+						<div class="inputbox2">
+							<input type="text" class="oblong" id="accident_humnum" name="accident_humnum" value="" style="background-image:url('skin/images/bg_input_oblong_humnum.jpg');" />
+						</div>
+						<!-- END : 주민등록번호 -->
+					</td>
+					<!-- END : 콘텐트 노출 박스 중앙 출력부 -->
+					<td id="content_middle_right"></td>
+				</tr>
+				<tr>
+					<td id="content_bottom_left"></td>
+					<td id="content_bottom_center"></td>
+					<td id="content_bottom_right"></td>
+				</tr>
+			</table>
+		</div>
+		<!-- END : content -->
+		</form>
+	</div>
+</body>
+</html>

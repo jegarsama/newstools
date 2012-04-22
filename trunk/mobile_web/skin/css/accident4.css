@@ -1,0 +1,33 @@
+/*#region License Statement								*/
+/*Copyright (c) www.newstools.kr All rights reserved.	*/
+/*코드	: UTF-8											*/
+/*설명	: 사고접수_신속접수(2단계)						*/
+/*작성자	: LastDragon								*/
+/*소속명	: www.newstools.kr							*/
+/*수정일	: 20120419									*/
+/*#endregion											*/
+
+@charset "utf-8";
+
+/* STR : 전체 레이아웃 영역 */
+	/*콘텐트 노출 박스 중앙 출력부*/
+	#content_display	{ margin:0; padding:10px 0; text-align:center; border:none; }
+
+		/*타이틀 출력부 : 사고접수(2단계)*/
+		#content_display h1	{ width:92%; margin:0 auto; display:block; }
+		#content_display h1 img	{ width:100%; margin:0; }
+
+		/*제목이미지 : 사고유형, 피해종류*/
+		#content_display h2.tit_effect	{ width:92%; margin:11% auto 7% auto; display:block; }
+		#content_display h2 img	{ width:100%; margin:0; }
+
+		/*피해종류 : */
+		#content_display .inputbox2	{ width:92%; margin:3% auto 0 auto; padding:0; text-align:left; position:relative; }
+			/*피해종류 - 질문*/
+			#content_display .inputbox2 img	{ width:100%; margin:0; padding:0; position:relative; }
+			/*피해종류 선택버튼*/
+			#content_display .inputbox2 img.chk	{ width:11%; margin:0 auto; padding:0; position:absolute; top:8%; right:5%; cursor:pointer; }
+
+		/*피해종류 - 4번째 영역*/
+		#content_display #que4	{ margin:4% auto 2% auto; }
+/* END : 전체 레이아웃 영역 */
