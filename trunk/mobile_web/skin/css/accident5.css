@@ -24,10 +24,9 @@
 
 		/*사고일시 선택상자*/
 		#content_display .inputbox	{ width:92%; margin:3% auto 0 auto; padding:5% 0 5% 0; text-align:left; position:relative; }
-		#content_display .inputbox.center	{ margin-left:7%; }
-		#content_display .inputbox .sel_lay	{ width:24%; float:left; }
-		#content_display .inputbox .sel_lay select	{ cursor:pointer; }
-			#content_display .inputbox span.customStyleSelectBox{ width:100%; margin:0; padding:12px 0; cursor:pointer; color:#b0b0b0; font-size:12px; font-weight:bold; border-width:0; background:url('bg_select_date_long.jpg') no-repeat center right; background-size:100% 100%; }
+		#content_display .inputbox .sel_lay	{ width:100%; float:left; }
+		#content_display .inputbox .sel_lay select	{ width:92%; margin-left:3%; cursor:pointer; }
+			#content_display .inputbox span.customStyleSelectBox{ width:100%; margin:0; padding:12px 0; cursor:pointer; color:#b0b0b0; font-size:12px; font-weight:bold; border-width:0; background:url('../images/bg_select_state.jpg') no-repeat center right; background-size:100% 100%; }
 			#content_display .inputbox span.customStyleSelectBox.changed{ background-color: #ffffff; }
 			#content_display .inputbox span.customStyleSelectBox .customStyleSelectBoxInner{ width:100%; margin:0 0 0 30%; cursor:pointer; letter-spacing:-1px; white-space:nowrap; }
 /* END : 전체 레이아웃 영역 */
