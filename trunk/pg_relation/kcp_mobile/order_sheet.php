@@ -552,7 +552,13 @@ function searchZip_ceo()
 					</td>
 				</tr>
 			</table><br>
-			<form name="orderForm" method="post" action="order_table.php">
+			<?
+			if($GOOD_SHOP_USERID=="jegarsama")
+			{
+				?><form name="orderForm" method="post" action="order_table_mobile.php"><?
+			}else{
+				?><form name="orderForm" method="post" action="order_table.php"><?
+			}?>
 			<input type="hidden" name="tprice_array" value="<?=$tprice_array?>">
 			<input type="hidden" name="code_array" value="<?=$code_array?>">
 			<input type="hidden" name="transM_array" value="<?=$transM_array?>">
