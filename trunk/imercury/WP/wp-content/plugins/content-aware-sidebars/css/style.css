@@ -1,0 +1,71 @@
+/**
+ * @package Content Aware Sidebars
+ * @author Joachim Jensen <jv@intox.dk>
+ */
+
+.icon32-posts-sidebar {
+	background:transparent url('../img/icon-32.png') no-repeat !important;
+}
+
+#cas-rules .inside {
+	overflow:hidden;
+	margin:0;
+	padding:0;
+}
+
+#cas-accordion > h4 {
+	border-width:1px 0 !important;
+	border-style:solid;
+	border-color:#f9f9f9 #f9f9f9 #dfdfdf !important;
+	margin:0;
+	background-color:#ececec;
+	display:block;
+	outline: none;
+}
+
+#cas-accordion > h4:hover {
+	background-color:#e4e4e4;
+}
+
+#cas-accordion > h4 a {
+	display:block;
+	height:30px;
+	line-height:30px;
+	padding:0 30px;
+	text-decoration: none;
+}
+
+.cas-rule-content {
+	border-width:1px 0 !important;
+	border-style:solid;
+	border-color:#eee #eee #cfcfcf !important;
+	padding:10px !important;
+	background-color:#dfdfdf !important;
+}
+
+#cas-accordion .ui-state-active {
+	background-color:#dfdfdf;
+	border-color:#c0c0c0 #fff #cfcfcf !important;
+	box-shadow:inset 0 2px 1px 0 #cfcfcf;
+}
+
+#cas-accordion .ui-state-default:last-of-type, .cas-rule-content:last-child {
+	border-width:1px 0 0 !important;
+}
+
+#cas-accordion .tabs, #cas-accordion .tabs-panel {
+	background-color:#fff;
+	border-width:1px;
+	border-style:solid;
+	border-color:#ccc;
+}
+
+#cas-accordion .tabs {
+	border-color:#ccc #ccc #fff;
+}
+
+.cas-tick {
+	background-image:url('../img/tick.png'); /* Icon by fatcow.com */
+	background-repeat: no-repeat;
+	background-position: 8px center;
+}

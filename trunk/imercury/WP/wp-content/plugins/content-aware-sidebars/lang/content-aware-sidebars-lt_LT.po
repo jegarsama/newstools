@@ -1,0 +1,252 @@
+# Copyright (C) 2012 Content Aware Sidebars
+# This file is distributed under the same license as the Content Aware Sidebars package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Content Aware Sidebars 0.8.2\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/content-aware-sidebars\n"
+"POT-Creation-Date: 2012-03-09 13:35:16+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-05-01 19:05+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Poedit-Language: Lithuanian\n"
+"X-Poedit-Country: Lithuania\n"
+
+#: content-aware-sidebars.php:103
+msgid "Post Types"
+msgstr "Įrašų tipai"
+
+#: content-aware-sidebars.php:111
+msgid "Taxonomies"
+msgstr "Taksonomijos"
+
+#: content-aware-sidebars.php:119
+msgid "Authors"
+msgstr "Autoriai"
+
+#: content-aware-sidebars.php:127
+msgid "Page Templates"
+msgstr "Puslapio Šablonai"
+
+#: content-aware-sidebars.php:135
+msgid "Static Pages"
+msgstr "Statiniai Puslapiai"
+
+#: content-aware-sidebars.php:141
+msgid "Front Page"
+msgstr "Namų Puslapis"
+
+#: content-aware-sidebars.php:142
+msgid "Search Results"
+msgstr "Paieškos Rezultatai"
+
+#: content-aware-sidebars.php:143
+msgid "404 Page"
+msgstr "404 Puslapis"
+
+#: content-aware-sidebars.php:147
+#: content-aware-sidebars.php:312
+msgid "Exposure"
+msgstr "Išlaikymas"
+
+#: content-aware-sidebars.php:153
+msgid "Singular"
+msgstr "Vienaskaitinis"
+
+#: content-aware-sidebars.php:154
+msgid "Singular & Archive"
+msgstr "Išlaikymas ir Archyvavimas"
+
+#: content-aware-sidebars.php:155
+msgid "Archive"
+msgstr "Archyvas"
+
+#: content-aware-sidebars.php:159
+#: content-aware-sidebars.php:313
+msgctxt "option"
+msgid "Handle"
+msgstr "Tvarkyti"
+
+#: content-aware-sidebars.php:161
+msgid "Replace host sidebar, merge with it or add sidebar manually."
+msgstr "Pakeisti serverio šoninę juostą , sulieti ją su tuo arba pridėti šoninę juostą rankiniu būdu"
+
+#: content-aware-sidebars.php:165
+msgid "Replace"
+msgstr "Pakeisti"
+
+#: content-aware-sidebars.php:166
+msgid "Merge"
+msgstr "Sulieti"
+
+#: content-aware-sidebars.php:167
+msgid "Manual"
+msgstr "Rankiniu būdu"
+
+#: content-aware-sidebars.php:171
+msgid "Host Sidebar"
+msgstr "Serverio šoninė juosta"
+
+#: content-aware-sidebars.php:179
+#: content-aware-sidebars.php:314
+msgid "Merge position"
+msgstr "Suliejimo pozicija"
+
+#: content-aware-sidebars.php:181
+msgid "Place sidebar on top or bottom of host when merging."
+msgstr "Suliejimo metu patalpinti šoninę juostą serverio viršuje arba apačioje"
+
+#: content-aware-sidebars.php:185
+msgid "Top"
+msgstr "Viršus"
+
+#: content-aware-sidebars.php:186
+msgid "Bottom"
+msgstr "Apačia"
+
+#: content-aware-sidebars.php:216
+msgid "Sidebars"
+msgstr "Šoninės juostos"
+
+#: content-aware-sidebars.php:217
+msgid "Sidebar"
+msgstr "Šoninė juosta"
+
+#: content-aware-sidebars.php:218
+msgctxt "sidebar"
+msgid "Add New"
+msgstr "Pridėti Naują"
+
+#: content-aware-sidebars.php:219
+msgid "Add New Sidebar"
+msgstr "Pridėti Naują Šoninė juostą"
+
+#: content-aware-sidebars.php:220
+msgid "Edit Sidebar"
+msgstr "Redaguoti Šoninė juostą"
+
+#: content-aware-sidebars.php:221
+msgid "New Sidebar"
+msgstr "Nauja Šoninė juosta"
+
+#: content-aware-sidebars.php:222
+msgid "All Sidebars"
+msgstr "Visos  Šoninės juostos"
+
+#: content-aware-sidebars.php:223
+msgid "View Sidebar"
+msgstr "Peržiūrėti  Šoninę juostą"
+
+#: content-aware-sidebars.php:224
+msgid "Search Sidebars"
+msgstr "Ieškoti Šoninių juostų"
+
+#: content-aware-sidebars.php:225
+msgid "No sidebars found"
+msgstr "Jokių šoninių juostų nerasta"
+
+#: content-aware-sidebars.php:226
+msgid "No sidebars found in Trash"
+msgstr "Šiukšlėse nerasta jokių šoninių juostų"
+
+#: content-aware-sidebars.php:247
+msgid "Sidebar updated. <a href=\"%s\">Manage widgets</a>"
+msgstr "Šoninė juosta atnaujinta. <a href=\"%s\">Valdyti tvarkiklius</a>"
+
+#: content-aware-sidebars.php:250
+msgid "Sidebar updated."
+msgstr "Šoninė juosta atnaujinta."
+
+#: content-aware-sidebars.php:252
+msgid "Sidebar published. <a href=\"%s\">Manage widgets</a>"
+msgstr "Šoninė juosta paskelbta. <a href=\"%s\">Valdyti tvarkiklius</a>"
+
+#: content-aware-sidebars.php:253
+msgid "Sidebar saved."
+msgstr "Šoninė juosta įrašyta."
+
+#: content-aware-sidebars.php:254
+msgid "Sidebar submitted. <a href=\"%s\">Manage widgets</a>"
+msgstr "Šoninė juosta pateikta <a href=\"%s\">Valdyti tvarkiklius</a>"
+
+#: content-aware-sidebars.php:255
+msgid "Sidebar scheduled for: <strong>%1$s</strong>. <a href=\"%2$s\">Manage widgets</a>"
+msgstr "Šoninė juosta suplanuota: <strong>%1$s</strong>. <a href=\"%2$s\">Valdyti tvarkiklius</a>"
+
+#. translators: Publish box date format, see http:php.net/date
+#: content-aware-sidebars.php:257
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: content-aware-sidebars.php:258
+msgid "Sidebar draft updated. <a href=\"%s\">Manage widgets</a>"
+msgstr "Šoninės juostas juodraštis atnaujintas. <a href=\"%s\">Valdyti tvarkiklius</a>"
+
+#: content-aware-sidebars.php:421
+msgid "Manage Widgets"
+msgstr "Valdyti Tvarkiklius"
+
+#: content-aware-sidebars.php:656
+msgid "Words from the author"
+msgstr "Autoriaus žodžiai"
+
+#: content-aware-sidebars.php:704
+msgid "Options"
+msgstr "Parinktys"
+
+#: content-aware-sidebars.php:781
+msgid "If you love this plugin, please consider donating."
+msgstr "Jeigu Jums patinka šis papildinys, prašome apsvarstyti paaukojimo galimybę."
+
+#: content-aware-sidebars.php:783
+msgid "Remember to <a class=\"button\" href=\"%1$s\" target=\"_blank\">rate</a> and <a class=\"button\" href=\"%2$s\" target=\"_blank\">share</a> it too!"
+msgstr "Neužmirškite <a class=\"button\" href=\"%1$s\" target=\"_blank\">įvertinti</a> ir <a class=\"button\" href=\"%2$s\" target=\"_blank\">pasidalinti</a> papildiniu!"
+
+#: content-aware-sidebars.php:785
+msgid "Check out Content Aware Sidebars for %23WordPress! :)"
+msgstr "Peržvelkite Content Aware Sidebars %23WordPress sistemai!"
+
+#: content-aware-sidebars.php:800
+#: content-aware-sidebars.php:852
+msgid "No items."
+msgstr "Jokių elementų."
+
+#: content-aware-sidebars.php:806
+msgid "Most Used"
+msgstr "Dažniausiai Naudoti"
+
+#: content-aware-sidebars.php:807
+#: content-aware-sidebars.php:858
+#: content-aware-sidebars.php:883
+msgid "View All"
+msgstr "Peržiūrėti Viską"
+
+#: content-aware-sidebars.php:827
+msgid "Show with %s"
+msgstr "Rodyti per %s"
+
+#: content-aware-sidebars.php:871
+msgid "Show with All %s"
+msgstr "Rodyti per visus %s"
+
+#. Plugin Name of the plugin/theme
+msgid "Content Aware Sidebars"
+msgstr "Content Aware Sidebars"
+
+#. #-#-#-#-#  plugin.pot (Content Aware Sidebars 0.8.2)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  plugin.pot (Content Aware Sidebars 0.8.2)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "http://www.intox.dk/"
+msgstr "http://www.intox.dk/"
+
+#. Description of the plugin/theme
+msgid "Manage and show sidebars according to the content being viewed."
+msgstr "Valdyti ir rodyti šonines juostas pagal tai, koks turinys šiuo metu yra peržiūrimas."
+
+#. Author of the plugin/theme
+msgid "Joachim Jensen"
+msgstr "Joachim Jensen"
+
