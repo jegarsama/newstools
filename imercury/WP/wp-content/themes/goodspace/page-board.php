@@ -69,10 +69,36 @@ get_header();
 					$content = get_the_content();
 					if( $gdl_show_content != 'No' && !empty( $content ) ){
 						echo '<div class="sixteen columns mt0">';
-						echo '이곳은 어디인가?';
 						echo '<div class="gdl-page-content">';
 						the_content();
 						echo '</div>';
+
+
+						//게시판 출력용 영역 - STR
+							echo '<!-- Board ================================================== -->';
+
+							define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
+							require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
+
+							$code = "board1";
+							$skin = "wboard1";
+							define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
+
+							switch( $_GET[mode] )
+							{
+								case 'view':
+									include( NEW_IMERCURY_DIR . '/' . $skin . '/view1.php' );
+									break;
+
+								default:
+									include( NEW_IMERCURY_DIR . '/' . $skin . '/board1.php' );
+									break;
+							}
+
+							echo '<!-- Board ================================================== -->';
+						//게시판 출력용 영역 - END
+
+
 						echo '</div>';
 					}
 				}

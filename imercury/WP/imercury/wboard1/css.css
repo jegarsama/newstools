@@ -1,0 +1,144 @@
+/******** SET UP 될페이지에 넣으세요 *********************************
+<link rel=stylesheet type="text/css" href="include/stylesheet.css" title="css">
+*******************************************************************/
+
+/******************************************************************
+COMPOSED BY  정효진 - 웹디자이너
+전화번호 016-744-4890
+*******************************************************************/
+
+/******************************************************************
+이 스타일 씨트는 누구나 사용하실 수 있습니다
+이 스타일 시트의 내용에 대하여 의문시는 위의 주소로 연락 주시면 됩니다
+홈페이지 제작, 웹프로그램개발, 웹호스팅, 창업컨설팅, 도메인등록
+********************************************************************/
+
+
+
+body {
+font-family:"굴림","돋움",Tahoma,Verdana; font-size:12px; color:#484849; line-height:140%;
+margin-left:0px; margin-top:0px; margin-right:0px; margin-bottom:0px;
+scrollbar-track-color:#E3E3E3; 
+scrollbar-face-color:#000000; 
+scrollbar-3dlight-color:#383838; 
+scrollbar-highlight-color:#383838; 
+scrollbar-shadow-color:#383838; 
+scrollbar-darkshadow-color:#383838; 
+scrollbar-arrow-color:#B0AB97;
+}
+
+td {font-family: "돋움";font-size: 9pt;line-height: 160%;color: #363636;}
+img { border:0};
+
+a:link {font-family: "돋움";font-size: 9pt;line-height: 160%;color: #636363;text-decoration: none;}
+a:visited {font-family: "돋움";font-size: 9pt;line-height: 160%;color: #636363;text-decoration: none;}
+a:hover {font-family: "돋움";font-size: 9pt;line-height: 160%;color: #5397B1;text-decoration: none;}
+a:active {font-family: "돋움";font-size: 9pt;line-height: 160%;color: #636363;text-decoration: none;}
+
+.link1 {font-family:"돋움";	font-size:11px;	color:#636363;}
+.link1 A:link {font-family:"돋움";	font-size:11px;color:#636363; text-decoration:none}
+.link1 A:active {font-family:"돋움";	font-size:11px;color:#636363;text-decoration:none}
+.link1 A:visited {font-family:"돋움";	font-size:11px;color:#636363;text-decoration:none}
+.link1 A:hover {font-family:"돋움";	font-size:11px;color:#0076A3;text-decoration:underline}
+
+.link2 {font-family:"돋움";	font-size:9pt;	color:#464646;border-bottom-width: 1px;	border-bottom-style: solid;	border-bottom-color: E7E7E7;}
+.link2 A:link {font-family:"돋움";	font-size:9pt;	color:#464646; text-decoration:none}
+.link2 A:active {font-family:"돋움";	font-size:9pt;	color:#464646;text-decoration:none}
+.link2 A:visited {font-family:"돋움";	font-size:9pt;	color:#464646;text-decoration:none}
+.link2 A:hover {font-family:"돋움";	font-size:9pt;	color:#0A507D;text-decoration:none}
+
+.border01 {
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: EBEBEB;
+	border-left-color: EBEBEB;
+}
+.boder02 {
+	border-top-width: 2px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	border-left-width: 2px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: E1E1E1;
+	border-right-color: E1E1E1;
+	border-bottom-color: E1E1E1;
+	border-left-color: E1E1E1;
+}
+.font01 {
+	font-family: "돋움";
+	font-size: 11px;
+	color: #707070;
+}
+
+.border03 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #ABABAB;
+}
+.font02 {
+	font-family: "돋움";
+	font-size: 11pt;
+	font-weight: bold;
+	color: #378937;
+}
+.border04 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: CDDFE7;
+}
+.border05 {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: CDDFE7;
+	border-bottom-color: CDDFE7;
+}
+.border06 {
+	font-family: "돋움";
+	font-size: 9pt;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: B2C4CC;
+	border-right-color: B2C4CC;
+	border-bottom-color: B2C4CC;
+	border-left-color: B2C4CC;
+}
+.border07 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: E7E7E7;
+}
+.border08 {
+	font-family: "돋움";
+	font-size: 9pt;
+	color: #464646;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: CFCFCF;
+	border-right-color: CFCFCF;
+	border-bottom-color: CFCFCF;
+	border-left-color: CFCFCF;
+}
+.border09 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: D5D3D3;
+}

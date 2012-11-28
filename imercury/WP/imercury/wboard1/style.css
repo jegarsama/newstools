@@ -1,0 +1,14 @@
+td {
+	font-family: "µ¸¿ò";
+	font-size: 9pt;
+	line-height: 120%;
+	text-decoration: none;
+}
+input, textarea {
+	border: 1px solid #666666;
+}
+A:link { text-decoration: none; color:#000000 }
+
+A:visited { text-decoration: none; color:#000000}
+
+A:hover { text-decoration: none; color:#969696}
