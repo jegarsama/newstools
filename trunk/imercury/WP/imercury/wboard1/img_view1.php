@@ -1,19 +1,13 @@
 <?php
 /**
  * Board Skin: 용도
- * 1.아이머큐리 - 공지사항
-	 * 4.고객지원 – 제품인증
-	 * 4.고객지원 – 자주하는질문
-	 * 4.고객지원 – 1:1고객상담
-	 * 5.다운로드 – 회원전용
- * 5.다운로드 – 비회원 다운로드
-	 * 7.대리점전용관
+ * 3.차량별AV – 장착갤러리
 **/
 require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 
 
 
-$no		= $_GET[no];
+$seq		= $_GET[seq];
 $pagenum= $_GET[pagenum] == "" ? '1' : $_GET[pagenum];
 
 
@@ -26,18 +20,10 @@ if($code == "board5" || $code == "board6" || $code == "board7" || $code == "boar
 }
 
 
-if(!$no){
-	$sql = "select no from $code where thread = '$thread'";
-	$no = $db->query_one($sql);
-}
-
-$sql = "update $code set hit = hit + 1 where no = '$no'";
-$db->execute($sql);
-
-$sql = "select * from $code where no = '$no'";
-$info	= $db->query($sql);
-$contents	= str_replace(" ","&nbsp;",$info[contents]);
-$contents	= stripslashes($info[contents]);
+$sql = "select * from $code where seq_number = '$seq'";
+$info = $db->query($sql);
+$contents = str_replace(" ","&nbsp;",$info[contents]);
+$contents = stripslashes($info[contents]);
 if($info[html_yn] != "Y"){
 	$contents = str_replace(" ","&nbsp;",$contents);
 	$contents = nl2br($contents);
@@ -76,10 +62,10 @@ if($info[file1]){
 else $file = "&nbsp;";
 
 
-$sql = "select max(no) from $code where no < '$no'";
+$sql = "select max(seq_number) from $code where seq_number < '$seq'";
 $prev = $db->query_one($sql);
 
-$sql = "select min(no) from $code where no > '$no'";
+$sql = "select min(seq_number) from $code where seq_number > '$seq'";
 $next = $db->query_one($sql);
 ?>
 <link href="<?=BOARDSKINPATH?>/css.css" rel="stylesheet" type="text/css">
@@ -100,6 +86,14 @@ $next = $db->query_one($sql);
 	function login(){
 		alert("제품인증을 하셔야 해당 파일을 다운로드 하실 수 있습니다.");
 	}
+
+	function del_proc(idx){
+		if(!confirm("삭제하시겠습니까?")){
+			return;
+		}else{
+			window.location.href='/admin/gallery/gall_proc_del.jsp?opCode=d&idx='+idx
+		}
+	}
 //]]>
 </script>
 
@@ -108,10 +102,11 @@ $next = $db->query_one($sql);
 		<td height="3" bgcolor="#94CCF4"><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3"></td>
 	</tr>
 	<tr>
+	<tr>
 		<td class="border09"><table width="100%" height="34" border="0" cellpadding="0" cellspacing="0" background="<?= BOARDSKINPATH?>/btn_img/bg02.gif">
 				<tr>
 					<td width="65" align="right"><img src="<?= BOARDSKINPATH?>/btn_img/write_writer.gif" width="53" height="11"></td>
-					<td style="padding-left:10px"><font color="#0781C0"><?=$info[name]?> (<?=$info[rdate]?>)</font></td>
+					<td style="padding-left:10px"><font color="#0781C0"><?=$info[writer]?> (<?=$info[write_date]?>)</font></td>
 					<td align="right"><img src="<?= BOARDSKINPATH?>/btn_img/write_file.gif" width="53" height="11"></td>
 					<td width="13" align="right"><img src="<?= BOARDSKINPATH?>/btn_img/bar01.gif" width="1" height="11"></td>
 					<td width="40" align="center"><?=$file?></td>
@@ -123,13 +118,23 @@ $next = $db->query_one($sql);
 		<td class="border09"><table width="100%" height="34" border="0" cellpadding="0" cellspacing="0" background="<?= BOARDSKINPATH?>/btn_img/bg02.gif">
 				<tr>
 					<td width="65" align="right"><img src="<?= BOARDSKINPATH?>/btn_img/view_subject.gif" width="53" height="12"></td>
-					<td style="padding-left:10px"><?=$info[title]?></td>
+					<td style="padding-left:10px"><?=$info[content]?></td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	<tr>
-		<td style="padding:5px"><?=$contents?></td>
+		<td style="padding:5px" align="center"><?
+
+		for($i=0;$i<12;$i++)
+		{
+			if($info[img_url.$i]!="")
+			{
+				?><img align="center" src="/attach/images/<?=$info[img_url.$i]?>" border="0" /><p /><?
+			}
+		}
+			?>
+		</td>
 	</tr>
 	<?
 		if($review)
@@ -198,7 +203,7 @@ $next = $db->query_one($sql);
 					{	// 로그인아이디와 글쓴이 아이디가 같으면..
 				?>
 				<tr>
-					<td align="right"><a href="javascript:taildel('<?=$no?>','<?=$tail_row["bno"]?>','<?=$tail_row["no"]?>');">[삭제]</a></td>
+					<td align="right"><a href="javascript:taildel('<?=$seq?>','<?=$tail_row["bno"]?>','<?=$tail_row["no"]?>');">[삭제]</a></td>
 				</tr><?
 					}
 				?>
@@ -235,6 +240,7 @@ $next = $db->query_one($sql);
 			if( ($code == "board4"  && auth_chk(1) ) || ($code == "board3"  && auth_chk(1) ) || ($code == "board2"  && auth_chk(1)) || auth_chk(3))
 			{
 				?>
+
 				<form name="tailform" method="post" action="<?= BOARDSKINPATH?>/tail_ok.php" onsubmit="return tailok();">
 				<input type="hidden" name="number" value="<?= $info[no]?>">
 				<input type="hidden" name="uid" value="<?=$_COOKIE["mid"]?>">
@@ -287,25 +293,24 @@ $next = $db->query_one($sql);
 	<tr>
 		<td style="padding:7px 10px 0 10px"><table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="43"><?if($prev){?><a href="<?=$post->post_name?>?mode=view&no=<?=$prev?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_back2.gif" width="43" height="11" border="0"></a><?}?></td>
-					<td><?if($next){?><a href="<?=$post->post_name?>?mode=view&no=<?=$next?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_next2.gif" width="43" height="11" border="0"></a><?}?></td>
+					<td width="43"><?if($prev){?><a href="<?=$post->post_name?>?mode=view&seq=<?=$prev?>&pagenum=<?=$pagenum?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_back2.gif" width="43" height="11" border="0"></a><?}?></td>
+					<td><?if($next){?><a href="<?=$post->post_name?>?mode=view&seq=<?=$next?>&pagenum=<?=$pagenum?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_next2.gif" width="43" height="11" border="0"></a><?}?></td>
 					<td align="right"><a href="<?=$post->post_name?>?pagenum=<?=$pagenum?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_list.gif" width="56" height="23" border="0"></a>
 						<?if($admin == "1"){?>
-							<a href="<?=$post->post_name?>?mode=edit&no=<?=$no?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_modify.gif" border="0"></a>
-							<a href="<?=$post->post_name?>?mode=del&url=<?=$post->post_name?>&no=<?=$no?>&code=<?=$code?>&pagenum=<?=$pagenum?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_del.gif" border="0"></a>
+							<a href="<?=$post->post_name?>?mode=edit&no=<?=$seq?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_modify.gif" border="0"></a>
+							<a href="<?=$post->post_name?>?mode=del&url=<?=$post->post_name?>&no=<?=$seq?>&code=<?=$code?>&pagenum=<?=$pagenum?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_del.gif" border="0"></a>
 						<?}else if( $code == "board4" || $code == "board11" || $code == "board13" || $code == "board2" || $code == "board14" || auth_chked(3)){?>
-							<a href="<?=$post->post_name?>?mode=edit&url=<?=$post->post_name?>&no=<?=$no?>&code=<?=$code?>&pagenum=<?=$pagenum?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_modify.gif" border="0"></a>
-							<a href="<?=$post->post_name?>?mode=del&&url=<?=$post->post_name?>&no=<?=$no?>&code=<?=$code?>&pagenum=<?=$pagenum?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_del.gif" border="0"></a>
+							<a href="javascript:del_proc('<?=$seq?>')"><img src="<?= BOARDSKINPATH?>/btn_img/bt_del.gif" border="0"></a>
 						<?}?>
 						<?if(($code == "board4" && auth_chk(3) ) || $code == "board11" || $code == "board13" || ($code == "board2" && auth_chk(3) ) || ($code == "board3" && auth_chk(3) ) || $code == "board14" )
 						{
 							if ($info[notice] ==0){ ?>
-								<a href="<?=$post->post_name?>?mode=reply&no=<?=$no?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_reply.gif" width="56" height="23" border="0"></a><?
+								<a href="<?=$post->post_name?>?mode=reply&no=<?=$seq?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_reply.gif" width="56" height="23" border="0"></a><?
 							}
 						}
 						?>
 						<?if( $admin == 1  || $code == "board4" || ( $code == "board11" && auth_chk(2) ) || ($code == "board13" && auth_chk(2) ) || $code == "board2" || ($code == "board14" && auth_chk(2)) ){?>
-							<a href="<?=$post->post_name?>?mode=write"><img src="<?= BOARDSKINPATH?>/btn_img/bt_write.gif" width="56" height="23" border="0"></a>
+							<a href="<?=$post->post_name?>?mode=write"><img src="../<?=$skin?>/btn_img/bt_write.gif" width="56" height="23" border="0"></a>
 						<?}?>
 					</td>
 				</tr>

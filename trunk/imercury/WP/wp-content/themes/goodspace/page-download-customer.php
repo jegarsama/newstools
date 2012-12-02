@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: 1.아이머큐리 - 공지사항
+ * Template Name: 5.다운로드 - 회원전용
  */
 
 get_header();
@@ -79,11 +79,17 @@ get_header();
 
 
 				//게시판 출력용 영역 - STR
+
+
+//$loginChk = $_COOKIE[mid];
+//include "../../../login_chk2.php";
+
+
 				echo '<div class="imercury-board-content">';
 					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
 					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
 
-					$code = "board1";	//DB테이블
+					if($code == ""){$code="board7"; }	//DB테이블
 					$skin = "wboard1";	//SKIN폴더
 					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
 
@@ -91,31 +97,31 @@ get_header();
 					{
 						case 'write':
 						case 'reply':
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/write1.php' );
+							include( NEW_IMERCURY_DIR . '/' . $skin . '/write.php' );
 							break;
 
 						case 'edit':
 							if($admin == 1 || $pwd){
-								include( NEW_IMERCURY_DIR . '/' . $skin . '/write1.php' );
+								include( NEW_IMERCURY_DIR . '/' . $skin . '/write.php' );
 							}else{
-								include( NEW_IMERCURY_DIR . '/' . $skin . '/pass_chk1.php' );
+								include( NEW_IMERCURY_DIR . '/' . $skin . '/pass_chk.php' );
 							}
 							break;
 
 						case 'del':
 							if($admin == 1 || $pwd){
-								include( NEW_IMERCURY_DIR . '/' . $skin . '/delete1.php' );
+								include( NEW_IMERCURY_DIR . '/' . $skin . '/delete.php' );
 							}else{
-								include( NEW_IMERCURY_DIR . '/' . $skin . '/pass_chk1.php' );
+								include( NEW_IMERCURY_DIR . '/' . $skin . '/pass_chk.php' );
 							}
 							break;
 
 						case 'view':
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/view1.php' );
+							include( NEW_IMERCURY_DIR . '/' . $skin . '/view.php' );
 							break;
 
 						default:
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/board1.php' );
+							include( NEW_IMERCURY_DIR . '/' . $skin . '/board.php' );
 							break;
 					}
 				echo '</div>';

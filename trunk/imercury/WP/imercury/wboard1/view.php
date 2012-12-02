@@ -1,13 +1,7 @@
 <?php
 /**
  * Board Skin: 용도
- * 1.아이머큐리 - 공지사항
-	 * 4.고객지원 – 제품인증
-	 * 4.고객지원 – 자주하는질문
-	 * 4.고객지원 – 1:1고객상담
-	 * 5.다운로드 – 회원전용
- * 5.다운로드 – 비회원 다운로드
-	 * 7.대리점전용관
+ * 3.차량별AV – 제품리뷰
 **/
 require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 
@@ -19,7 +13,7 @@ $pagenum= $_GET[pagenum] == "" ? '1' : $_GET[pagenum];
 
 
 
-if($code == "board5" || $code == "board6" || $code == "board7" || $code == "board8" || $code == "board9"){
+if($code == "board5" || $code == "board6" || $code == "board7" || $code == "board8" || $code == "board9" || $code == "board2"){
 	if(!$_COOKIE[mid] &&  $admin != "1"){
 		move_to("../html/mem_login.html?r_url=$post->post_name");
 	}
@@ -29,6 +23,14 @@ if($code == "board5" || $code == "board6" || $code == "board7" || $code == "boar
 if(!$no){
 	$sql = "select no from $code where thread = '$thread'";
 	$no = $db->query_one($sql);
+}
+
+//제품정보
+$query2 = "select * from good_reg left outer join model_tbl on good_reg.model_no =model_tbl.no where userid = '$_COOKIE[mid]' " ;
+$info2 = $db->query($query2);
+
+if ($info2[mname]) {
+	$category2 = $info2[mname] ;
 }
 
 $sql = "update $code set hit = hit + 1 where no = '$no'";
@@ -142,7 +144,7 @@ $next = $db->query_one($sql);
 
 
 
-		if( $code == "board4" || $code == "board3" || $code == "board2" )
+		if( $code == "board14" || $code == "board13" || $code == "board2" )
 		{
 			?>
 	<tr>
@@ -232,7 +234,7 @@ $next = $db->query_one($sql);
 		<td style="padding:5px">&nbsp;<br></td>
 	</tr><?
 
-			if( ($code == "board4"  && auth_chk(1) ) || ($code == "board3"  && auth_chk(1) ) || ($code == "board2"  && auth_chk(1)) || auth_chk(3))
+			if( ($code == "board14"  && auth_chk(2) ) || ($code == "board13"  && auth_chk(2) ) || auth_chk(3))
 			{
 				?>
 				<form name="tailform" method="post" action="<?= BOARDSKINPATH?>/tail_ok.php" onsubmit="return tailok();">
@@ -272,7 +274,7 @@ $next = $db->query_one($sql);
 					<td align="center">&nbsp;</td>
 				</tr>
 				<tr>
-					<td height="2" bgcolor="#94CCF4"><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3"></td>
+					<td height="2" bgcolor="#94CCF4"></td>
 				</tr>
 				</form><?
 			}
@@ -293,14 +295,14 @@ $next = $db->query_one($sql);
 						<?if($admin == "1"){?>
 							<a href="<?=$post->post_name?>?mode=edit&no=<?=$no?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_modify.gif" border="0"></a>
 							<a href="<?=$post->post_name?>?mode=del&url=<?=$post->post_name?>&no=<?=$no?>&code=<?=$code?>&pagenum=<?=$pagenum?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_del.gif" border="0"></a>
-						<?}else if( $code == "board4" || $code == "board11" || $code == "board13" || $code == "board2" || $code == "board14" || auth_chked(3)){?>
+						<?}else if( $code == "board4" || $code == "board11" || $code == "board13" || $code == "board2" || ($code == "board14" ) ) {?>
 							<a href="<?=$post->post_name?>?mode=edit&url=<?=$post->post_name?>&no=<?=$no?>&code=<?=$code?>&pagenum=<?=$pagenum?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_modify.gif" border="0"></a>
 							<a href="<?=$post->post_name?>?mode=del&&url=<?=$post->post_name?>&no=<?=$no?>&code=<?=$code?>&pagenum=<?=$pagenum?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_del.gif" border="0"></a>
 						<?}?>
-						<?if(($code == "board4" && auth_chk(3) ) || $code == "board11" || $code == "board13" || ($code == "board2" && auth_chk(3) ) || ($code == "board3" && auth_chk(3) ) || $code == "board14" )
+						<?if(($code == "board4" && auth_chk(3) ) || ($code == "board11"&& auth_chk(3)) || ($code == "board13" && auth_chk(3) )|| ($code == "board2" && auth_chk(3) ) || ($code == "board3" && auth_chk(3) ) || ($code == "board14"&& auth_chk(3)) )
 						{
 							if ($info[notice] ==0){ ?>
-								<a href="<?=$post->post_name?>?mode=reply&no=<?=$no?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_reply.gif" width="56" height="23" border="0"></a><?
+								<a href="<?=$post->post_name?>?mode=reply&no=<?=$no?>&category=<?=$category?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_reply.gif" width="56" height="23" border="0"></a><?
 							}
 						}
 						?>
