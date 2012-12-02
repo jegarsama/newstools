@@ -1,17 +1,21 @@
 <?php
 /**
  * Board Skin: 용도
- * 1.아이머큐리 - 공지사항
-	 * 4.고객지원 – 제품인증
-	 * 4.고객지원 – 자주하는질문
-	 * 4.고객지원 – 1:1고객상담
-	 * 5.다운로드 – 회원전용
- * 5.다운로드 – 비회원 다운로드
-	 * 7.대리점전용관
+ * 3.차량별AV – 제품리뷰
 **/
 require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 
+
+
+if ($category=="") {
+	$query002 = "select * from good_reg left outer join model_tbl on good_reg.model_no =model_tbl.no where userid = '".$_COOKIE["mid"]."' " ;
+	$info002 = $db->query($query002);
+
+	if ($info002[mname] && $code!= "board10" && $code!= "board5" && $code!= "board6"  ) {
+		$category = $info002[mname] ;
+	}
+}
 
 
 if (!$category) {
@@ -27,8 +31,7 @@ if (!$category) {
 
 	$sql = "select * from $code where 1 " ;
 	if($search) $sql .= "AND $search like '%$word%' " ;
-	$sql .= " order by thread desc and notice < 1 ";
-	//$sql = "select * from $code $ad_q where category='$category' order by thread desc" ;
+	$sql .= " and category='$category' and notice < 1 order by thread desc";
 }
 
 $pg	= new paging;
@@ -57,6 +60,7 @@ $no		= $total - ($list_num*($pagenum-1));
 	document.onfocusin=linkblur;
 
 	function sub(){
+		/*
 		if(form1.title.checked == false && form1.contents.checked == false){
 			alert("검색조건을 하나이상 선택하세요.");
 			return;
@@ -66,6 +70,7 @@ $no		= $total - ($list_num*($pagenum-1));
 			form1.word.focus();
 			return;
 		}
+		*/
 		form1.submit();
 	}
 //]]>
@@ -95,6 +100,26 @@ $no		= $total - ($list_num*($pagenum-1));
 						<form name="form1" method="post">
 						<input type="hidden" name="search" value="1" />
 						<tr>
+							<td style="width:55px"><?
+								if ($admin == 1 || $code == "board1" || $code == "board7" || $code == "board12" || $code == "board10" ) {
+									$query1 = "select no,mname from model_tbl" ;
+								} else {
+									$query1 = "select * from good_reg left outer join model_tbl on good_reg.model_no =model_tbl.no where userid = '".$_COOKIE["mid"]."' " ;
+								}
+								$result1 = mysql_query($query1);
+								?><select name="category" >
+									<option value="" >선택하세요</option><?
+
+									while( $b_row = @mysql_fetch_array($result1) ){
+										$mname = $b_row[mname];
+										?>
+
+									<option value='<?=$mname?>' <?if($category == $mname ) echo "selected";?>><?=$mname?></option><?
+									}
+								?>
+
+								</select>&nbsp;&nbsp;
+							</td>
 							<td style="width:55px">
 								<select name="search">
 									<option value="title" <?if($search == "title") echo "selected";?>>제목</option>
@@ -109,7 +134,7 @@ $no		= $total - ($list_num*($pagenum-1));
 						</table>
 					</td>
 					<td align="right" valign="bottom"><?
-						if(($admin == 1) || ($code == "board4" && auth_chk(1)) || ($code == "board11" && auth_chk(2)) || $code == "board13" || ($code == "board2" && auth_chk(1)) || ($code == "board14" && auth_chk(2)) || ($code == "board3" && auth_chk(1)) )
+						if( ($code == "board4" && auth_chk(2)) || ($code == "board11" && auth_chk(2)) || ($code == "board13" && auth_chk(2)) || ($code == "board2" && auth_chk(1)) || ($code == "board14" && auth_chk(2)) || ($code == "board3" && auth_chk(1)) || auth_chk(3) )
 						{
 							?><a href="<?=$post->post_name?>?mode=write"><img src="<?=BOARDSKINPATH?>/btn_img/bt_write.gif" width="56" height="23" border="0"></a><?
 						}
@@ -119,7 +144,7 @@ $no		= $total - ($list_num*($pagenum-1));
 		</td>
 	</tr>
 	<tr>
-		<td><img src="<?=BOARDSKINPATH?>/images/img_07.gif"></td>
+		<td><img src="<?=BOARDSKINPATH?>/images/img_06.jpg"></td>
 	</tr>
 	<tr>
 		<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -198,13 +223,13 @@ $no		= $total - ($list_num*($pagenum-1));
 							$file = "&nbsp;";
 						?>
 			<tr>
-				<td width="41" height="25" align="center" class="border07"><?=$no--?></td>
-				<td width="51" align="center" class="border07"><?=$file?></td>
+				<td width="36" height="25" align="center" class="border07"><?=$no--?></td>
+				<td width="101" align="center" class="border07"><?=$info[$i][category]?></td>
 				<td width="301" class="link2" style="padding-left:5px"><?=$depth?>
-					<a href="<?=$post->post_name?>?mode=view&no=<?=$info[$i][no]?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>"><?=cut_string($info[$i][title],45)?>&nbsp;<? echo $nu?></a>
+					<a href="<?=$post->post_name?>?mode=view&no=<?=$info[$i][no]?>&ti=<?=$ti?>&code=<?=$code?>&co=<?=$co?>&word=<?=$word?>&page=<?=$page?>&search=<?=$search?>&category=<?=$info[$i][category]?>"><?=cut_string($info[$i][title],45)?>&nbsp;<? echo $nu?></a>
 				</td>
-				<td width="76" align="center" class="border07"><?=$info[$i][name]?></td>
-				<td width="91" align="center" class="border07"><?=substr($info[$i][rdate],0,10)?></td>
+				<td width="61" align="center" class="border07"><?=$info[$i][name]?></td>
+				<td width="66" align="center" class="border07"><?=substr($info[$i][rdate],0,10)?></td>
 				<td width="40" align="center" class="border07"><?=$info[$i][hit]?></td>
 			</tr><?
 					}

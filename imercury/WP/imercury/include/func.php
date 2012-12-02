@@ -31,14 +31,33 @@ function move_to($url){
 
 function cut_string($msg, $len, $tail="...")
 {
-if($len >= strlen($msg)) {
-return $msg;
-}
-$klen = $len - 1;
-while(ord($msg[$klen]) & 0x80) {
-$klen--;
-}
-return substr($msg, 0, $len - (($len + $klen + 1) % 2)) . $tail;
+	if (isset($len) === true)
+	{
+		// to speed things up
+		$msg = mb_substr($msg, 0, $len, 'UTF-8');
+
+		if($len >= strlen($msg))
+			return $msg;
+
+		while (strlen($msg) > $len)
+		{
+			$msg = mb_substr($msg, 0, -1, 'UTF-8');
+		}
+		$msg.= $tail;
+	}
+
+	return $msg;
+
+	/*
+		if($len >= strlen($msg)) {
+			return $msg;
+		}
+		$klen = $len - 1;
+		while(ord($msg[$klen]) & 0x80) {
+			$klen--;
+		}
+		return substr($msg, 0, $len - (($len + $klen + 1) % 2)) . $tail;
+	*/
 }
 
 /*
@@ -371,4 +390,39 @@ function auth_chked($type){
 
 }
 
+
+function auth_chk($type){
+
+	//회원 체크+제품인증
+	if($type == 2){
+
+		global $db;
+
+		$query2 = "select * from good_reg left outer join model_tbl on good_reg.model_no =model_tbl.no where userid = '".$_COOKIE["mid"]."' " ;
+		$info2 = $db->query($query2);
+
+		if($_COOKIE["mid"] && $info2[mname]){
+			return true;
+		}else{
+			return false;
+		}
+				// 관리자 권한체크
+	}else if($type == 3){
+
+		if($_COOKIE["admin_lever"] == '1'){
+			return false;
+		}else{
+			return true;
+		}
+
+	} else { //회원 체크
+
+		if($_COOKIE["mid"]){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+}
 ?>

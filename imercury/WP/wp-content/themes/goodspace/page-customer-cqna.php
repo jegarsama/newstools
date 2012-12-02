@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: 1.아이머큐리 - 공지사항
+ * Template Name: 4.고객지원 - 1:1고객상담
  */
 
 get_header();
@@ -79,46 +79,7 @@ get_header();
 
 
 				//게시판 출력용 영역 - STR
-				echo '<div class="imercury-board-content">';
-					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
-					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
-
-					$code = "board1";	//DB테이블
-					$skin = "wboard1";	//SKIN폴더
-					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
-
-					switch( $_GET[mode] )
-					{
-						case 'write':
-						case 'reply':
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/write1.php' );
-							break;
-
-						case 'edit':
-							if($admin == 1 || $pwd){
-								include( NEW_IMERCURY_DIR . '/' . $skin . '/write1.php' );
-							}else{
-								include( NEW_IMERCURY_DIR . '/' . $skin . '/pass_chk1.php' );
-							}
-							break;
-
-						case 'del':
-							if($admin == 1 || $pwd){
-								include( NEW_IMERCURY_DIR . '/' . $skin . '/delete1.php' );
-							}else{
-								include( NEW_IMERCURY_DIR . '/' . $skin . '/pass_chk1.php' );
-							}
-							break;
-
-						case 'view':
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/view1.php' );
-							break;
-
-						default:
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/board1.php' );
-							break;
-					}
-				echo '</div>';
+					//http://imercury2012.cafe24.com/imercury/jsp/customer/c_qna.php
 				//게시판 출력용 영역 - END
 
 

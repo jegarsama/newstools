@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: 1.아이머큐리 - 공지사항
+ * Template Name: 5.다운로드 - 비회원 다운로드
  */
 
 get_header();
@@ -83,7 +83,7 @@ get_header();
 					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
 					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
 
-					$code = "board1";	//DB테이블
+					$code = "board16";	//DB테이블
 					$skin = "wboard1";	//SKIN폴더
 					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
 

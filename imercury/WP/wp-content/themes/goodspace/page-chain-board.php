@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: 1.아이머큐리 - 공지사항
+ * Template Name: 7.대리점전용관
  */
 
 get_header();
@@ -79,11 +79,15 @@ get_header();
 
 
 				//게시판 출력용 영역 - STR
+
+//$loginChk = $_COOKIE[mid];
+//include "../../login_chk1.php";
+
 				echo '<div class="imercury-board-content">';
 					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
 					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
 
-					$code = "board1";	//DB테이블
+					$code = "board18";	//DB테이블
 					$skin = "wboard1";	//SKIN폴더
 					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
 
@@ -115,7 +119,7 @@ get_header();
 							break;
 
 						default:
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/board1.php' );
+							include( NEW_IMERCURY_DIR . '/' . $skin . '/board3.php' );
 							break;
 					}
 				echo '</div>';

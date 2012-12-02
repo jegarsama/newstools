@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: 1.아이머큐리 - 공지사항
+ * Template Name: 3.차량별AV - 장착갤러리
  */
 
 get_header();
@@ -83,7 +83,7 @@ get_header();
 					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
 					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
 
-					$code = "board1";	//DB테이블
+					$code = "t_gallery";	//DB테이블
 					$skin = "wboard1";	//SKIN폴더
 					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
 
@@ -111,11 +111,11 @@ get_header();
 							break;
 
 						case 'view':
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/view1.php' );
+							include( NEW_IMERCURY_DIR . '/' . $skin . '/img_view1.php' );
 							break;
 
 						default:
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/board1.php' );
+							include( NEW_IMERCURY_DIR . '/' . $skin . '/img_board1.php' );
 							break;
 					}
 				echo '</div>';
