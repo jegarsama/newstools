@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: 4.고객지원 - 제품인증
+ * Template Name: 6.마이페이지 - 로그인
  */
 
 get_header();
@@ -78,26 +78,19 @@ get_header();
 
 
 
-				//게시판 출력용 영역 - STR
-					//http://imercury2012.cafe24.com/imercury/jsp/customer/c_join.php
+				//로그인모듈 출력용 영역 - STR
 				echo '<div class="imercury-board-content">';
 					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
 					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
+					require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 
-					//로그인 상태체크 모듈
-					include( NEW_IMERCURY_DIR . '/member/login_chk.php' );
-
-					$code = "board18";	//DB테이블
 					$skin = "member";	//SKIN폴더
 					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
 
-					echo "로그인되었습니다." . $_COOKIE[mid];
-
-/*
 					switch( $_POST[mode] )
 					{
 						case 'login':
-							$sql = "select pwd, name, user_type from member_tbl where userid = '".$_POST[userid]."'";
+							$sql = "select userid, pwd, name, user_type from member_tbl where userid = '".$_POST[userid]."'";
 							$info = $db->query($sql);
 							if($info[pwd]){
 								if($info[pwd] == $_POST[pwd]){
@@ -129,9 +122,9 @@ get_header();
 						default:
 							include( NEW_IMERCURY_DIR . '/' . $skin . '/login_form.php' );
 							break;
-					}*/
+					}
 				echo '</div>';
-				//게시판 출력용 영역 - END
+				//로그인모듈 출력용 영역 - END
 
 
 
