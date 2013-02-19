@@ -3,8 +3,59 @@
  * Template Name: 6.마이페이지 - 로그인
  */
 
-get_header();
+//로그인모듈 처리 영역 - STR
+	define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
+	require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
+	require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 
+	$skin = "member";	//SKIN폴더
+	define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
+
+	if($_GET[mode]=='logout'){
+		setcookie("mid","",0,"/");
+		setcookie("mname_name","",0,"/");
+		setcookie("role","",0,"/");
+		err_move("로그아웃 되었습니다.","/");
+	}
+
+	switch( $_POST[mode] )
+	{
+		case 'login':
+			$sql = "select userid, pwd, name, user_type from member_tbl where userid = '".$_POST[userid]."'";
+			$info = $db->query($sql);
+			if($info[pwd]){
+				if($info[pwd] == $_POST[pwd]){
+					setcookie("mid",$info[userid],0,"/");
+					setcookie("mname_name",$info["name"],0,"/");
+					setcookie("role",$info["user_type"],0,"/");
+
+					//if($no) $r_url = $r_url."?no=".$no;
+					if($_POST[r_url]) err_move($info[name]."님 로그인 되었습니다.",$_POST[r_url]);
+					else err_move($info[name]."님 로그인 되었습니다.","/");
+
+				}else{
+					err_back("패스워드를 확인해주세요");
+				}
+
+			}else{
+				err_back("일치하는 아이디가 없습니다.");
+			}
+			break;
+
+		case 'logout':
+			setcookie("mid","",0,"/");
+			setcookie("mname_name","",0,"/");
+			setcookie("role","",0,"/");
+			err_move("로그아웃 되었습니다.","/");
+			break;
+
+		default:
+			//하단의 로그인 관련 interface 출력
+			break;
+	}
+//로그인모듈 처리 영역 - END
+
+get_header();
 ?>
 	<?php
 
@@ -80,49 +131,7 @@ get_header();
 
 				//로그인모듈 출력용 영역 - STR
 				echo '<div class="imercury-board-content">';
-					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
-					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
-					require_once( NEW_IMERCURY_DIR . '/include/func.php' );
-
-					$skin = "member";	//SKIN폴더
-					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
-
-					switch( $_POST[mode] )
-					{
-						case 'login':
-							$sql = "select userid, pwd, name, user_type from member_tbl where userid = '".$_POST[userid]."'";
-							$info = $db->query($sql);
-							if($info[pwd]){
-								if($info[pwd] == $_POST[pwd]){
-									setcookie("mid",$info[userid],0,"/");
-									setcookie("mname_name",$info["name"],0,"/");
-									setcookie("role",$info["user_type"],0,"/");
-
-									//if($no) $r_url = $r_url."?no=".$no;
-
-									if($_POST[r_url]) err_move($info[name]."님 로그인 되었습니다.",$_POST[r_url]);
-									else err_move($info[name]."님 로그인 되었습니다.","/");
-
-								}else{
-									err_back("패스워드를 확인해주세요");
-								}
-
-							}else{
-								err_back("일치하는 아이디가 없습니다.");
-							}
-							break;
-
-						case 'logout':
-							setcookie("mid","",0,"/");
-							setcookie("mname_name","",0,"/");
-							setcookie("role","",0,"/");
-							err_move("로그아웃 되었습니다.","/");
-							break;
-
-						default:
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/login_form.php' );
-							break;
-					}
+					include( NEW_IMERCURY_DIR . '/' . $skin . '/login_form.php' );
 				echo '</div>';
 				//로그인모듈 출력용 영역 - END
 
