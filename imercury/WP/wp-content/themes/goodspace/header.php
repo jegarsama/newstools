@@ -17,41 +17,41 @@
 	<!-- CSS
   ================================================== -->
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" />
-	
+
 	<?php global $gdl_is_responsive ?>
 	<?php if( $gdl_is_responsive ){ ?>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="stylesheet" href="<?php echo GOODLAYERS_PATH; ?>/stylesheet/skeleton-responsive.css">
-		<link rel="stylesheet" href="<?php echo GOODLAYERS_PATH; ?>/stylesheet/layout-responsive.css">	
+		<link rel="stylesheet" href="<?php echo GOODLAYERS_PATH; ?>/stylesheet/layout-responsive.css">
 	<?php }else{ ?>
 		<link rel="stylesheet" href="<?php echo GOODLAYERS_PATH; ?>/stylesheet/skeleton.css">
-		<link rel="stylesheet" href="<?php echo GOODLAYERS_PATH; ?>/stylesheet/layout.css">	
+		<link rel="stylesheet" href="<?php echo GOODLAYERS_PATH; ?>/stylesheet/layout.css">
 	<?php } ?>
-	
+
 	<!--[if lt IE 9]>
-		<link rel="stylesheet" href="<?php echo GOODLAYERS_PATH; ?>/stylesheet/ie-style.php?path=<?php echo GOODLAYERS_PATH; ?>" type="text/css" media="screen, projection" /> 
+		<link rel="stylesheet" href="<?php echo GOODLAYERS_PATH; ?>/stylesheet/ie-style.php?path=<?php echo GOODLAYERS_PATH; ?>" type="text/css" media="screen, projection" />
 	<![endif]-->
 	<!--[if IE 7]>
-		<link rel="stylesheet" href="<?php echo GOODLAYERS_PATH; ?>/stylesheet/ie7-style.css" /> 
-	<![endif]-->	
-	
+		<link rel="stylesheet" href="<?php echo GOODLAYERS_PATH; ?>/stylesheet/ie7-style.css" />
+	<![endif]-->
+
 	<!-- Favicon
    ================================================== -->
-	<?php 
+	<?php
 		if(get_option( THEME_SHORT_NAME.'_enable_favicon','disable') == "enable"){
 			$gdl_favicon = get_option(THEME_SHORT_NAME.'_favicon_image');
 			if( $gdl_favicon ){
 				$gdl_favicon = wp_get_attachment_image_src($gdl_favicon, 'full');
 				echo '<link rel="shortcut icon" href="' . $gdl_favicon[0] . '" type="image/x-icon" />';
 			}
-		} 
+		}
 	?>
 
 	<!-- Start WP_HEAD
    ================================================== -->
-		
+
 	<?php wp_head(); ?>
-	
+
 	<!-- FB Thumbnail
    ================================================== -->
 	<?php
@@ -65,10 +65,11 @@
 		$thumbnail_id = get_post_thumbnail_id();
 		if( !empty($thumbnail_id) ){
 			$thumbnail = wp_get_attachment_image_src( $thumbnail_id , '150x150' );
-			echo '<link rel="image_src" href="' . $thumbnail[0] . '" />';		
+			echo '<link rel="image_src" href="' . $thumbnail[0] . '" />';
 		}
 	}
-	?>	
+	?>
+
 </head>
 <body <?php echo body_class(); ?>>
 	<?php
@@ -99,7 +100,7 @@
 					echo '<img src="' . $logo_attachment . '" alt="logo"/>';
 					echo '</a>';
 				?>
-			</div>		
+			</div>
 			<div class="header-right-side-wrapper">
 			<!-- Get Social Network -->
 			<div class="social-wrapper">
@@ -122,32 +123,41 @@
 							'vimeo' => array('name'=>THEME_SHORT_NAME.'_vimeo', 'url'=> GOODLAYERS_PATH.'/images/icon/' . $gdl_icon_type . '/social/vimeo.png'),
 							'youtube' => array('name'=>THEME_SHORT_NAME.'_youtube', 'url'=> GOODLAYERS_PATH.'/images/icon/' . $gdl_icon_type . '/social/youtube.png')
 							);
-						
+
 						foreach( $gdl_social_icon as $social_name => $social_icon ){
-						
+
 							$social_link = get_option($social_icon['name']);
 							if( !empty($social_link) ){
-							
+
 								echo '<div class="social-icon"><a href="' . $social_link . '">' ;
 								echo '<img src="' . $social_icon['url'] . '" alt="' . $social_name . '"/>';
 								echo '</a></div>';
-							
+
 							}
-							
+
 						}
 					?>
 				</div>
 			</div>	<!-- Social wrapper -->
-			<!-- Navigation -->
-			<div class="navigation-wrapper">
-				<?php wp_nav_menu( array('container' => 'div', 'container_class' => 'menu-wrapper', 'container_id' => 'main-superfish-wrapper', 'menu_class'=> 'sf-menu',  'theme_location' => 'main_menu' ) ); ?>
-			</div>
-			<?php 
-				if( $gdl_is_responsive ){
-					dropdown_menu( array('dropdown_title' => '-- Main Menu --', 'indent_string' => '- ', 'indent_after' => '','container' => 'div', 'container_class' => 'responsive-menu-wrapper', 'theme_location'=>'main_menu') );	
+			<div style="float:right; margin-right:10px; margin-top:45px; font-size:0.9em;"><?
+				if(!$_COOKIE[mid]){
+					echo '<a href="/login?r_url=' . $_SERVER["REQUEST_URI"] . '">LOGIN</a>';
+				} else {
+					echo '<a href="/login?mode=logout">LOGOUT</a>';
 				}
-			?>			
+				?>
+				&nbsp;&nbsp; | &nbsp;&nbsp; JOIN &nbsp;&nbsp; | &nbsp;&nbsp; SITE MAP &nbsp;&nbsp; | &nbsp;&nbsp; <strong>ENGLISH</strong> &nbsp; </div>  <!-- CHOI -->
+			<!-- Navigation -->
+			<!--choi <div class="navigation-wrapper">
+		<?php wp_nav_menu( array('container' => 'div', 'container_class' => 'menu-wrapper', 'container_id' => 'main-superfish-wrapper', 'menu_class'=> 'sf-menu',  'theme_location' => 'main_menu' ) ); ?></div>-->
+			<?php /* choi Widgetized sidebar */
+			if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('my_mega_menu') ) : ?><?php endif; ?>
+
+			<!--<?php
+				if( $gdl_is_responsive ){
+					dropdown_menu( array('dropdown_title' => '-- Main Menu --', 'indent_string' => '- ', 'indent_after' => '','container' => 'div', 'container_class' => 'responsive-menu-wrapper', 'theme_location'=>'main_menu') );
+				}
+			?>-->
 			<div class="clear"></div>
 			</div> <!-- header-right-side -->
 		</div> <!-- header-wrapper -->
-		
