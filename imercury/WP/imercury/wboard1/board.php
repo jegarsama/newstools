@@ -2,6 +2,7 @@
 /**
  * Board Skin: 용도
  * 3.차량별AV – 제품리뷰
+ * 4.고객지원 – 자주하는질문
 **/
 require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
@@ -27,7 +28,8 @@ if (!$category) {
 	$sql .= " and notice < 1 order by thread desc ";
 } else {
 	$sql1 = "select count(*) from $code  where 1 ";
-	if($search) $sql1 .= "AND $search like '%$word%' and notice < 1" ;
+	if($search) $sql1 .= "AND $search like '%$word%' " ;
+	$sql1 .= " and category='$category' and notice < 1 ";
 
 	$sql = "select * from $code where 1 " ;
 	if($search) $sql .= "AND $search like '%$word%' " ;
@@ -37,15 +39,15 @@ if (!$category) {
 $pg	= new paging;
 $pagenum	= $_GET[pagenum] == "" ? '1' : $_GET[pagenum];
 $list_num	= 15;
-$limit_num	= $pg -> get_limit($pagenum, $list_num);
+$limit_num	= $pg->get_limit($pagenum, $list_num);
 
 $total	= $db->query_one($sql1);
 $info	= $db->query_between($sql,$limit_num[0],$list_num);
-$ecturl	= $pg -> mk_getstr($_GET);
+$ecturl	= $pg->mk_getstr($_GET);
 
-$pg -> get_env($total, $list_num, $pagenum, $post->post_name, $ecturl);
-$pg -> use_block('10');
-$pg -> use_img(BOARDSKINPATH.'/btn_img/bt_back.gif', BOARDSKINPATH.'/btn_img/bt_next.gif');
+$pg->get_env($total, $list_num, $pagenum, $post->post_name, $ecturl);
+$pg->use_block('10');
+$pg->use_img(BOARDSKINPATH.'/btn_img/bt_back.gif', BOARDSKINPATH.'/btn_img/bt_next.gif');
 $no		= $total - ($list_num*($pagenum-1));
 ?>
 <link href="<?=BOARDSKINPATH?>/css.css" rel="stylesheet" type="text/css">

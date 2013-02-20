@@ -349,7 +349,8 @@ div#custom-full-background img{
 div.header-wrapper{ position: relative; }
 div.logo-wrapper{ float: left; } 
 div.logo-wrapper img{ display: inline-block; } 
-div.navigation-wrapper{ float: right; }
+/*choi div.navigation-wrapper{ float: right; }*/
+div.navigation-wrapper{ margin:0 auto;}
 
 div.social-wrapper { position: absolute; top: 0px; right: 0px; margin: 12px 10px; }
 div.social-icon img{ display: inline-block; }
@@ -357,14 +358,16 @@ div.social-icon {  float: left; text-align: center; margin-right: 13px;
 	opacity: 0.35; filter: alpha(opacity=35); cursor: pointer; }
 
 /*--- Navigation ---*/
-div.navigation-wrapper{
-	font-size: 13px; text-align: center; }
+div.navigation-wrapper{font-size: 12px; text-align: center; }
 .navigation-wrapper .sf-menu .current-menu-item a{ font-weight: bold; }
 .navigation-wrapper .sf-menu .current-menu-item ul a{ font-weight: normal; }
 div.navigation-wrapper ul li ul li{ font-weight: normal; }
 div.responsive-menu-wrapper{ display: none; }
-div.responsive-menu-wrapper select{ width: 100%; height: 30px; margin-bottom: 30px; }
-div#main-superfish-wrapper{ margin-left: 10px; }
+div.responsive-menu-wrapper select{ width: 940px; height: 30px; margin-bottom: 30px; }
+#main-superfish-wrapper{ margin-left: 10px; }
+
+/* choi menu widget */
+#my-mega-menu-widget { float: left; margin-left: 9px; margin-top: -20px; width:940px; margin-bottom: 10px; }
 
 /*--- Content ---*/
 div.content-wrapper{ position: relative; }
@@ -502,7 +505,7 @@ div.footer-wrapper .container{ background: transparent;
 div.footer-widget-wrapper{ padding-top: 35px; }
 div.footer-widget-wrapper .custom-sidebar{ }
 div.footer-widget-wrapper .custom-sidebar-title{ font-size: 16px; margin-bottom: 10px;}
-div.footer-widget-wrapper .custom-sidebar #searchform{ margin-top: 15px; margin-bottom: 0; width: 100%; margin-left: 0px;  }
+div.footer-widget-wrapper .custom-sidebar #searchform{ margin-top: 15px; margin-bottom: 0; width: 940%; margin-left: 0px;  }
 
 /* Footer custom widget*/
 div.footer-wrapper div.contact-form-wrapper input[type="text"], div.footer-wrapper div.contact-form-wrapper input[type="password"], div.footer-wrapper div.contact-form-wrapper textarea, div.footer-wrapper div.custom-sidebar #search-text input[type="text"], div.footer-wrapper div.custom-sidebar .contact-widget-whole input, div.footer-wrapper div.custom-sidebar .contact-widget-whole textarea {
@@ -701,9 +704,9 @@ ul#portfolio-item-filter li:last-child span{ display:none; }
 /* Single */
 h1.single-thumbnail-title{ margin-top: 40px; padding-bottom: 18px; font-size: 21px; margin-bottom: 0; }
 h1.single-thumbnail-title a{ color: inherit; }
-/*º¯°æ div.single-thumbnail-info{ font-family: Droid Serif; font-size: 11px; float: left; width: 100px; margin-right: 20px; }*/
+/*ï¿½ï¿½ï¿½ï¿½ div.single-thumbnail-info{ font-family: Droid Serif; font-size: 11px; float: left; width: 100px; margin-right: 20px; }*/
 div.single-thumbnail-info{ font-family: Droid Serif; font-size: 11px; float: none width: 100px; margin-right: 20px; }
-/*º¯°æ div.single-info-inner-wrapper{ margin-bottom: 7px; }*/
+/*ï¿½ï¿½ï¿½ï¿½ div.single-info-inner-wrapper{ margin-bottom: 7px; }*/
 div.single-info-inner-wrapper{ float: left; margin-right: 10px; }
 span.single-info-header{ font-style: italic; margin-right: 2px; }
 div.single-context{ overflow: hidden; } 
