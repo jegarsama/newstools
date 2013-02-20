@@ -92,8 +92,8 @@ get_header();
 						case 'req':
 							if($_POST[subject] && $_POST[fromName] && $_POST[fromEmail] && $_POST[content] ){
 								$mail_from = $_POST[fromEmail]; // 보내는 사람메일주소
-								//$mail_to = "qna@i-mercury.co.kr"; // 받는사람 메일주소
-								$mail_to = "master@newstools.kr"; // 받는사람 메일주소
+								$mail_to = "qna@i-mercury.co.kr"; // 받는사람 메일주소
+								//$mail_to = "master@newstools.kr"; // 받는사람 메일주소
 
 								$Headers  = "from: " . $_POST[fromName] . "<" . $_POST[fromEmail] .">;"; // from 과 : 은 붙여주세요 => from:
 								//$Headers .= "Content-Type: text/html; charset=utf-8";
