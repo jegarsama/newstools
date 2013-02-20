@@ -7,6 +7,16 @@
 	*	to make it available for later use.
 	*	---------------------------------------------------------------------
 	*/
+
+	if ( function_exists('register_sidebar') ){
+    register_sidebar(array(
+        'name' => 'my_mega_menu',
+        'before_widget' => '<div id="my-mega-menu-widget">',
+        'after_widget' => '</div>',
+        'before_title' => '',
+        'after_title' => '',
+));
+}
 	
 	// constants
 	define('THEME_SHORT_NAME','gsp'); 

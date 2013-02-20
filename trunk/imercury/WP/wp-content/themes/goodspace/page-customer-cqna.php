@@ -79,7 +79,40 @@ get_header();
 
 
 				//게시판 출력용 영역 - STR
-					//http://imercury2012.cafe24.com/imercury/jsp/customer/c_qna.php
+				echo '<div class="imercury-board-content">';
+					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
+					require_once( NEW_IMERCURY_DIR . '/include/func.php' );
+
+					$code = "";	//DB테이블
+					$skin = "customer";	//SKIN폴더
+					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
+
+					switch( $_POST[mode] )
+					{
+						case 'req':
+							if($_POST[subject] && $_POST[fromName] && $_POST[fromEmail] && $_POST[content] ){
+								$mail_from = $_POST[fromEmail]; // 보내는 사람메일주소
+								//$mail_to = "qna@i-mercury.co.kr"; // 받는사람 메일주소
+								$mail_to = "master@newstools.kr"; // 받는사람 메일주소
+
+								$Headers  = "from: " . $_POST[fromName] . "<" . $_POST[fromEmail] .">;"; // from 과 : 은 붙여주세요 => from:
+								//$Headers .= "Content-Type: text/html; charset=utf-8";
+
+								$contents = $_POST[content];
+
+								mail($mail_to,$_POST[subject],$contents,$Headers);
+
+								err_move("관리자에게 문의하신 내용을 메일로 발송하였습니다.","/4-%EA%B3%A0%EA%B0%9D%EC%A7%80%EC%9B%90-11%EA%B3%A0%EA%B0%9D%EC%83%81%EB%8B%B4");
+							}else{
+								err_back("내용을 정확하게 입력하세요.");
+							}
+							break;
+
+						default:
+							include( NEW_IMERCURY_DIR . '/' . $skin . '/qna.php' );
+							break;
+					}
+				echo '</div>';
 				//게시판 출력용 영역 - END
 
 
