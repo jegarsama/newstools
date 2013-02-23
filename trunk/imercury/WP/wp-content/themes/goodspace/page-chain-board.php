@@ -79,13 +79,13 @@ get_header();
 
 
 				//게시판 출력용 영역 - STR
-
-//$loginChk = $_COOKIE[mid];
-//include "../../login_chk1.php";
-
 				echo '<div class="imercury-board-content">';
 					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
 					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
+					require_once( NEW_IMERCURY_DIR . '/include/func.php' );
+
+					//로그인 상태체크 모듈 - 대리점 권한체크 포함
+					include( NEW_IMERCURY_DIR . '/member/login_chk1.php' );
 
 					$code = "board18";	//DB테이블
 					$skin = "wboard1";	//SKIN폴더

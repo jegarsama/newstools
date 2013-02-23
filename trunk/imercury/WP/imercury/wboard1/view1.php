@@ -2,10 +2,8 @@
 /**
  * Board Skin: 용도
  * 1.아이머큐리 - 공지사항
-	 * 4.고객지원 – 제품인증
-	 * 5.다운로드 – 회원전용
  * 5.다운로드 – 비회원 다운로드
-	 * 7.대리점전용관
+ * 7.대리점전용관
 **/
 require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 

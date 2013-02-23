@@ -1,6 +1,5 @@
 <?
 $config_dir = $DOCUMENT_ROOT;
-$post->post_name = '/'.$post->post_name;	//게시판 등에서 활용하기 위해
 
 function err_back($msg){
   echo("

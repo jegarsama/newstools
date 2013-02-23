@@ -1,7 +1,14 @@
 <?php
 /**
- * Template Name: 4.고객지원 - 제품인증
+ * Template Name: 0.회원전용
  */
+
+//게시판 출력용 영역 - STR
+	define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
+
+	//로그인 상태체크 모듈
+	include( NEW_IMERCURY_DIR . '/member/login_chk.php' );
+//게시판 출력용 영역 - END
 
 get_header();
 
@@ -75,49 +82,6 @@ get_header();
 						echo '</div>';
 					}
 				}
-
-
-
-				//게시판 출력용 영역 - STR
-				echo '<div class="imercury-board-content">';
-					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
-					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
-					require_once( NEW_IMERCURY_DIR . '/include/func.php' );
-
-					//로그인 상태체크 모듈
-					include( NEW_IMERCURY_DIR . '/member/login_chk.php' );
-
-					$code = "";	//DB테이블
-					$skin = "customer";	//SKIN폴더
-					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
-
-					switch( $_POST[mode] )
-					{
-						case 'req':
-							if($_POST[model_no] && $_POST[barcode] ){
-								$s_no = $_POST[s_no1]."-".$_POST[s_no2]."-".$_POST[s_no3]."-".$_POST[s_no4];
-								$today = date("Ymd");
-
-								$sql = "insert into good_reg values('','$_POST[model_no]','$_POST[barcode]','$s_no','$_POST[year]','$_POST[month]','$_POST[area1]','$_POST[area2]','$_COOKIE[mid]','$today')";
-								$db->execute($sql);
-
-								$sql = "update serial_tbl set chk = 'Y', barcode = '$_POST[barcode]' where ctg = '$_POST[model_no]' and s_no1 = '$_POST[s_no1]' and s_no2 = '$_POST[s_no2]' and s_no3 = '$_POST[s_no3]' and s_no4 = '$_POST[s_no4]'";
-								$db->execute($sql);
-
-								err_move("제품인증이 정상적으로 처리되었습니다.","/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%a0%9c%ed%92%88%ec%9d%b8%ec%a6%9d");
-							}else{
-								err_back("내용을 정확하게 입력하세요.");
-							}
-							break;
-
-						default:
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/c_join.php' );
-							break;
-					}
-				echo '</div>';
-				//게시판 출력용 영역 - END
-
-
 
 				global $gdl_item_row_size;
 				$gdl_item_row_size = 0;
