@@ -3,6 +3,7 @@
  * Board Skin: 용도
  * 3.차량별AV – 제품리뷰
  * 4.고객지원 – 자주하는질문
+ * 5.다운로드 - 회원전용
 **/
 require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 

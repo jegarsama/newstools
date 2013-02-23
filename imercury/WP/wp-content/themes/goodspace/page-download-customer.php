@@ -79,19 +79,20 @@ get_header();
 
 
 				//게시판 출력용 영역 - STR
-
-
-//$loginChk = $_COOKIE[mid];
-//include "../../../login_chk2.php";
-
-
 				echo '<div class="imercury-board-content">';
 					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
 					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
+					require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 
+					//로그인 상태체크 모듈
+					include( NEW_IMERCURY_DIR . '/member/login_chk.php' );
+
+					$code = $_GET[code];
 					if($code == ""){$code="board7"; }	//DB테이블
 					$skin = "wboard1";	//SKIN폴더
 					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
+
+					include( NEW_IMERCURY_DIR . '/customer/download_filter.php' );
 
 					switch( $_GET[mode] )
 					{

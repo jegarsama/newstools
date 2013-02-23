@@ -3,12 +3,14 @@
  * Board Skin: 용도
  * 3.차량별AV – 제품리뷰
  * 4.고객지원 – 자주하는질문
+ * 5.다운로드 - 회원전용
 **/
 require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 
 
 
+$category = $_GET[category];
 if ($category=="") {
 	$query002 = "select * from good_reg left outer join model_tbl on good_reg.model_no =model_tbl.no where userid = '".$_COOKIE["mid"]."' " ;
 	$info002 = $db->query($query002);
