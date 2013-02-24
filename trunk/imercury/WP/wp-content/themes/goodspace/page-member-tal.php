@@ -1,64 +1,10 @@
 <?php
 /**
- * Template Name: 6.마이페이지 - 로그인
+ * Template Name: 6.마이페이지 - 회원탈퇴신청
  */
 
-//로그인모듈 처리 영역 - STR
-	define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
-	require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
-	require_once( NEW_IMERCURY_DIR . '/include/func.php' );
-
-	$skin = "member";	//SKIN폴더
-	define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
-
-	if($_GET[mode]=='logout'){
-		setcookie("mid","",0,"/");
-		setcookie("mname_name","",0,"/");
-		setcookie("role","",0,"/");
-		err_move("로그아웃 되었습니다.","/");
-	}
-
-	switch( $_POST[mode] )
-	{
-		case 'login':
-			//로그인 상태체크 모듈
-			include( NEW_IMERCURY_DIR . '/member/login_chk2.php' );
-
-			$sql = "select userid, pwd, name, user_type from member_tbl where userid = '".$_POST[userid]."'";
-			$info = $db->query($sql);
-			if($info[pwd]){
-				if($info[pwd] == $_POST[pwd]){
-					setcookie("mid",$info[userid],0,"/");
-					setcookie("mname_name",$info["name"],0,"/");
-					setcookie("role",$info["user_type"],0,"/");
-
-					//if($no) $r_url = $r_url."?no=".$no;
-					if($_POST[r_url]) err_move($info[name]."님 로그인 되었습니다.",$_POST[r_url]);
-					else err_move($info[name]."님 로그인 되었습니다.","/");
-
-				}else{
-					err_back("패스워드를 확인해주세요");
-				}
-
-			}else{
-				err_back("일치하는 아이디가 없습니다.");
-			}
-			break;
-
-		case 'logout':
-			setcookie("mid","",0,"/");
-			setcookie("mname_name","",0,"/");
-			setcookie("role","",0,"/");
-			err_move("로그아웃 되었습니다.","/");
-			break;
-
-		default:
-			//하단의 로그인 관련 interface 출력
-			break;
-	}
-//로그인모듈 처리 영역 - END
-
 get_header();
+
 ?>
 	<?php
 
@@ -132,11 +78,54 @@ get_header();
 
 
 
-				//로그인모듈 출력용 영역 - STR
+				//게시판 출력용 영역 - STR		http://imercury2012.cafe24.com/imercury/jsp/mypage/mem_tal.php
 				echo '<div class="imercury-board-content">';
-					include( NEW_IMERCURY_DIR . '/' . $skin . '/login_form.php' );
+					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
+					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
+					require_once( NEW_IMERCURY_DIR . '/include/func.php' );
+
+					//로그인 상태체크 모듈
+					include( NEW_IMERCURY_DIR . '/member/login_chk.php' );
+
+					$code = "";	//DB테이블
+					$skin = "member";	//SKIN폴더
+					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
+
+					switch( $_POST[mode] )
+					{
+						case 'req':
+							$email = $_POST[email1]."@".$_POST[email2];
+
+							//$mailheaders  = "Return-Path: ".$_POST[email].";";
+							//$mailheaders .= "Reply-To: ".$_POST[email].";";
+							$mailheaders .= "from: ".$_POST[name_user]." <".$email.">;"; // from 과 : 은 붙여주세요 => from:
+							//$mailheaders .= "Content-Type: text/html; charset=utf-8";
+
+							$content = stripslashes($_POST[contents]);
+							$content = nl2br(htmlspecialchars($content));
+
+							$sql = "select * from admin_tbl where admin_id='u-mercury'";
+							$info = $db->query($sql);
+							$TO = $info[email];
+							//$TO = "master@newstools.kr";
+
+							$main  = "이름 : ".$_POST[name_user]."<br>";
+							$main .= "아이디 : ".$_POST[uid]."<br>";
+							$main .= "메일 : ".$_POST[email1]."@".$_POST[email2]."<br>";
+							$main .= "연락처 : ".$_POST[tel]."<br>";
+							$main .= "탈퇴사유 : ".$_POST[content]."<br>";
+							$title = "탈퇴신청입니다.";
+							mail($TO,$title,$main,$mailheaders);
+
+							err_move("탈퇴신청이 접수되었습니다. \\n관리자가 확인 후 처리해드립니다.","6-%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%9A%8C%EC%9B%90%ED%83%88%ED%87%B4%EC%8B%A0%EC%B2%AD");
+							break;
+
+						default:
+							include( NEW_IMERCURY_DIR . '/' . $skin . '/tal.php' );
+							break;
+					}
 				echo '</div>';
-				//로그인모듈 출력용 영역 - END
+				//게시판 출력용 영역 - END
 
 
 

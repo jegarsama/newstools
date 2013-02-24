@@ -141,12 +141,12 @@
 			</div>	<!-- Social wrapper -->
 			<div style="float:right; margin-right:10px; margin-top:45px; font-size:0.9em;"><?
 				if(!$_COOKIE[mid]){
-					echo '<a href="/login?r_url=' . $_SERVER["REQUEST_URI"] . '">LOGIN</a>';
+					echo '<a href="/login?r_url=' . $_SERVER["REQUEST_URI"] . '">LOGIN</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="/6-%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85">JOIN</a> ';
 				} else {
 					echo '<a href="/login?mode=logout">LOGOUT</a>';
 				}
 				?>
-				&nbsp;&nbsp; | &nbsp;&nbsp; JOIN &nbsp;&nbsp; | &nbsp;&nbsp; SITE MAP &nbsp;&nbsp; | &nbsp;&nbsp; <strong>ENGLISH</strong> &nbsp; </div>  <!-- CHOI -->
+				&nbsp;&nbsp; | &nbsp;&nbsp; <a href="/9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A7%B5">SITE MAP</a> &nbsp;&nbsp; | &nbsp;&nbsp; <strong>ENGLISH</strong> &nbsp; </div>  <!-- CHOI -->
 			<!-- Navigation -->
 			<!--choi <div class="navigation-wrapper">
 		<?php wp_nav_menu( array('container' => 'div', 'container_class' => 'menu-wrapper', 'container_id' => 'main-superfish-wrapper', 'menu_class'=> 'sf-menu',  'theme_location' => 'main_menu' ) ); ?></div>-->
