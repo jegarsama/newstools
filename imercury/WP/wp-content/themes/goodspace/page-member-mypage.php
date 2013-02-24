@@ -1,64 +1,10 @@
 <?php
 /**
- * Template Name: 6.마이페이지 - 로그인
+ * Template Name: 6.마이페이지 - 회원정보수정
  */
 
-//로그인모듈 처리 영역 - STR
-	define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
-	require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
-	require_once( NEW_IMERCURY_DIR . '/include/func.php' );
-
-	$skin = "member";	//SKIN폴더
-	define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
-
-	if($_GET[mode]=='logout'){
-		setcookie("mid","",0,"/");
-		setcookie("mname_name","",0,"/");
-		setcookie("role","",0,"/");
-		err_move("로그아웃 되었습니다.","/");
-	}
-
-	switch( $_POST[mode] )
-	{
-		case 'login':
-			//로그인 상태체크 모듈
-			include( NEW_IMERCURY_DIR . '/member/login_chk2.php' );
-
-			$sql = "select userid, pwd, name, user_type from member_tbl where userid = '".$_POST[userid]."'";
-			$info = $db->query($sql);
-			if($info[pwd]){
-				if($info[pwd] == $_POST[pwd]){
-					setcookie("mid",$info[userid],0,"/");
-					setcookie("mname_name",$info["name"],0,"/");
-					setcookie("role",$info["user_type"],0,"/");
-
-					//if($no) $r_url = $r_url."?no=".$no;
-					if($_POST[r_url]) err_move($info[name]."님 로그인 되었습니다.",$_POST[r_url]);
-					else err_move($info[name]."님 로그인 되었습니다.","/");
-
-				}else{
-					err_back("패스워드를 확인해주세요");
-				}
-
-			}else{
-				err_back("일치하는 아이디가 없습니다.");
-			}
-			break;
-
-		case 'logout':
-			setcookie("mid","",0,"/");
-			setcookie("mname_name","",0,"/");
-			setcookie("role","",0,"/");
-			err_move("로그아웃 되었습니다.","/");
-			break;
-
-		default:
-			//하단의 로그인 관련 interface 출력
-			break;
-	}
-//로그인모듈 처리 영역 - END
-
 get_header();
+
 ?>
 	<?php
 
@@ -132,11 +78,41 @@ get_header();
 
 
 
-				//로그인모듈 출력용 영역 - STR
+				//게시판 출력용 영역 - STR
 				echo '<div class="imercury-board-content">';
-					include( NEW_IMERCURY_DIR . '/' . $skin . '/login_form.php' );
+					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
+					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
+					require_once( NEW_IMERCURY_DIR . '/include/func.php' );
+
+					//로그인 상태체크 모듈
+					include( NEW_IMERCURY_DIR . '/member/login_chk.php' );
+
+					$code = "";	//DB테이블
+					$skin = "member";	//SKIN폴더
+					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
+
+					switch( $_POST[mode] )
+					{
+						case 'req':
+							$tempsql = "select count(*) from member_tbl where email1='".$_POST[email1]."' and email2='".$_POST[email2]."' and userid<>'".$_COOKIE[mid]."'";
+							$emailexist	= $db->query_one($tempsql);
+							if(!$_POST[email1] || !$_POST[email2] || ($emailexist > 0) ){
+								err_back("이미 사용중인 이메일 입니다.");
+							}
+
+							$birthday = $bir_y."-".$bir_m."-".$bir_d;
+							$today = date("Y/m/d");
+							$sql = "update member_tbl set pwd = '$_POST[pwd]', birthday = '$_POST[birthday]', bir_chk = '$_POST[bir_chk]', tel1 = '$_POST[tel1]', tel2 = '$_POST[tel2]', tel3 = '$_POST[tel3]', hp1 = '$_POST[hp1]', hp2 = '$_POST[hp2]', hp3 = '$_POST[hp3]', email1 = '$_POST[email1]', email2 = '$_POST[email2]', zip1 = '$_POST[zip1]', zip2 = '$_POST[zip2]', addr1 = '$_POST[addr1]', addr2 = '$_POST[addr2]', job = '$_POST[job]', email_chk = '$_POST[email_chk]', pwd_q = '$_POST[pwd_q]', pwd_a = '$_POST[pwd_a]', gaip_corse = '$_POST[gaip_corse]', ga = '$_POST[ga]' where userid = '$_COOKIE[mid]'";
+							$db->execute($sql);
+							err_move("회원정보가 수정되었습니다.","6-%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%9A%8C%EC%9B%90%EC%A0%95%EB%B3%B4%EC%88%98%EC%A0%95");
+							break;
+
+						default:
+							include( NEW_IMERCURY_DIR . '/' . $skin . '/mypage.php' );
+							break;
+					}
 				echo '</div>';
-				//로그인모듈 출력용 영역 - END
+				//게시판 출력용 영역 - END
 
 
 
