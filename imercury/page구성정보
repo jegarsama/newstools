@@ -1,0 +1,110 @@
+A. 기본정보
+- 워드프레스 어드민 : imercury2012.cafe24.com/WP/wp-admin/ (imercury / mer7043727)
+- 기존 사이트 형태 : http://imercury2012.cafe24.com/imercury/
+- 기존 관리자 형태 : http://imercury2012.cafe24.com/admin/ (u-mercury / mer1234)
+
+B. 게시판 작업내용 : 기존 페이지 중에 게시판에 해당하는 부분은 페이지로 작성하여 작업완료
+- 메뉴 앞의 번호는 기존 사이트 메뉴구성상 번호를 표시한 것임
+- 페이지 순서는 현재의 GNB를 기준으로 나열함
+- 회원로그인과 연결되는 게시판 (md7000 / 12345)
+
+
+4. 고객지원 - 제품인증		http://imercury2012.cafe24.com/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%a0%9c%ed%92%88%ec%9d%b8%ec%a6%9d
+	[템플릿]	/WP/wp-content/themes/goodspace/page-customer-cjoin.php
+	[UI Form]	/WP/imercury/customer/c_join.php
+
+1. 아이머큐리 - 공지사항	http://imercury2012.cafe24.com/1-%EC%95%84%EC%9D%B4%EB%A8%B8%ED%81%90%EB%A6%AC-%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD
+	[템플릿]	/WP/wp-content/themes/goodspace/page-board.php
+	[UI Form]	/WP/imercury/wboard1/board1.php
+			/WP/imercury/wboard1/view1.php
+
+4. 고객지원 - 자주하는 질문	http://imercury2012.cafe24.com/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%9e%90%ec%a3%bc%ed%95%98%eb%8a%94%ec%a7%88%eb%ac%b8
+	[템플릿]	/WP/wp-content/themes/goodspace/page-customer-cfaq.php
+	[UI Form]	/WP/imercury/wboard1/board.php
+			/WP/imercury/wboard1/view.php
+
+4. 고객지원 - 1:1고객상담	http://imercury2012.cafe24.com/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-11%ea%b3%a0%ea%b0%9d%ec%83%81%eb%8b%b4
+	[템플릿]	/WP/wp-content/themes/goodspace/page-customer-cqna.php
+	[UI Form]	/WP/imercury/customer/qna.php
+
+4. 고객지원 - A/S안내		http://imercury2012.cafe24.com/4-%EA%B3%A0%EA%B0%9D%EC%A7%80%EC%9B%90-as%EC%95%88%EB%82%B4
+	[템플릿]	없음
+
+
+
+
+5. 다운로드 - 회원전용		http://imercury2012.cafe24.com/5-%eb%8b%a4%ec%9a%b4%eb%a1%9c%eb%93%9c-%ed%9a%8c%ec%9b%90%ec%a0%84%ec%9a%a9
+	[템플릿]	/WP/wp-content/themes/goodspace/page-download-customer.php
+	[UI Form]	/WP/imercury/wboard1/board.php
+			/WP/imercury/wboard1/view.php
+
+5. 다운로드 - 회원전용(업그레이드 동영상 매뉴얼)		http://imercury2012.cafe24.com/5-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C-%ED%9A%8C%EC%9B%90%EC%A0%84%EC%9A%A9%EC%97%85%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%9C-%EB%8F%99%EC%98%81%EC%83%81-%EB%A7%A4%EB%89%B4%EC%96%BC
+	[템플릿]	/WP/wp-content/themes/goodspace/page-template-loginbase.php	(로그인 여부만 체크하는 템플릿임)
+
+5. 다운로드 - 비회원 다운로드	http://imercury2012.cafe24.com/5-%eb%8b%a4%ec%9a%b4%eb%a1%9c%eb%93%9c-%eb%b9%84%ed%9a%8c%ec%9b%90-%eb%8b%a4%ec%9a%b4%eb%a1%9c%eb%93%9c
+	[템플릿]	/WP/wp-content/themes/goodspace/page-download-event.php
+	[UI Form]	/WP/imercury/wboard1/board1.php
+			/WP/imercury/wboard1/view1.php
+
+
+
+
+7. 대리점전용관			http://imercury2012.cafe24.com/%EB%8C%80%EB%A6%AC%EC%A0%90%EC%95%88%EB%82%B4/7-%EB%8C%80%EB%A6%AC%EC%A0%90%EC%A0%84%EC%9A%A9%EA%B4%80
+	[템플릿]	/WP/wp-content/themes/goodspace/page-chain-board.php
+	[UI Form]	/WP/imercury/wboard1/board3.php
+			/WP/imercury/wboard1/view1.php
+
+
+
+
+3. 차량별AV - 장착갤러리	http://imercury2012.cafe24.com/3-%ec%b0%a8%eb%9f%89%eb%b3%84av-%ec%9e%a5%ec%b0%a9%ea%b0%a4%eb%9f%ac%eb%a6%ac
+	[템플릿]	/WP/wp-content/themes/goodspace/page-car-gallery.php
+	[UI Form]	/WP/imercury/wboard1/img_board1.php
+			/WP/imercury/wboard1/img_view1.php
+
+3. 차량별AV - 제품리뷰		http://imercury2012.cafe24.com/3-%ec%b0%a8%eb%9f%89%eb%b3%84av-%ec%a0%9c%ed%92%88%eb%a6%ac%eb%b7%b0
+	[템플릿]	/WP/wp-content/themes/goodspace/page-car-review.php
+	[UI Form]	/WP/imercury/wboard1/board.php
+			/WP/imercury/wboard1/view.php
+
+
+
+
+6. 마이페이지 - 제품정보	= 제품인증
+
+6. 마이페이지 - 주문이력	http://imercury2012.cafe24.com/6-%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%A3%BC%EB%AC%B8%EC%9D%B4%EB%A0%A5
+	[템플릿]	/WP/wp-content/themes/goodspace/page-member-ju.php
+	[UI Form]	/WP/imercury/member/ju.php
+
+6. 마이페이지 - 회원정보수정	http://imercury2012.cafe24.com/6-%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%9A%8C%EC%9B%90%EC%A0%95%EB%B3%B4%EC%88%98%EC%A0%95
+	[템플릿]	/WP/wp-content/themes/goodspace/page-member-mypage.php
+	[UI Form]	/WP/imercury/member/mypage.php
+
+6.마이페이지 - 회원탈퇴신청	http://imercury2012.cafe24.com/6-%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%9A%8C%EC%9B%90%ED%83%88%ED%87%B4%EC%8B%A0%EC%B2%AD
+	[템플릿]	/WP/wp-content/themes/goodspace/page-member-tal.php
+	[UI Form]	/WP/imercury/member/tal.php
+
+9. 사이트맵			http://imercury2012.cafe24.com/9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A7%B5
+	[템플릿]	없음
+
+
+
+
+8. 쇼핑하기 - 상품목록		http://imercury2012.cafe24.com/8-%EC%87%BC%ED%95%91%ED%95%98%EA%B8%B0
+	[템플릿]	없음
+
+8. 쇼핑하기 - 주문하기		http://imercury2012.cafe24.com/8-%EC%87%BC%ED%95%91%ED%95%98%EA%B8%B0
+	[템플릿]	/WP/wp-content/themes/goodspace/page-shop-order.php
+	[UI Form]	/WP/imercury/shop/order.php
+
+
+
+
+6. 마이페이지 - 회원가입	http://imercury2012.cafe24.com/6-%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85
+	[템플릿]	/WP/wp-content/themes/goodspace/page-member-join.php
+	[UI Form]	/WP/imercury/member/join1.php
+			/WP/imercury/member/join2.php
+
+6. 마이페이지 - 로그인		http://imercury2012.cafe24.com/login
+	[템플릿]	/WP/wp-content/themes/goodspace/page-member-login.php
+	[UI Form]	/WP/imercury/member/login_form.php
