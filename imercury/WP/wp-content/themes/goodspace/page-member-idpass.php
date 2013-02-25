@@ -1,7 +1,65 @@
 <?php
 /**
- * Template Name: 6.마이페이지 - 회원탈퇴신청
+ * Template Name: 6.마이페이지 - 아이디/패스워드찾기
  */
+
+//검색모듈 처리 영역 - STR
+	define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
+	require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
+	require_once( NEW_IMERCURY_DIR . '/include/func.php' );
+
+	//로그인 상태체크 모듈
+	include( NEW_IMERCURY_DIR . '/member/login_chk2.php' );
+
+	$code = "";	//DB테이블
+	$skin = "member";	//SKIN폴더
+	define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
+
+	switch( $_POST[mode] )
+	{
+		case 'uid':
+			if($_POST[name_user] && $_POST[email1] && $_POST[email2] ){
+				$tempsql = "select userid from member_tbl where name = '$_POST[name_user]' and email1 = '$_POST[email1]' and email2 = '$_POST[email2]' ";
+				$info = $db->query($tempsql);
+				if($info[userid]){
+					err_info("회원님의 아이디는 ".$info[userid]."입니다.");
+				} else {
+					err_info("일치하는 정보가 없습니다.");
+				}
+			}else{
+				err_info("내용을 정확하게 입력하세요.");
+			}
+			break;
+
+		case 'pass':
+			if($_POST[name_user] && $_POST[pwd_q] && $_POST[pwd_a] ){
+				$tempsql = "select userid, pwd, email1, email2 from member_tbl where name = '$_POST[name_user]' and userid = '$_POST[userid]' and pwd_q = '$_POST[pwd_q]' and pwd_a = '$_POST[pwd_a]'";
+				$info = $db->query($tempsql);
+				if($info[pwd]){
+					$mail_from = "master@i-mercury.co.kr"; // 보내는 사람메일주소
+					$mail_to = $info[email1]."@".$info[email2]; // 받는사람 메일주소
+
+					$Headers  = "from: 아이머큐리<" . $mail_from .">;"; // from 과 : 은 붙여주세요 => from:
+					//$Headers .= "Content-Type: text/html; charset=utf-8";
+
+					$subject = "회원님의 정보를 알려드립니다.";
+					$contents = "회원님의 아이디는 {$info[userid]}이고, 회원님의 패스워드는 {$info[pwd]}입니다.";
+
+					mail($mail_to,$subject,$contents,$Headers);
+					err_info($mail_to."로 회원님의 정보를 보내드렸습니다.");
+				} else {
+					err_info("일치하는 정보가 없습니다.");
+				}
+			}else{
+				err_info("내용을 정확하게 입력하세요.");
+			}
+			break;
+
+		default:
+			//하단의 로그인 관련 interface 출력
+			break;
+	}
+//검색모듈 처리 영역 - END
 
 get_header();
 
@@ -78,54 +136,11 @@ get_header();
 
 
 
-				//게시판 출력용 영역 - STR		http://imercury2012.cafe24.com/imercury/jsp/mypage/mem_tal.php
+				//검색모듈 출력용 영역 - STR
 				echo '<div class="imercury-board-content">';
-					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
-					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );
-					require_once( NEW_IMERCURY_DIR . '/include/func.php' );
-
-					//로그인 상태체크 모듈
-					include( NEW_IMERCURY_DIR . '/member/login_chk.php' );
-
-					$code = "";	//DB테이블
-					$skin = "member";	//SKIN폴더
-					define( 'BOARDSKINPATH', '/WP/imercury/' . $skin );
-
-					switch( $_POST[mode] )
-					{
-						case 'req':
-							$email = $_POST[email1]."@".$_POST[email2];
-
-							//$mailheaders  = "Return-Path: ".$_POST[email].";";
-							//$mailheaders .= "Reply-To: ".$_POST[email].";";
-							$mailheaders .= "from: ".$_POST[name_user]." <".$email.">;"; // from 과 : 은 붙여주세요 => from:
-							//$mailheaders .= "Content-Type: text/html; charset=utf-8";
-
-							$content = stripslashes($_POST[contents]);
-							$content = nl2br(htmlspecialchars($content));
-
-							$sql = "select * from admin_tbl where admin_id='u-mercury'";
-							$info = $db->query($sql);
-							$TO = $info[email];
-							//$TO = "master@newstools.kr";
-
-							$main  = "이름 : ".$_POST[name_user]."<br>";
-							$main .= "아이디 : ".$_POST[uid]."<br>";
-							$main .= "메일 : ".$_POST[email1]."@".$_POST[email2]."<br>";
-							$main .= "연락처 : ".$_POST[tel]."<br>";
-							$main .= "탈퇴사유 : ".$_POST[content]."<br>";
-							$title = "탈퇴신청입니다.";
-							mail($TO,$title,$main,$mailheaders);
-
-							err_move("탈퇴신청이 접수되었습니다. \\n관리자가 확인 후 처리해드립니다.","withdraw");
-							break;
-
-						default:
-							include( NEW_IMERCURY_DIR . '/' . $skin . '/tal.php' );
-							break;
-					}
+					include( NEW_IMERCURY_DIR . '/' . $skin . '/idpass_form.php' );
 				echo '</div>';
-				//게시판 출력용 영역 - END
+				//검색모듈 출력용 영역 - END
 
 
 

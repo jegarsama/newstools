@@ -8,7 +8,10 @@ require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 
 
-$category = $_GET[category];
+
+$category	= $_GET[category];
+$search		= $_GET[search];
+$word		= $_GET[word];
 if (!$category) {
 	$sql1 = "select count(*) from $code where 1 ";
 	if($search) $sql1 .= " AND $search like '%$word%' and notice < 1 " ;
@@ -66,7 +69,7 @@ $no		= $total - ($list_num*($pagenum-1));
 //]]>
 </script>
 
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<table width="620" border="0" cellpadding="0" cellspacing="0">
 <?
 	if($search == 1){
 		if($na == "Y") $chk1 = "checked";
@@ -87,7 +90,7 @@ $no		= $total - ($list_num*($pagenum-1));
 		<td style="padding:8px 10px 0 10px"><table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-						<form name="form1" method="post">
+						<form name="form1" method="get">
 						<input type="hidden" name="search" value="1" />
 						<tr>
 							<td style="width:55px">
@@ -97,13 +100,13 @@ $no		= $total - ($list_num*($pagenum-1));
 									<option value="name" <?if($search == "name") echo "selected";?>>아이디</option>
 								</select>
 							</td>
-							<td width="110"><input name="word" type="text" class="border08" size="15" value="<?=$word?>"></td>
-							<td><img src="<?=BOARDSKINPATH?>/btn_img/bt_search.gif" width="44" height="23" onclick="sub()" style="cursor:hand"></td>
+							<td width="110"><input name="word" type="text" size="15" value="<?=$word?>"></td>
+							<td style="padding:0px 0px 0px 20px;"><img src="<?=BOARDSKINPATH?>/btn_img/bt_search.gif" width="44" height="23" style="cursor:pointer" onclick="sub()"></td>
 						</tr>
 						</form>
 						</table>
 					</td>
-					<td align="right" valign="bottom"><?
+					<td align="right"><?
 						if(($admin == 1) || ($code == "board4" && auth_chk(1)) || ($code == "board11" && auth_chk(2)) || $code == "board13" || ($code == "board2" && auth_chk(1)) || ($code == "board14" && auth_chk(2)) || ($code == "board3" && auth_chk(1)) )
 						{
 							?><a href="<?=$post->post_name?>?mode=write"><img src="<?=BOARDSKINPATH?>/btn_img/bt_write.gif" width="56" height="23" border="0"></a><?
@@ -219,7 +222,7 @@ $no		= $total - ($list_num*($pagenum-1));
 		<td height="42" align="center"><?=$pg->mk_numbering()?></td>
 	</tr>
 	<tr>
-		<td height="3" bgcolor="#94CCF4"><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3" /></td>
+		<td style="padding:0px 0px 20px 0px;"><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3" /></td>
 	</tr>
 </table>
 <script>imgCbox("na");</script>

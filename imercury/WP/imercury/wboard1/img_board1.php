@@ -8,6 +8,9 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 
 
 
+$category	= $_GET[category];
+$search		= $_GET[search];
+$word		= $_GET[word];
 if (!$category) {
 	$sql1 = "select count(*) from $code where 1 ";
 	//if($search) $sql1 .= " AND $search like '%$word%' and notice < 1 " ;
@@ -86,7 +89,7 @@ $no		= $total - ($list_num*($pagenum-1));
 		<td style="padding:8px 10px 0 10px"><table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-						<form name="form1" method="post">
+						<form name="form1" method="get">
 						<input type="hidden" name="search" value="1" />
 						</form>
 						</table>

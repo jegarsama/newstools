@@ -57,4 +57,20 @@ function sub(){
 	<tr>
 		<td height="150">&nbsp;</td>
 	</tr>
+	<tr align="center">
+		<td>
+			<table background="<?=BOARDSKINPATH?>/images/login_bg3.gif" width="608" height="73">
+				<tr >
+					<td align="right"><img src="<?=BOARDSKINPATH?>/images/login_txt2.gif" width="153" height="24"></td>
+					<td  width="133"><a href="/idpass"><img src="<?=BOARDSKINPATH?>/images/login_btn2.gif" width="133" height="24" border="0"></a></td>
+					<td width="15"></td>
+					<td width="129"><img src="<?=BOARDSKINPATH?>/images/login_txt3.gif" width="129" height="24"></td>
+					<td><a href="/join"><img src="<?=BOARDSKINPATH?>/images/login_btn3.gif" width="95" height="24" border="0"></a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="150">&nbsp;</td>
+	</tr>
 </table>

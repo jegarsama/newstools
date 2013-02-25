@@ -9,6 +9,9 @@ require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 
 
 
+$category	= $_GET[category];
+$search		= $_GET[search];
+$word		= $_GET[word];
 $no		= $_GET[no];
 $pagenum= $_GET[pagenum] == "" ? '1' : $_GET[pagenum];
 
