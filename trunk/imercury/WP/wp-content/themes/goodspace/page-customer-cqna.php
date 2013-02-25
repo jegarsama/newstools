@@ -102,7 +102,7 @@ get_header();
 
 								mail($mail_to,$_POST[subject],$contents,$Headers);
 
-								err_move("관리자에게 문의하신 내용을 메일로 발송하였습니다.","/4-%EA%B3%A0%EA%B0%9D%EC%A7%80%EC%9B%90-11%EA%B3%A0%EA%B0%9D%EC%83%81%EB%8B%B4");
+								err_move("관리자에게 문의하신 내용을 메일로 발송하였습니다.","/qna");
 							}else{
 								err_back("내용을 정확하게 입력하세요.");
 							}

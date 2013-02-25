@@ -82,14 +82,14 @@ get_header();
 				echo '<div class="imercury-board-content">';
 					echo '<div class="toplinks"><img src="/imercury/images/customer/faq_banner2.gif" width="680" height="485" border="0" usemap="#MapTopLink">
 						<map name="MapTopLink">
-							<area shape="rect" coords="26,45,233,176" href="/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%9e%90%ec%a3%bc%ed%95%98%eb%8a%94%ec%a7%88%eb%ac%b8?category=MAP" />
-							<area shape="rect" coords="235,45,445,175" href="/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%9e%90%ec%a3%bc%ed%95%98%eb%8a%94%ec%a7%88%eb%ac%b8?category=GPS" />
-							<area shape="rect" coords="448,45,668,174"  href="/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%9e%90%ec%a3%bc%ed%95%98%eb%8a%94%ec%a7%88%eb%ac%b8?category=DMB" />
-							<area shape="rect" coords="26,178,234,304" href="/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%9e%90%ec%a3%bc%ed%95%98%eb%8a%94%ec%a7%88%eb%ac%b8?category=TPEG" />
-							<area shape="rect" coords="235,178,448,305" href="/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%9e%90%ec%a3%bc%ed%95%98%eb%8a%94%ec%a7%88%eb%ac%b8?category=HDISC" />
-							<area shape="rect" coords="449,178,668,303" href="/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%9e%90%ec%a3%bc%ed%95%98%eb%8a%94%ec%a7%88%eb%ac%b8?category=RADIO" />
-							<area shape="rect" coords="26,306,234,434" href="/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%9e%90%ec%a3%bc%ed%95%98%eb%8a%94%ec%a7%88%eb%ac%b8?category=BBOX" />
-							<area shape="rect" coords="235,307,449,435" href="/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%9e%90%ec%a3%bc%ed%95%98%eb%8a%94%ec%a7%88%eb%ac%b8?category=TRIP" />
+							<area shape="rect" coords="26,45,233,176" href="/faq?category=MAP" />
+							<area shape="rect" coords="235,45,445,175" href="/faq?category=GPS" />
+							<area shape="rect" coords="448,45,668,174"  href="/faq?category=DMB" />
+							<area shape="rect" coords="26,178,234,304" href="/faq?category=TPEG" />
+							<area shape="rect" coords="235,178,448,305" href="/faq?category=HDISC" />
+							<area shape="rect" coords="449,178,668,303" href="/faq?category=RADIO" />
+							<area shape="rect" coords="26,306,234,434" href="/faq?category=BBOX" />
+							<area shape="rect" coords="235,307,449,435" href="/faq?category=TRIP" />
 						</map></div>';
 					define( 'NEW_IMERCURY_DIR', ABSPATH . 'imercury' );
 					require_once( NEW_IMERCURY_DIR . '/include/connect.php' );

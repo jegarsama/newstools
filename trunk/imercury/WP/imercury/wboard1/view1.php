@@ -9,6 +9,9 @@ require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 
 
 
+$category	= $_GET[category];
+$search		= $_GET[search];
+$word		= $_GET[word];
 $no		= $_GET[no];
 $pagenum= $_GET[pagenum] == "" ? '1' : $_GET[pagenum];
 
@@ -99,9 +102,9 @@ $next = $db->query_one($sql);
 //]]>
 </script>
 
-<table width="100%" border="0"  cellpadding="0" cellspacing="0">
+<table width="620" border="0"  cellpadding="0" cellspacing="0">
 	<tr>
-		<td height="3" bgcolor="#94CCF4"><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3"></td>
+		<td><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3"></td>
 	</tr>
 	<tr>
 		<td class="border09"><table width="100%" height="34" border="0" cellpadding="0" cellspacing="0" background="<?= BOARDSKINPATH?>/btn_img/bg02.gif">
@@ -268,7 +271,7 @@ $next = $db->query_one($sql);
 					<td align="center">&nbsp;</td>
 				</tr>
 				<tr>
-					<td height="2" bgcolor="#94CCF4"><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3"></td>
+					<td><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3"></td>
 				</tr>
 				</form><?
 			}
@@ -278,10 +281,10 @@ $next = $db->query_one($sql);
 
 
 	<tr>
-		<td height="3" bgcolor="#94CCF4"><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3"></td>
+		<td><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3"></td>
 	</tr>
 	<tr>
-		<td style="padding:7px 10px 0 10px"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<td style="padding:7px 10px 0 10px"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding:0px 0px 40px 0px;">
 				<tr>
 					<td width="43"><?if($prev){?><a href="<?=$post->post_name?>?mode=view&no=<?=$prev?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_back2.gif" width="43" height="11" border="0"></a><?}?></td>
 					<td><?if($next){?><a href="<?=$post->post_name?>?mode=view&no=<?=$next?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_next2.gif" width="43" height="11" border="0"></a><?}?></td>

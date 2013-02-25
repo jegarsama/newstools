@@ -19,7 +19,7 @@
 
 					<td valign="top" bgcolor="#FFFFFF"><a href="http://www.mappy.co.kr" target="_blank"><img src="/imercury/images/update/mappy_logo.gif" width="92" height="70" border="0"></a></td>
 
-					<td><a href="/5-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C-%ED%9A%8C%EC%9B%90%EC%A0%84%EC%9A%A9%EC%97%85%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%9C-%EB%8F%99%EC%98%81%EC%83%81-%EB%A7%A4%EB%89%B4%EC%96%BC"><img src="/imercury/images/update/upgrade_movie.gif" width="108" height="106" border="0"></a></td>
+					<td><a href="/download-manual"><img src="/imercury/images/update/upgrade_movie.gif" width="108" height="106" border="0"></a></td>
 
 					<td><img src="/imercury/images/update/dot1.gif" width="7" height="106"></td>
 

@@ -104,7 +104,7 @@ get_header();
 							$today = date("Y/m/d");
 							$sql = "update member_tbl set pwd = '$_POST[pwd]', birthday = '$_POST[birthday]', bir_chk = '$_POST[bir_chk]', tel1 = '$_POST[tel1]', tel2 = '$_POST[tel2]', tel3 = '$_POST[tel3]', hp1 = '$_POST[hp1]', hp2 = '$_POST[hp2]', hp3 = '$_POST[hp3]', email1 = '$_POST[email1]', email2 = '$_POST[email2]', zip1 = '$_POST[zip1]', zip2 = '$_POST[zip2]', addr1 = '$_POST[addr1]', addr2 = '$_POST[addr2]', job = '$_POST[job]', email_chk = '$_POST[email_chk]', pwd_q = '$_POST[pwd_q]', pwd_a = '$_POST[pwd_a]', gaip_corse = '$_POST[gaip_corse]', ga = '$_POST[ga]' where userid = '$_COOKIE[mid]'";
 							$db->execute($sql);
-							err_move("회원정보가 수정되었습니다.","6-%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%9A%8C%EC%9B%90%EC%A0%95%EB%B3%B4%EC%88%98%EC%A0%95");
+							err_move("회원정보가 수정되었습니다.","mypage");
 							break;
 
 						default:

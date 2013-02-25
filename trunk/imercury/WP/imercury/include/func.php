@@ -1,6 +1,14 @@
 <?
 $config_dir = $DOCUMENT_ROOT;
 
+function err_info($msg){
+  echo("
+  <script>
+    alert('$msg');
+  </script>
+  ");
+  exit;
+}
 function err_back($msg){
   echo("
   <script>
@@ -10,7 +18,6 @@ function err_back($msg){
   ");
   exit;
 }
-
 function err_move($msg,$url){
   echo("
   <script>

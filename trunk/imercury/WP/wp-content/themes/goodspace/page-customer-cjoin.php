@@ -104,7 +104,7 @@ get_header();
 								$sql = "update serial_tbl set chk = 'Y', barcode = '$_POST[barcode]' where ctg = '$_POST[model_no]' and s_no1 = '$_POST[s_no1]' and s_no2 = '$_POST[s_no2]' and s_no3 = '$_POST[s_no3]' and s_no4 = '$_POST[s_no4]'";
 								$db->execute($sql);
 
-								err_move("제품인증이 정상적으로 처리되었습니다.","/4-%ea%b3%a0%ea%b0%9d%ec%a7%80%ec%9b%90-%ec%a0%9c%ed%92%88%ec%9d%b8%ec%a6%9d");
+								err_move("제품인증이 정상적으로 처리되었습니다.","/record");
 							}else{
 								err_back("내용을 정확하게 입력하세요.");
 							}
