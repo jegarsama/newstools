@@ -1,7 +1,86 @@
-<?
+<?php
+/**
+ * Board Skin: 용도
+ * 1.아이머큐리 - 공지사항
+ * 3.차량별AV - 장착갤러리
+ * 5.다운로드 - 비회원 다운로드
+ * 7.대리점전용관
+**/
+require_once( NEW_IMERCURY_DIR . '/include/func.php' );
+
+
+
+$category	= $_GET[category];
+$search		= $_GET[search];
+$word		= $_GET[word];
+$no		= $_GET[no];
+$pagenum= $_GET[pagenum] == "" ? '1' : $_GET[pagenum];
+
 if($admin != 1){
-  include "login_chk2.php";
+	include NEW_IMERCURY_DIR . '/member/login_chk.php';
 }
+
+//저장처리 process area start
+if(substr($_POST[enc],0,3)=='enc'){
+	if(!is_dir(".".BOARDSKINPATH."/data/".$code)){
+	  mkdir(".".BOARDSKINPATH."/data/".$code,0707);
+	  chmod(".".BOARDSKINPATH."/data/".$code,0707);
+	}
+
+	if($_FILES[file1][name]){
+	  @unlink(".".BOARDSKINPATH."/data/".$code."/".$old_file);
+	  $fname = upload_file($_FILES[file1],".".BOARDSKINPATH."/data/".$code);
+	  $rname = $_FILES[file1][name];
+	}else{
+	  if($file_del == "Y"){
+		@unlink(".".BOARDSKINPATH."/data/".$code."/".$old_file);
+		$fname = "";
+		$rname = "";
+	  }else{
+		$fname = $old_file;
+		$rname = $old_rfile;
+	  }
+	}
+	$today = date("Y/m/d H:i:s");
+	$user_name= addslashes($_POST[user_name]);
+	$title = addslashes($_POST[title]);
+	$contents = addslashes($_POST[contents]);
+
+	if($html_yn != "Y") $contents = htmlspecialchars($contents);
+
+	if($mode == "edit"){
+	  $sql = "update $code set name = '$name', pwd = '$pwd', email = '$email', title = '$title', html_yn = '$html_yn', contents = '$contents', file1 = '$fname', rfile1 = '$rname' ,notice = '$notice' where no = '$no'";
+	  $db->execute($sql);
+	  move_to($post->post_name."?no=$no&mode=view&ti=$ti&co=$co&word=$word&pagenum=$pagenum&search=$search&category=$category");
+	}else if($mode == "reply"){
+	  $sql = "select thread,depth from $code where no = '$no'";
+	  $info = $db -> query($sql);
+	  $thread = $info[thread];
+	  $depth = $info[depth];
+	  $thread2 = $thread - 1;
+	  $depth2 = $depth + 1;
+	  $thread3 = round($thread/1000,2)*1000 - 1000;
+
+	  $sql = "update $code set thread = thread - 1 where thread < $thread and thread > $thread3";
+	  $db -> execute($sql);
+
+	  $sql = "insert into $code (no, thread, depth, name, pwd, email, title, html_yn, contents, file1, rfile1, rdate, hit, category, notice) ";
+	  $sql.= " values('','$thread2','$depth2','$name','$pwd','$email','$title','$html_yn','$contents','$fname','$rname','$today','0','$category','$notice')";
+	  $db->execute($sql);
+
+	  move_to($post->post_name."?thread=$thread2&mode=view&ti=$ti&co=$co&word=$word&pagenum=$pagenum&search=$search&category=$category");
+
+	}else{
+	  $sql = "select max(thread) from $code";
+	  $thread = $db -> query_one($sql);
+	  $thread2 = $thread + 1000;
+	  $sql = "insert into $code (no, thread, depth, name, pwd, email, title, html_yn, contents, file1, rfile1, rdate, hit, category, notice) ";
+	  $sql.= " values('','$thread2','0','$name','$pwd','$email','$title','$html_yn','$contents','$fname','$rname','$today','0','$category','$notice')";
+	  $db->execute($sql);
+	  move_to($post->post_name."?thread=$thread2&mode=view&ti=$ti&co=$co&word=$word&pagenum=$pagenum&search=$search&category=$category");
+	}
+}
+//저장처리 process area end
 
 if($mode == "edit"){
 
@@ -45,44 +124,48 @@ if($mode == "edit"){
     $pwd = $info[pwd];
   }
 ?>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<META NAME="Author" CONTENT="Cho Sang-Won">
-<link href="/<?=$skin?>/css.css" rel="stylesheet" type="text/css">
-<link href="/<?=$skin?>/style.css" rel="stylesheet" type="text/css">
-<Script>
-function linkblur(){
-if (event.srcElement.tagName=="A"||event.srcElement.tagName=="IMG")
-document.body.focus();
-}
-document.onfocusin=linkblur;
+<link href="WP/imercury/css/css.css" rel="stylesheet" type="text/css">
+<link href="WP/imercury/css/style.css" rel="stylesheet" type="text/css">
+<!--
+<link href="<?=BOARDSKINPATH?>/css.css" rel="stylesheet" type="text/css">
+<link href="<?=BOARDSKINPATH?>/style.css" rel="stylesheet" type="text/css">-->
+<script type="text/javascript">
+//<![CDATA[
+	function linkblur(){
+		if (event.srcElement.tagName=="A"||event.srcElement.tagName=="IMG")
+			document.body.focus();
+	}
+	document.onfocusin=linkblur;
 
-function sub(){
-  f = document.form1;
-  if(f.name.value == ""){
-    alert("이름을 입력하세요.");
-    f.name.focus();
-    return;
-  }
-  if(f.title.value == ""){
-    alert("제목을 입력하세요.");
-    f.title.focus();
-    return;
-  }
-  if(f.pwd.value == ""){
-    alert("패스워드를 입력하세요.");
-    f.pwd.focus();
-    return;
-  }
-  if(f.contents.value == ""){
-    alert("내용을 입력하세요.");
-    f.contents.focus();
-    return;
-  }
-  f.submit();
-}
+	function sub(){
+	  f = document.form1;
+	  if(f.name.value == ""){
+		alert("이름을 입력하세요.");
+		f.name.focus();
+		return;
+	  }
+	  if(f.title.value == ""){
+		alert("제목을 입력하세요.");
+		f.title.focus();
+		return;
+	  }
+	  if(f.pwd.value == ""){
+		alert("패스워드를 입력하세요.");
+		f.pwd.focus();
+		return;
+	  }
+	  if(f.contents.value == ""){
+		alert("내용을 입력하세요.");
+		f.contents.focus();
+		return;
+	  }
+	  f.submit();
+	}
+//]]>
 </script>
-<table width="600" border="0" cellpadding="0" cellspacing="0">
-<form name="form1" method=post action="/<?=$skin?>/write_ps1.php" enctype="multipart/form-data">
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+<form name="form1" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="enc" value="enc<?=time()?>">
   <input type="hidden" name="code" value="<?=$code?>">
   <input type="hidden" name="url" value="<?=$PHP_SELF?>">
   <input type="hidden" name="no" value="<?=$no?>">
@@ -92,7 +175,7 @@ function sub(){
   <input type="hidden" name="ti" value="<?=$ti?>">
   <input type="hidden" name="co" value="<?=$co?>">
   <input type="hidden" name="word" value="<?=$word?>">
-  <input type="hidden" name="page" value="<?=$page?>">
+  <input type="hidden" name="pagenum" value="<?=$pagenum?>">
   <input type="hidden" name="search" value="<?=$search?>">
   <input type="hidden" name="notice" value="0" value="<?=$info[notice]?>">
   <tr>

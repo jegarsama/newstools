@@ -13,6 +13,7 @@ $category	= $_GET[category];
 $search		= $_GET[search];
 $word		= $_GET[word];
 $no		= $_GET[no];
+$thread	= $_GET[thread];
 $pagenum= $_GET[pagenum] == "" ? '1' : $_GET[pagenum];
 
 
@@ -68,21 +69,26 @@ if($info[file1]){
 		$file = "<a href='/$skin/download.php?code=".$code."&f1=".$info[file1]."&f2=".$info[rfile1]."'><img src='".BOARDSKINPATH."/file_img/unknown.gif' border='0' alt='".$info[rfile1]."' title='".$info[rfile1]."' /></a>";
 	}
 	if(strtoupper($img[1]) == "JPG" || strtoupper($img[1]) == "GIF" || strtoupper($img[1]) == "BMP" || strtoupper($img[1]) == "PNG"){
-		$img2 = image_re("/".$skin."/data/".$code."/".$info[file1],600,3000);
-		$review = "<img src='$img2[0]' width='$img2[1]' height='$img2[2]' onclick=\"img_pop('/".$skin."/data/".$code."/".$info[file1]."');\" style='cursor:hand' />";
+		$img2 = image_re("/WP/imercury/".$skin."/data/".$code."/".$info[file1],600,3000);
+		//$review = "<img src='$img2[0]' width='$img2[1]' height='$img2[2]' onclick=\"img_pop('/WP/imercury/".$skin."/data/".$code."/".$info[file1]."');\" style='cursor:hand' />";
+		$review = "<img src='$img2[0]' width='$img2[1]' height='$img2[2]' />";
 	}
 }
 else $file = "&nbsp;";
 
 
-$sql = "select max(no) from $code where no < '$no'";
+$sql = "select max(no) from $code where no < '$no' ";
+if($category) $sql .= "AND category='$category' " ;
 $prev = $db->query_one($sql);
 
-$sql = "select min(no) from $code where no > '$no'";
+$sql = "select min(no) from $code where no > '$no' ";
+if($category) $sql .= "AND category='$category' " ;
 $next = $db->query_one($sql);
 ?>
-<link href="<?=BOARDSKINPATH?>/css.css" rel="stylesheet" type="text/css">
-<link href="<?=BOARDSKINPATH?>/style.css" rel="stylesheet" type="text/css">
+
+<link href="WP/imercury/css/css.css" rel="stylesheet" type="text/css">
+<link href="WP/imercury/css/style.css" rel="stylesheet" type="text/css">
+
 <script language="javascript" src="<?=BOARDSKINPATH?>/imgcbox.js"></script>
 <script type="text/javascript">
 //<![CDATA[
@@ -102,9 +108,9 @@ $next = $db->query_one($sql);
 //]]>
 </script>
 
-<table width="620" border="0"  cellpadding="0" cellspacing="0">
+<table width="80%" border="0" align="center"  cellpadding="0" cellspacing="0">
 	<tr>
-		<td><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3"></td>
+		<td><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="100%" height="3"></td>
 	</tr>
 	<tr>
 		<td class="border09"><table width="100%" height="34" border="0" cellpadding="0" cellspacing="0" background="<?= BOARDSKINPATH?>/btn_img/bg02.gif">
@@ -271,7 +277,7 @@ $next = $db->query_one($sql);
 					<td align="center">&nbsp;</td>
 				</tr>
 				<tr>
-					<td><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3"></td>
+					<td><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="100%" height="3"></td>
 				</tr>
 				</form><?
 			}
@@ -281,14 +287,14 @@ $next = $db->query_one($sql);
 
 
 	<tr>
-		<td><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3"></td>
+		<td><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="100%" height="3"></td>
 	</tr>
 	<tr>
 		<td style="padding:7px 10px 0 10px"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding:0px 0px 40px 0px;">
 				<tr>
-					<td width="43"><?if($prev){?><a href="<?=$post->post_name?>?mode=view&no=<?=$prev?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_back2.gif" width="43" height="11" border="0"></a><?}?></td>
-					<td><?if($next){?><a href="<?=$post->post_name?>?mode=view&no=<?=$next?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_next2.gif" width="43" height="11" border="0"></a><?}?></td>
-					<td align="right"><a href="<?=$post->post_name?>?pagenum=<?=$pagenum?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_list.gif" width="56" height="23" border="0"></a>
+					<td width="43"><?if($prev){?><a href="<?=$post->post_name?>?mode=view&no=<?=$prev?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>&category=<?=$category?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_back2.gif" width="43" height="11" border="0"></a><?}?></td>
+					<td><?if($next){?><a href="<?=$post->post_name?>?mode=view&no=<?=$next?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>&category=<?=$category?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_next2.gif" width="43" height="11" border="0"></a><?}?></td>
+					<td align="right"><a href="<?=$post->post_name?>?pagenum=<?=$pagenum?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&search=<?=$search?>&category=<?=$category?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_list.gif" width="56" height="23" border="0"></a>
 						<?if($admin == "1"){?>
 							<a href="<?=$post->post_name?>?mode=edit&no=<?=$no?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_modify.gif" border="0"></a>
 							<a href="<?=$post->post_name?>?mode=del&url=<?=$post->post_name?>&no=<?=$no?>&code=<?=$code?>&pagenum=<?=$pagenum?>&ti=<?=$ti?>&co=<?=$co?>&word=<?=$word?>&search=<?=$search?>"><img src="<?= BOARDSKINPATH?>/btn_img/bt_del.gif" border="0"></a>
