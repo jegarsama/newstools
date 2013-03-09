@@ -80,7 +80,7 @@ get_header();
 
 				//게시판 출력용 영역 - STR
 				echo '<div class="imercury-board-content">';
-					echo '<div class="toplinks"><img src="/imercury/images/customer/faq_banner2.gif" width="680" height="485" border="0" usemap="#MapTopLink">
+					echo '<div class="toplinks"><img src="/imercury/images/customer/faq_banner2.gif" width="680" height="485" border="0" style="margin:0 auto;" usemap="#MapTopLink">
 						<map name="MapTopLink">
 							<area shape="rect" coords="26,45,233,176" href="/faq?category=MAP" />
 							<area shape="rect" coords="235,45,445,175" href="/faq?category=GPS" />

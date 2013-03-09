@@ -54,8 +54,11 @@ $pg->use_block('10');
 $pg->use_img(BOARDSKINPATH.'/btn_img/bt_back.gif', BOARDSKINPATH.'/btn_img/bt_next.gif');
 $no		= $total - ($list_num*($pagenum-1));
 ?>
+<link href="WP/imercury/css/css.css" rel="stylesheet" type="text/css">
+<link href="WP/imercury/css/style.css" rel="stylesheet" type="text/css">
+<!--
 <link href="<?=BOARDSKINPATH?>/css.css" rel="stylesheet" type="text/css">
-<link href="<?=BOARDSKINPATH?>/style.css" rel="stylesheet" type="text/css">
+<link href="<?=BOARDSKINPATH?>/style.css" rel="stylesheet" type="text/css">-->
 <script language="javascript" src="<?=BOARDSKINPATH?>/imgcbox.js"></script>
 <script type="text/javascript">
 //<![CDATA[
@@ -82,7 +85,7 @@ $no		= $total - ($list_num*($pagenum-1));
 //]]>
 </script>
 
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0">
 <?
 	if($search == 1){
 		if($na == "Y") $chk1 = "checked";
@@ -150,7 +153,7 @@ $no		= $total - ($list_num*($pagenum-1));
 		</td>
 	</tr>
 	<tr>
-		<td><img src="<?=BOARDSKINPATH?>/images/img_06.jpg"></td>
+		<td><img src="<?=BOARDSKINPATH?>/images/img_06.jpg" width="100%" height="41"></td>
 	</tr>
 	<tr>
 		<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -232,7 +235,7 @@ $no		= $total - ($list_num*($pagenum-1));
 				<td width="36" height="25" align="center" class="border07"><?=$no--?></td>
 				<td width="101" align="center" class="border07"><?=$info[$i][category]?></td>
 				<td width="301" class="link2" style="padding-left:5px"><?=$depth?>
-					<a href="<?=$post->post_name?>?mode=view&no=<?=$info[$i][no]?>&ti=<?=$ti?>&code=<?=$code?>&co=<?=$co?>&word=<?=$word?>&page=<?=$page?>&search=<?=$search?>&category=<?=$info[$i][category]?>"><?=cut_string($info[$i][title],45)?>&nbsp;<? echo $nu?></a>
+					<a href="<?=$post->post_name?>?mode=view&no=<?=$info[$i][no]?>&ti=<?=$ti?>&code=<?=$code?>&co=<?=$co?>&word=<?=$word?>&pagenum=<?=$pagenum?>&search=<?=$search?>&category=<?=$info[$i][category]?>"><?=cut_string($info[$i][title],74)?>&nbsp;<? echo $nu?></a>
 				</td>
 				<td width="61" align="center" class="border07"><?=$info[$i][name]?></td>
 				<td width="66" align="center" class="border07"><?=substr($info[$i][rdate],0,10)?></td>
@@ -255,7 +258,7 @@ $no		= $total - ($list_num*($pagenum-1));
 		<td height="42" align="center"><?=$pg->mk_numbering()?></td>
 	</tr>
 	<tr>
-		<td height="3" bgcolor="#94CCF4"><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="620" height="3" /></td>
+		<td height="3"><img src="<?= BOARDSKINPATH?>/images/img_b_zul2.gif" width="100%" height="3" /></td>
 	</tr>
 </table>
 <script>imgCbox("na");</script>
