@@ -98,7 +98,7 @@ get_header();
 								$s_no = $_POST[s_no1]."-".$_POST[s_no2]."-".$_POST[s_no3]."-".$_POST[s_no4];
 								$today = date("Ymd");
 
-								$sql = "insert into good_reg values('','$_POST[model_no]','$_POST[barcode]','$s_no','$_POST[year]','$_POST[month]','$_POST[area1]','$_POST[area2]','$_COOKIE[mid]','$today')";
+								$sql = "insert into good_reg values('','$_POST[model_no]','$_POST[barcode]','$s_no','$_POST[buy_year]','$_POST[buy_month]','$_POST[area1]','$_POST[area2]','$_COOKIE[mid]','$today')";
 								$db->execute($sql);
 
 								$sql = "update serial_tbl set chk = 'Y', barcode = '$_POST[barcode]' where ctg = '$_POST[model_no]' and s_no1 = '$_POST[s_no1]' and s_no2 = '$_POST[s_no2]' and s_no3 = '$_POST[s_no3]' and s_no4 = '$_POST[s_no4]'";
