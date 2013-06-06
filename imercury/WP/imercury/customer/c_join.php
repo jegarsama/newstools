@@ -6,6 +6,8 @@
 require_once( NEW_IMERCURY_DIR . '/include/func.php' );
 require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 ?>
+<link href="WP/imercury/css/css.css" rel="stylesheet" type="text/css">
+<link href="WP/imercury/css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 //<![CDATA[
 	function sno_chk(){
@@ -105,12 +107,12 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 		alert("맵번호 중복확인을 해주세요");
 		return;
 	  }
-	  if(form1.year.value == ""){
+	  if(form1.buy_year.value == ""){
 		alert("구입연도를 선택하세요");
 		form1.year.focus();
 		return;
 	  }
-	  if(form1.month.value == ""){
+	  if(form1.buy_month.value == ""){
 		alert("구입월을 선택하세요");
 		form1.month.focus();
 		return;
@@ -130,22 +132,21 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 	}
 //]]>
 </script>
-<table width="680" border="0"  cellpadding="0" cellspacing="0" >
-	<tr>
+<table width="940" border="0" align="center"  cellpadding="0" cellspacing="0" >
+	<!-- tr>
 		<td align="center"><img src="/imercury/images/customer/join_top.gif" width="680" ></td>
+	</tr -->
+	<tr>
+		<td align="center"><img src="<?=BOARDSKINPATH?>/images/certify_titleimg.jpg" width="940" height="171" ></td>
 	</tr>
 	<tr>
-		<td align="center"><img src="/imercury/images/customer/join_banner.gif" width="680" ></td>
-	</tr>
-	<tr>
-		<td>
+		<td background="<?=BOARDSKINPATH?>/images/idpw_search_02.png">
 			<table align="center" border="0" cellpadding="0" cellspacing="0">
 				<tr>
-					<td width="680"  height="600" align='center' bgcolor="#FFFFFF">
+					<td width="680"  height="600" bgcolor="#FFFFFF">
 						<table width="100%" border="0" cellspacing="0" cellpadding="1">
 							<tr>
-								<td width="6%" height="29">&nbsp;</td>
-								<td width="94%"><img src="/imercury/images/in_title02.gif" width="88" height="18"></td>
+								<td height="29"><img src="<?=BOARDSKINPATH?>/images/certify_title1.jpg"></td>
 							</tr>
 						</table><?
 
@@ -167,7 +168,7 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 									$sql = "select mname from model_tbl where no = '".$info[$i][model_no]."'";
 									$mname = $db->query_one($sql);
 									?>
-									<TABLE cellSpacing=0 cellPadding=0 width="600" align="center" border=0>
+									<TABLE cellSpacing=0 cellPadding=0 width="700" align="center" border=0>
 										<TBODY>
 											<TR>
 												<TD bgColor=#c1c1c1 height=1 colspan="2"></TD>
@@ -227,17 +228,19 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 							}
 								?>
 
-						<table width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
+					  <table width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
 							<tr>
-								<td width="6%">&nbsp;</td>
-								<td width="94%"><img src="/imercury/images/in_title03.gif" width="88" height="18"></td>
+								<td><img src="<?=BOARDSKINPATH?>/images/certify_title2.jpg"></td>
+							</tr>
+                            <tr>
+								<td><img src="<?=BOARDSKINPATH?>/images/certify_title3.jpg"></td>
 							</tr>
 						</table>
-						<table width="600" border="0" cellpadding="0" cellspacing="0" align="center">
+						<table width="700" border="0" cellpadding="0" cellspacing="0" align="center">
 							<tr>
-								<td bgcolor="E7E7E7"><table width="100%" border="0" cellspacing="0" cellpadding="3">
+								<td bgcolor="E7E7E7"><table width="700" border="0" cellspacing="0" cellpadding="3">
 									<tr>
-										<td bgcolor="#FFFFFF"><table width="590" border="0" cellspacing="0" cellpadding="0">
+										<td bgcolor="#FFFFFF"><table width="700" border="0" cellspacing="0" cellpadding="0">
 											<tr>
 												<td>
 													<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
@@ -252,7 +255,7 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 															<TD bgColor=#c1c1c1 height=1></TD>
 														</TR>
 														<TR>
-															<TD align="center" bgcolor="FAFAFA">
+															<TD bgcolor="FAFAFA">
 																<form name="form1" method="post">
 																<input type="hidden" name="mode" value="req" />
 																<input type="hidden" name="id_check">
@@ -262,9 +265,6 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 																	<TR>
 																		<TD bgColor=#ededed height=2></TD>
 																		<TD width="495"></TD>
-																	</TR>
-																	<TR align="center">
-																		<TD colspan="2" height=50 bgColor=#f7f7f7><img src="/imercury/images/serial.jpg"></TD>
 																	</TR>
 																	<TR>
 																		<TD width=95 height=30 bgColor=#f7f7f7  style="PADDING-LEFT: 5px"><span class="member_txt_02">ㆍ제품이름</span></TD>
@@ -293,7 +293,7 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 																				?><option value="<?=$info[$i][no]?>"><?=$info[$i][mname]?></option><?
 																			}?></SELECT>
 																			- <input name="barcode" type='text' class=text_style size=6 >
-																			<span id="vhtml"><img src="/imercury/images/join_overlap.gif" width="60" height="19" onClick="sno_chk()" style="cursor:hand"></span> <a href="#" ONCLICK="window.open('/imercury/images/join_in_mappy.jpg','pop','width=490,height=371,toolbar=no,resizable=no,scrollbars=no,left=0,top=0')"><img src="/imercury/images/join_in.gif" width="83" height="19" border="0"></a>
+																			<span id="vhtml"><img src="<?=BOARDSKINPATH?>/images/join_overlap.gif" width="60" height="19" onClick="sno_chk()" style="cursor:hand"></span> <a href="#" ONCLICK="window.open('/imercury/images/join_in_mappy.jpg','pop','width=490,height=371,toolbar=no,resizable=no,scrollbars=no,left=0,top=0')"><img src="<?=BOARDSKINPATH?>/images/join_in.gif" width="83" height="19" border="0"></a>
 																		</TD>
 																	</TR>
 																	<TR>
@@ -308,10 +308,10 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 																			-
 																			<input name="s_no4" type='text' class='text_style' size=5 maxlength="4">
 																			<span id="vhtml1">
-																				<img src="/imercury/images/join_overlap.gif" width="60" height="19" onClick="sno_chk2(1)"  style="cursor:hand">
+																				<img src="<?=BOARDSKINPATH?>/images/join_overlap.gif" width="60" height="19" onClick="sno_chk2(1)"  style="cursor:hand">
 																			</span>
 																			<span id="vhtml2" >
-																				<img src="/imercury/images/join_overlap.gif" width="60" height="19" onClick="sno_chk2(2)" style="cursor:hand">
+																				<img src="<?=BOARDSKINPATH?>/images/join_overlap.gif" width="60" height="19" onClick="sno_chk2(2)" style="cursor:hand">
 																			</span>
 																		</TD>
 																	</TR>
@@ -321,13 +321,13 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 																	<TR>
 																		<TD width=95 height=30 bgColor=#f7f7f7  style="PADDING-LEFT: 5px"><span class="member_txt_02">ㆍ구입년도/월</span></TD>
 																		<TD bgcolor="#FFFFFF" style="PADDING-LEFT: 5px">
-																			<SELECT class=select_style name=year>
+																			<SELECT class=select_style name=buy_year>
 																			<OPTION value="" selected>선택</OPTION><?
 																			for($i=2005;$i<=date("Y");$i++){
 																				?><OPTION value=<?=$i?>><?=$i?></OPTION><?
 																			}?>
 																			</SELECT> 년
-																			<SELECT class=select_style name=month>
+																			<SELECT class=select_style name=buy_month>
 																			<OPTION value="" selected>선택</OPTION><?
 																			for($i=1;$i<13;$i++){
 																				?><OPTION value="<?=$i?>"><?=$i?></OPTION><?
@@ -372,19 +372,24 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 													</TABLE>
 
 													<table width="100%" height="50" border="0" cellpadding="5" cellspacing="0">
-														<tr>
-															<td align="right" id="vhtml3"><img src="/imercury/images/icon_my_05.gif" onClick="sub(1)" style="cursor:hand"></td>
-															<td align="right" id="vhtml4" style="display:none"><img src="/imercury/images/icon_my_05.gif" onClick="sub(2)" style="cursor:hand"></td>
-															<td><img src="/imercury/images/icon_my_07.gif" onClick="form1.reset()" style="cursor:hand"></td>
+													  <tr>
+															<td align="right" id="vhtml3"><img src="<?=BOARDSKINPATH?>/images/ok_bn.png" width="88" height="36" border="0" onClick="sub(1)" style="cursor:hand"></td>
+															<td align="right" id="vhtml4" style="display:none"><img src="<?=BOARDSKINPATH?>/images/ok_bn.png" width="88" height="36" border="0" onClick="sub(2)" style="cursor:hand"></td>
+															<td><img src="<?=BOARDSKINPATH?>/images/cancel_bn.png" width="88" height="36" border="0" onClick="form1.reset()" style="cursor:hand"></td>
 														</tr>
 													</table>
 												</td>
 											</tr>
 										</table></td>
 									</tr>
-								</table></td>
+							  </table></td>
 							</tr>
 						</table>
+						<table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
+						  <tr>
+						    <td height="30">&nbsp;</td>
+					      </tr>
+					  </table>
 					</td>
 				</tr>
 			</table>
@@ -392,9 +397,9 @@ require_once( NEW_IMERCURY_DIR . '/include/paging_class.php' );
 	</tr>
 	<tr>
 		<td>
-			<table align="center">
+			<table border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
-					<td height="50"></td>
+					<td width="940" height="20"><img src="<?=BOARDSKINPATH?>/images/idpw_search_12.png" width="940" height="20" alt="" /></td>
 				</tr>
 			</table>
 		</td>
